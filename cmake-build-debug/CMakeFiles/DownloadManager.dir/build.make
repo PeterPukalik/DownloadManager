@@ -62,10 +62,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /tmp/tmp.gRW5lYt2Vc
+CMAKE_SOURCE_DIR = /tmp/tmp.gpH2UbL60D
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /tmp/tmp.gRW5lYt2Vc/cmake-build-debug
+CMAKE_BINARY_DIR = /tmp/tmp.gpH2UbL60D/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/DownloadManager.dir/depend.make
@@ -78,48 +78,62 @@ include CMakeFiles/DownloadManager.dir/flags.make
 
 CMakeFiles/DownloadManager.dir/main.cpp.o: CMakeFiles/DownloadManager.dir/flags.make
 CMakeFiles/DownloadManager.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.gRW5lYt2Vc/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DownloadManager.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DownloadManager.dir/main.cpp.o -c /tmp/tmp.gRW5lYt2Vc/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.gpH2UbL60D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DownloadManager.dir/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DownloadManager.dir/main.cpp.o -c /tmp/tmp.gpH2UbL60D/main.cpp
 
 CMakeFiles/DownloadManager.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DownloadManager.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /tmp/tmp.gRW5lYt2Vc/main.cpp > CMakeFiles/DownloadManager.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /tmp/tmp.gpH2UbL60D/main.cpp > CMakeFiles/DownloadManager.dir/main.cpp.i
 
 CMakeFiles/DownloadManager.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DownloadManager.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /tmp/tmp.gRW5lYt2Vc/main.cpp -o CMakeFiles/DownloadManager.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /tmp/tmp.gpH2UbL60D/main.cpp -o CMakeFiles/DownloadManager.dir/main.cpp.s
 
 CMakeFiles/DownloadManager.dir/source/server.cpp.o: CMakeFiles/DownloadManager.dir/flags.make
 CMakeFiles/DownloadManager.dir/source/server.cpp.o: ../source/server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.gRW5lYt2Vc/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DownloadManager.dir/source/server.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DownloadManager.dir/source/server.cpp.o -c /tmp/tmp.gRW5lYt2Vc/source/server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.gpH2UbL60D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DownloadManager.dir/source/server.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DownloadManager.dir/source/server.cpp.o -c /tmp/tmp.gpH2UbL60D/source/server.cpp
 
 CMakeFiles/DownloadManager.dir/source/server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DownloadManager.dir/source/server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /tmp/tmp.gRW5lYt2Vc/source/server.cpp > CMakeFiles/DownloadManager.dir/source/server.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /tmp/tmp.gpH2UbL60D/source/server.cpp > CMakeFiles/DownloadManager.dir/source/server.cpp.i
 
 CMakeFiles/DownloadManager.dir/source/server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DownloadManager.dir/source/server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /tmp/tmp.gRW5lYt2Vc/source/server.cpp -o CMakeFiles/DownloadManager.dir/source/server.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /tmp/tmp.gpH2UbL60D/source/server.cpp -o CMakeFiles/DownloadManager.dir/source/server.cpp.s
 
 CMakeFiles/DownloadManager.dir/source/client.cpp.o: CMakeFiles/DownloadManager.dir/flags.make
 CMakeFiles/DownloadManager.dir/source/client.cpp.o: ../source/client.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.gRW5lYt2Vc/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/DownloadManager.dir/source/client.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DownloadManager.dir/source/client.cpp.o -c /tmp/tmp.gRW5lYt2Vc/source/client.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.gpH2UbL60D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/DownloadManager.dir/source/client.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DownloadManager.dir/source/client.cpp.o -c /tmp/tmp.gpH2UbL60D/source/client.cpp
 
 CMakeFiles/DownloadManager.dir/source/client.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DownloadManager.dir/source/client.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /tmp/tmp.gRW5lYt2Vc/source/client.cpp > CMakeFiles/DownloadManager.dir/source/client.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /tmp/tmp.gpH2UbL60D/source/client.cpp > CMakeFiles/DownloadManager.dir/source/client.cpp.i
 
 CMakeFiles/DownloadManager.dir/source/client.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DownloadManager.dir/source/client.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /tmp/tmp.gRW5lYt2Vc/source/client.cpp -o CMakeFiles/DownloadManager.dir/source/client.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /tmp/tmp.gpH2UbL60D/source/client.cpp -o CMakeFiles/DownloadManager.dir/source/client.cpp.s
+
+CMakeFiles/DownloadManager.dir/source/http.cpp.o: CMakeFiles/DownloadManager.dir/flags.make
+CMakeFiles/DownloadManager.dir/source/http.cpp.o: ../source/http.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.gpH2UbL60D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DownloadManager.dir/source/http.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DownloadManager.dir/source/http.cpp.o -c /tmp/tmp.gpH2UbL60D/source/http.cpp
+
+CMakeFiles/DownloadManager.dir/source/http.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DownloadManager.dir/source/http.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /tmp/tmp.gpH2UbL60D/source/http.cpp > CMakeFiles/DownloadManager.dir/source/http.cpp.i
+
+CMakeFiles/DownloadManager.dir/source/http.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DownloadManager.dir/source/http.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /tmp/tmp.gpH2UbL60D/source/http.cpp -o CMakeFiles/DownloadManager.dir/source/http.cpp.s
 
 # Object files for target DownloadManager
 DownloadManager_OBJECTS = \
 "CMakeFiles/DownloadManager.dir/main.cpp.o" \
 "CMakeFiles/DownloadManager.dir/source/server.cpp.o" \
-"CMakeFiles/DownloadManager.dir/source/client.cpp.o"
+"CMakeFiles/DownloadManager.dir/source/client.cpp.o" \
+"CMakeFiles/DownloadManager.dir/source/http.cpp.o"
 
 # External object files for target DownloadManager
 DownloadManager_EXTERNAL_OBJECTS =
@@ -127,9 +141,10 @@ DownloadManager_EXTERNAL_OBJECTS =
 DownloadManager: CMakeFiles/DownloadManager.dir/main.cpp.o
 DownloadManager: CMakeFiles/DownloadManager.dir/source/server.cpp.o
 DownloadManager: CMakeFiles/DownloadManager.dir/source/client.cpp.o
+DownloadManager: CMakeFiles/DownloadManager.dir/source/http.cpp.o
 DownloadManager: CMakeFiles/DownloadManager.dir/build.make
 DownloadManager: CMakeFiles/DownloadManager.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/tmp/tmp.gRW5lYt2Vc/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable DownloadManager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/tmp/tmp.gpH2UbL60D/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable DownloadManager"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DownloadManager.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -142,6 +157,6 @@ CMakeFiles/DownloadManager.dir/clean:
 .PHONY : CMakeFiles/DownloadManager.dir/clean
 
 CMakeFiles/DownloadManager.dir/depend:
-	cd /tmp/tmp.gRW5lYt2Vc/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /tmp/tmp.gRW5lYt2Vc /tmp/tmp.gRW5lYt2Vc /tmp/tmp.gRW5lYt2Vc/cmake-build-debug /tmp/tmp.gRW5lYt2Vc/cmake-build-debug /tmp/tmp.gRW5lYt2Vc/cmake-build-debug/CMakeFiles/DownloadManager.dir/DependInfo.cmake --color=$(COLOR)
+	cd /tmp/tmp.gpH2UbL60D/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /tmp/tmp.gpH2UbL60D /tmp/tmp.gpH2UbL60D /tmp/tmp.gpH2UbL60D/cmake-build-debug /tmp/tmp.gpH2UbL60D/cmake-build-debug /tmp/tmp.gpH2UbL60D/cmake-build-debug/CMakeFiles/DownloadManager.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/DownloadManager.dir/depend
 

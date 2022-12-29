@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /tmp/tmp.gRW5lYt2Vc
+CMAKE_SOURCE_DIR = /tmp/tmp.gpH2UbL60D
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /tmp/tmp.gRW5lYt2Vc/cmake-build-debug
+CMAKE_BINARY_DIR = /tmp/tmp.gpH2UbL60D/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/tmp.gRW5lYt2Vc/cmake-build-debug/CMakeFiles /tmp/tmp.gRW5lYt2Vc/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/tmp.gpH2UbL60D/cmake-build-debug/CMakeFiles /tmp/tmp.gpH2UbL60D/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/tmp.gRW5lYt2Vc/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/tmp.gpH2UbL60D/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -196,6 +196,33 @@ source/client.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/client.cpp.s
 .PHONY : source/client.cpp.s
 
+source/http.o: source/http.cpp.o
+
+.PHONY : source/http.o
+
+# target to build an object file
+source/http.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/http.cpp.o
+.PHONY : source/http.cpp.o
+
+source/http.i: source/http.cpp.i
+
+.PHONY : source/http.i
+
+# target to preprocess a source file
+source/http.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/http.cpp.i
+.PHONY : source/http.cpp.i
+
+source/http.s: source/http.cpp.s
+
+.PHONY : source/http.s
+
+# target to generate assembly for a file
+source/http.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/http.cpp.s
+.PHONY : source/http.cpp.s
+
 source/server.o: source/server.cpp.o
 
 .PHONY : source/server.o
@@ -238,6 +265,9 @@ help:
 	@echo "... source/client.o"
 	@echo "... source/client.i"
 	@echo "... source/client.s"
+	@echo "... source/http.o"
+	@echo "... source/http.i"
+	@echo "... source/http.s"
 	@echo "... source/server.o"
 	@echo "... source/server.i"
 	@echo "... source/server.s"

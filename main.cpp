@@ -1,6 +1,7 @@
-#include <cstdio>
+#include <stdio.h>
 #include "header/server.h"
 #include "header/client.h"
+#include "header/http.h"
 #include <cstring>
 
 int main(int argc, char* argv[]) {
@@ -11,8 +12,8 @@ int main(int argc, char* argv[]) {
         noveArgumenty[i - 1] = argv[i];
     }
 
-    if (strcmp(argv[1], "server") == 0) {
-        return server(argc - 1, noveArgumenty);
+    if (strcmp(argv[1], "http") == 0) {
+        return http(argc - 1, noveArgumenty);
     }
     else if (strcmp(argv[1], "client") == 0) {
         return client(argc - 1, noveArgumenty);
