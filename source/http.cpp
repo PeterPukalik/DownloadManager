@@ -13,26 +13,27 @@
 #include <ostream>
 #include <string>
 #include <boost/asio.hpp>
+#include <fstream>
 
 using boost::asio::ip::tcp;
 
-int http(int argc, char* argv[])
+int http(std::string web, std::string path, std::string name, int id)
 {
     try
     {
-        if (argc != 3)
-        {
-            std::cout << "Usage: sync_client <server> <path>\n";
-            std::cout << "Example:\n";
-            std::cout << "  sync_client www.boost.org /LICENSE_1_0.txt\n";
-            return 1;
-        }
+//        if (argc <= 3)
+//        {
+//            std::cout << "Usage: sync_client <server> <path>\n";
+//            std::cout << "Example:\n";
+//            std::cout << "pukalik.sk /pos/dog.jpeg dog\n";
+//            return 1;
+//        }
 
         boost::asio::io_context io_context;
 
         // Get a list of endpoints corresponding to the server name.
         tcp::resolver resolver(io_context);
-        tcp::resolver::results_type endpoints = resolver.resolve(argv[1], "http");
+        tcp::resolver::results_type endpoints = resolver.resolve(web, "http");
 
         // Try each endpoint until we successfully establish a connection.
         tcp::socket socket(io_context);
@@ -43,8 +44,8 @@ int http(int argc, char* argv[])
         // allow us to treat all data up until the EOF as the content.
         boost::asio::streambuf request;
         std::ostream request_stream(&request);
-        request_stream << "GET " << argv[2] << " HTTP/1.0\r\n";
-        request_stream << "Host: " << argv[1] << "\r\n";
+        request_stream << "GET " << path << " HTTP/1.0\r\n";
+        request_stream << "Host: " << web << "\r\n";
         request_stream << "Accept: */*\r\n";
         request_stream << "Connection: close\r\n\r\n";
 
@@ -81,19 +82,36 @@ int http(int argc, char* argv[])
 
         // Process the response headers.
         std::string header;
-        while (std::getline(response_stream, header) && header != "\r")
-            std::cout << header << "\n";
-        std::cout << "\n";
+        int i = 0;
+        while (std::getline(response_stream, header) && header != "\r"){
+            //std::cout << header << "\n";
+        }
+
+        //std::cout << "\n";
 
         // Write whatever content we already have to output.
+        std::cout << id;
+        std::ofstream outdata;
+        outdata.open((name + ".dat"));
+        if(!outdata){
+            std::cerr << "Error : file could not be opened" << std::endl;
+            return 1;
+        }
         if (response.size() > 0)
-            std::cout << &response;
+            //std::cout << &response;
+            outdata << &response;
 
         // Read until EOF, writing data to output as we go.
         boost::system::error_code error;
         while (boost::asio::read(socket, response,
                                  boost::asio::transfer_at_least(1), error))
-            std::cout << &response;
+
+            //std::cout << &response;
+            outdata << &response;
+        outdata.close();
+        std::cout << std::endl;
+        std::cout << id;
+
         if (error != boost::asio::error::eof)
             throw boost::system::system_error(error);
     }
