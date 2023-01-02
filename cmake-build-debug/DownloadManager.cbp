@@ -88,6 +88,9 @@
 		<Unit filename="/home/puki/CLionProjects/DownloadManager/header/http.h">
 			<Option target="DownloadManager"/>
 		</Unit>
+		<Unit filename="/home/puki/CLionProjects/DownloadManager/header/manager.h">
+			<Option target="DownloadManager"/>
+		</Unit>
 		<Unit filename="/home/puki/CLionProjects/DownloadManager/header/server.h">
 			<Option target="DownloadManager"/>
 		</Unit>
@@ -98,6 +101,9 @@
 			<Option target="DownloadManager"/>
 		</Unit>
 		<Unit filename="/home/puki/CLionProjects/DownloadManager/source/http.cpp">
+			<Option target="DownloadManager"/>
+		</Unit>
+		<Unit filename="/home/puki/CLionProjects/DownloadManager/source/manager.cpp">
 			<Option target="DownloadManager"/>
 		</Unit>
 		<Unit filename="/home/puki/CLionProjects/DownloadManager/source/server.cpp">

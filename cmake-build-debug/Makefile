@@ -201,6 +201,30 @@ source/http.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/http.cpp.s
 .PHONY : source/http.cpp.s
 
+source/manager.o: source/manager.cpp.o
+.PHONY : source/manager.o
+
+# target to build an object file
+source/manager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/manager.cpp.o
+.PHONY : source/manager.cpp.o
+
+source/manager.i: source/manager.cpp.i
+.PHONY : source/manager.i
+
+# target to preprocess a source file
+source/manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/manager.cpp.i
+.PHONY : source/manager.cpp.i
+
+source/manager.s: source/manager.cpp.s
+.PHONY : source/manager.s
+
+# target to generate assembly for a file
+source/manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/manager.cpp.s
+.PHONY : source/manager.cpp.s
+
 source/server.o: source/server.cpp.o
 .PHONY : source/server.o
 
@@ -243,6 +267,9 @@ help:
 	@echo "... source/http.o"
 	@echo "... source/http.i"
 	@echo "... source/http.s"
+	@echo "... source/manager.o"
+	@echo "... source/manager.i"
+	@echo "... source/manager.s"
 	@echo "... source/server.o"
 	@echo "... source/server.i"
 	@echo "... source/server.s"

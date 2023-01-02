@@ -1,9 +1,11 @@
-#include <cstdio>
 #include "header/http.h"
+#include "header/manager.h"
 #include <cstring>
 #include <string>
 #include <iostream>
 #include <pthread.h>
+#include <ctime>
+#include <unistd.h>
 
 
 typedef struct ITEM{
@@ -14,6 +16,7 @@ typedef struct ITEM{
     std::string path;
     std::string name;
     int index;
+    std::string time;
 
 }ITEM;
 
@@ -26,8 +29,19 @@ void *downloand(void * sdata) {
     ITEM* data = (ITEM*) sdata;
     pthread_mutex_lock(data->mutex);
     int index = data->index++;
+    char* time = new char[data->time.length() + 1];
+    strcpy(time,data->time.c_str());
     pthread_mutex_unlock(data->mutex);
-    http("pukalik.sk","/pos/dog.jpeg","testBigFile" + std::to_string(index),index);
+    while(1){
+        if (compareDates(time) > 0) {
+            break;
+        } else {
+            std::cout << "waiting \n";
+            sleep(5);
+
+        }
+    }
+    http("pukalik.sk", "/pos/dog.jpeg", "dog");
     return nullptr;
 }
 
@@ -40,7 +54,7 @@ int main(int argc, char* argv[]) {
     pthread_cond_init(&cond_spravca, nullptr);
     pthread_cond_init(&cond_vlakno, nullptr);
 
-    ITEM data = {&mutex,&cond_spravca,&cond_vlakno,"pukalik.sk","/pos/dog.jpeg","dog",1};
+    ITEM data = {&mutex,&cond_spravca,&cond_vlakno,"pukalik.sk","/pos/dog.jpeg","dog",1,"jan 2 12:54:22 2023"};
     while(running){
         std::cout << std::endl << "choose you comand \nfor exit type \"exit\"" << std::endl;
         std::string comand;
@@ -48,11 +62,20 @@ int main(int argc, char* argv[]) {
         if(comand == "http"){
             std::cout << "you choose http" << std::endl;
             pthread_t spravca;
-            pthread_t vlakna[5];
+            pthread_t vlakna[1];
             pthread_create(&spravca, nullptr,&manager,&data);
-            for (int i = 0; i < 5; ++i) {
+            for (int i = 0; i < 1; ++i) {
                 pthread_create(&vlakna[i], nullptr,&downloand,&data);
             }
+        }
+        if(comand == "time"){
+            std::cout << std::endl << "time date and time in format(Mar 1 05:10:00 )" << std::endl;
+            std::cin.ignore();
+            getline(std::cin,comand);
+            char* time = new char[comand.length() + 1];
+            strcpy(time,comand.c_str());
+            std::cout << compareDates(time);
+            delete[] time;
         }
 
 

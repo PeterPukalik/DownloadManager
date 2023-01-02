@@ -17,7 +17,7 @@
 
 using boost::asio::ip::tcp;
 
-int http(std::string web, std::string path, std::string name, int id)
+int http(std::string web, std::string path, std::string name)
 {
     try
     {
@@ -84,13 +84,12 @@ int http(std::string web, std::string path, std::string name, int id)
         std::string header;
         int i = 0;
         while (std::getline(response_stream, header) && header != "\r"){
-            //std::cout << header << "\n";
+            std::cout << header << "\n";
         }
 
         //std::cout << "\n";
 
         // Write whatever content we already have to output.
-        std::cout << id;
         std::ofstream outdata;
         outdata.open((name + ".dat"));
         if(!outdata){
@@ -110,7 +109,6 @@ int http(std::string web, std::string path, std::string name, int id)
             outdata << &response;
         outdata.close();
         std::cout << std::endl;
-        std::cout << id;
 
         if (error != boost::asio::error::eof)
             throw boost::system::system_error(error);

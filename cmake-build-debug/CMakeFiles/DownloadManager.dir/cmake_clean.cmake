@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/DownloadManager.dir/source/client.cpp.o.d"
   "CMakeFiles/DownloadManager.dir/source/http.cpp.o"
   "CMakeFiles/DownloadManager.dir/source/http.cpp.o.d"
+  "CMakeFiles/DownloadManager.dir/source/manager.cpp.o"
+  "CMakeFiles/DownloadManager.dir/source/manager.cpp.o.d"
   "CMakeFiles/DownloadManager.dir/source/server.cpp.o"
   "CMakeFiles/DownloadManager.dir/source/server.cpp.o.d"
   "DownloadManager"
