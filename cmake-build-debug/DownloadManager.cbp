@@ -82,6 +82,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/puki/CLionProjects/DownloadManager/header/Parser.h">
+			<Option target="DownloadManager"/>
+		</Unit>
 		<Unit filename="/home/puki/CLionProjects/DownloadManager/header/client.h">
 			<Option target="DownloadManager"/>
 		</Unit>
@@ -95,6 +98,9 @@
 			<Option target="DownloadManager"/>
 		</Unit>
 		<Unit filename="/home/puki/CLionProjects/DownloadManager/main.cpp">
+			<Option target="DownloadManager"/>
+		</Unit>
+		<Unit filename="/home/puki/CLionProjects/DownloadManager/source/Parser.cpp">
 			<Option target="DownloadManager"/>
 		</Unit>
 		<Unit filename="/home/puki/CLionProjects/DownloadManager/source/client.cpp">

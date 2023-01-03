@@ -7,5 +7,5 @@
 
 #include <string>
 
-int http(std::string web, std::string path, std::string name);
+int http(std::string web, std::string path, std::string name,int startPoint,bool &stop);
 #endif //DOWNLOADMANAGER_HTTP_H

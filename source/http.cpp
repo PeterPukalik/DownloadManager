@@ -13,11 +13,12 @@
 #include <ostream>
 #include <string>
 #include <boost/asio.hpp>
+#include <boost/lexical_cast.hpp>
 #include <fstream>
 
 using boost::asio::ip::tcp;
 
-int http(std::string web, std::string path, std::string name)
+int http(std::string web, std::string path, std::string name,int startPoint,bool &stop)
 {
     try
     {
@@ -28,7 +29,7 @@ int http(std::string web, std::string path, std::string name)
 //            std::cout << "pukalik.sk /pos/dog.jpeg dog\n";
 //            return 1;
 //        }
-
+        long long responseLength = 0;
         boost::asio::io_context io_context;
 
         // Get a list of endpoints corresponding to the server name.
@@ -46,6 +47,7 @@ int http(std::string web, std::string path, std::string name)
         std::ostream request_stream(&request);
         request_stream << "GET " << path << " HTTP/1.0\r\n";
         request_stream << "Host: " << web << "\r\n";
+        request_stream << "Range:  bytes=" + boost::lexical_cast<std::string>(startPoint)+ "-"<< "\r\n";;
         request_stream << "Accept: */*\r\n";
         request_stream << "Connection: close\r\n\r\n";
 
@@ -71,7 +73,7 @@ int http(std::string web, std::string path, std::string name)
             std::cout << "Invalid response\n";
             return 1;
         }
-        if (status_code != 200)
+        if (status_code != 200 && status_code != 206)
         {
             std::cout << "Response returned with status code " << status_code << "\n";
             return 1;
@@ -98,16 +100,28 @@ int http(std::string web, std::string path, std::string name)
         }
         if (response.size() > 0)
             //std::cout << &response;
+            //tu bude premenna kolko mi prislo +=
+            responseLength += response.size();
             outdata << &response;
 
         // Read until EOF, writing data to output as we go.
         boost::system::error_code error;
-        while (boost::asio::read(socket, response,
-                                 boost::asio::transfer_at_least(1), error))
-
+        while (boost::asio::read(socket, response,boost::asio::transfer_at_least(1), error) && stop != true)
+            //tu bude premenna kolko mi prislo +=
+            responseLength += response.size();
             //std::cout << &response;
             outdata << &response;
         outdata.close();
+        if(stop == true){
+            outdata.open(("resume.txt"),std::ios::app);
+            if(!outdata){
+                std::cerr << "Error : file could not be opened" << std::endl;
+                return 1;
+            }
+            outdata << web << path << name ;
+            outdata.close();
+        }
+
         std::cout << std::endl;
 
         if (error != boost::asio::error::eof)

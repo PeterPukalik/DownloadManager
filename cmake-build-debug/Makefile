@@ -153,6 +153,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+source/Parser.o: source/Parser.cpp.o
+.PHONY : source/Parser.o
+
+# target to build an object file
+source/Parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Parser.cpp.o
+.PHONY : source/Parser.cpp.o
+
+source/Parser.i: source/Parser.cpp.i
+.PHONY : source/Parser.i
+
+# target to preprocess a source file
+source/Parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Parser.cpp.i
+.PHONY : source/Parser.cpp.i
+
+source/Parser.s: source/Parser.cpp.s
+.PHONY : source/Parser.s
+
+# target to generate assembly for a file
+source/Parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Parser.cpp.s
+.PHONY : source/Parser.cpp.s
+
 source/client.o: source/client.cpp.o
 .PHONY : source/client.o
 
@@ -261,6 +285,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... source/Parser.o"
+	@echo "... source/Parser.i"
+	@echo "... source/Parser.s"
 	@echo "... source/client.o"
 	@echo "... source/client.i"
 	@echo "... source/client.s"
