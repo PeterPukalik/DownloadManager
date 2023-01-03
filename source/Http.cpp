@@ -18,7 +18,7 @@
 
 using boost::asio::ip::tcp;
 
-int http(std::string web, std::string path, std::string name,int startPoint,bool &stop)
+int http(std::string web, std::string path, std::string name,int startPoint,bool &stop,long long index, int *allreadyDownloaded)
 {
     try
     {
@@ -29,9 +29,8 @@ int http(std::string web, std::string path, std::string name,int startPoint,bool
 //            std::cout << "pukalik.sk /pos/dog.jpeg dog\n";
 //            return 1;
 //        }
-        long long responseLength = 0;
         boost::asio::io_context io_context;
-
+        int responselength = 0;
         // Get a list of endpoints corresponding to the server name.
         tcp::resolver resolver(io_context);
         tcp::resolver::results_type endpoints = resolver.resolve(web, "http");
@@ -42,7 +41,7 @@ int http(std::string web, std::string path, std::string name,int startPoint,bool
 
         // Form the request. We specify the "Connection: close" header so that the
         // server will close the socket after transmitting the response. This will
-        // allow us to treat all data up until the EOF as the content.
+        // allow us to treat all Data up until the EOF as the content.
         boost::asio::streambuf request;
         std::ostream request_stream(&request);
         request_stream << "GET " << path << " HTTP/1.0\r\n";
@@ -88,7 +87,6 @@ int http(std::string web, std::string path, std::string name,int startPoint,bool
         while (std::getline(response_stream, header) && header != "\r"){
             std::cout << header << "\n";
         }
-
         //std::cout << "\n";
 
         // Write whatever content we already have to output.
@@ -98,29 +96,22 @@ int http(std::string web, std::string path, std::string name,int startPoint,bool
             std::cerr << "Error : file could not be opened" << std::endl;
             return 1;
         }
-        if (response.size() > 0)
+        if (response.size() > 0) {
             //std::cout << &response;
             //tu bude premenna kolko mi prislo +=
-            responseLength += response.size();
+            responselength += response.size();
             outdata << &response;
-
-        // Read until EOF, writing data to output as we go.
-        boost::system::error_code error;
-        while (boost::asio::read(socket, response,boost::asio::transfer_at_least(1), error) && stop != true)
-            //tu bude premenna kolko mi prislo +=
-            responseLength += response.size();
-            //std::cout << &response;
-            outdata << &response;
-        outdata.close();
-        if(stop == true){
-            outdata.open(("resume.txt"),std::ios::app);
-            if(!outdata){
-                std::cerr << "Error : file could not be opened" << std::endl;
-                return 1;
-            }
-            outdata << web << path << name ;
-            outdata.close();
         }
+
+        // Read until EOF, writing Data to output as we go.
+        boost::system::error_code error;
+        while (boost::asio::read(socket, response,boost::asio::transfer_at_least(1), error) && !stop) {
+            responselength += response.size();
+            outdata << &response;
+        }
+        outdata.close();
+
+        *allreadyDownloaded = responselength;
 
         std::cout << std::endl;
 

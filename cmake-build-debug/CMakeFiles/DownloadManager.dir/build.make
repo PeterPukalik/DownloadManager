@@ -111,33 +111,33 @@ CMakeFiles/DownloadManager.dir/source/client.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DownloadManager.dir/source/client.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/puki/CLionProjects/DownloadManager/source/client.cpp -o CMakeFiles/DownloadManager.dir/source/client.cpp.s
 
-CMakeFiles/DownloadManager.dir/source/http.cpp.o: CMakeFiles/DownloadManager.dir/flags.make
-CMakeFiles/DownloadManager.dir/source/http.cpp.o: /home/puki/CLionProjects/DownloadManager/source/http.cpp
-CMakeFiles/DownloadManager.dir/source/http.cpp.o: CMakeFiles/DownloadManager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/puki/CLionProjects/DownloadManager/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DownloadManager.dir/source/http.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DownloadManager.dir/source/http.cpp.o -MF CMakeFiles/DownloadManager.dir/source/http.cpp.o.d -o CMakeFiles/DownloadManager.dir/source/http.cpp.o -c /home/puki/CLionProjects/DownloadManager/source/http.cpp
+CMakeFiles/DownloadManager.dir/source/Http.cpp.o: CMakeFiles/DownloadManager.dir/flags.make
+CMakeFiles/DownloadManager.dir/source/Http.cpp.o: /home/puki/CLionProjects/DownloadManager/source/Http.cpp
+CMakeFiles/DownloadManager.dir/source/Http.cpp.o: CMakeFiles/DownloadManager.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/puki/CLionProjects/DownloadManager/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DownloadManager.dir/source/Http.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DownloadManager.dir/source/Http.cpp.o -MF CMakeFiles/DownloadManager.dir/source/Http.cpp.o.d -o CMakeFiles/DownloadManager.dir/source/Http.cpp.o -c /home/puki/CLionProjects/DownloadManager/source/Http.cpp
 
-CMakeFiles/DownloadManager.dir/source/http.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DownloadManager.dir/source/http.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/puki/CLionProjects/DownloadManager/source/http.cpp > CMakeFiles/DownloadManager.dir/source/http.cpp.i
+CMakeFiles/DownloadManager.dir/source/Http.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DownloadManager.dir/source/Http.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/puki/CLionProjects/DownloadManager/source/Http.cpp > CMakeFiles/DownloadManager.dir/source/Http.cpp.i
 
-CMakeFiles/DownloadManager.dir/source/http.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DownloadManager.dir/source/http.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/puki/CLionProjects/DownloadManager/source/http.cpp -o CMakeFiles/DownloadManager.dir/source/http.cpp.s
+CMakeFiles/DownloadManager.dir/source/Http.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DownloadManager.dir/source/Http.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/puki/CLionProjects/DownloadManager/source/Http.cpp -o CMakeFiles/DownloadManager.dir/source/Http.cpp.s
 
-CMakeFiles/DownloadManager.dir/source/manager.cpp.o: CMakeFiles/DownloadManager.dir/flags.make
-CMakeFiles/DownloadManager.dir/source/manager.cpp.o: /home/puki/CLionProjects/DownloadManager/source/manager.cpp
-CMakeFiles/DownloadManager.dir/source/manager.cpp.o: CMakeFiles/DownloadManager.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/puki/CLionProjects/DownloadManager/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/DownloadManager.dir/source/manager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DownloadManager.dir/source/manager.cpp.o -MF CMakeFiles/DownloadManager.dir/source/manager.cpp.o.d -o CMakeFiles/DownloadManager.dir/source/manager.cpp.o -c /home/puki/CLionProjects/DownloadManager/source/manager.cpp
+CMakeFiles/DownloadManager.dir/source/Manager.cpp.o: CMakeFiles/DownloadManager.dir/flags.make
+CMakeFiles/DownloadManager.dir/source/Manager.cpp.o: /home/puki/CLionProjects/DownloadManager/source/Manager.cpp
+CMakeFiles/DownloadManager.dir/source/Manager.cpp.o: CMakeFiles/DownloadManager.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/puki/CLionProjects/DownloadManager/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/DownloadManager.dir/source/Manager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DownloadManager.dir/source/Manager.cpp.o -MF CMakeFiles/DownloadManager.dir/source/Manager.cpp.o.d -o CMakeFiles/DownloadManager.dir/source/Manager.cpp.o -c /home/puki/CLionProjects/DownloadManager/source/Manager.cpp
 
-CMakeFiles/DownloadManager.dir/source/manager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DownloadManager.dir/source/manager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/puki/CLionProjects/DownloadManager/source/manager.cpp > CMakeFiles/DownloadManager.dir/source/manager.cpp.i
+CMakeFiles/DownloadManager.dir/source/Manager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DownloadManager.dir/source/Manager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/puki/CLionProjects/DownloadManager/source/Manager.cpp > CMakeFiles/DownloadManager.dir/source/Manager.cpp.i
 
-CMakeFiles/DownloadManager.dir/source/manager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DownloadManager.dir/source/manager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/puki/CLionProjects/DownloadManager/source/manager.cpp -o CMakeFiles/DownloadManager.dir/source/manager.cpp.s
+CMakeFiles/DownloadManager.dir/source/Manager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DownloadManager.dir/source/Manager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/puki/CLionProjects/DownloadManager/source/Manager.cpp -o CMakeFiles/DownloadManager.dir/source/Manager.cpp.s
 
 CMakeFiles/DownloadManager.dir/source/Parser.cpp.o: CMakeFiles/DownloadManager.dir/flags.make
 CMakeFiles/DownloadManager.dir/source/Parser.cpp.o: /home/puki/CLionProjects/DownloadManager/source/Parser.cpp
@@ -153,14 +153,29 @@ CMakeFiles/DownloadManager.dir/source/Parser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DownloadManager.dir/source/Parser.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/puki/CLionProjects/DownloadManager/source/Parser.cpp -o CMakeFiles/DownloadManager.dir/source/Parser.cpp.s
 
+CMakeFiles/DownloadManager.dir/source/Data.cpp.o: CMakeFiles/DownloadManager.dir/flags.make
+CMakeFiles/DownloadManager.dir/source/Data.cpp.o: /home/puki/CLionProjects/DownloadManager/source/Data.cpp
+CMakeFiles/DownloadManager.dir/source/Data.cpp.o: CMakeFiles/DownloadManager.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/puki/CLionProjects/DownloadManager/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/DownloadManager.dir/source/Data.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DownloadManager.dir/source/Data.cpp.o -MF CMakeFiles/DownloadManager.dir/source/Data.cpp.o.d -o CMakeFiles/DownloadManager.dir/source/Data.cpp.o -c /home/puki/CLionProjects/DownloadManager/source/Data.cpp
+
+CMakeFiles/DownloadManager.dir/source/Data.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DownloadManager.dir/source/Data.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/puki/CLionProjects/DownloadManager/source/Data.cpp > CMakeFiles/DownloadManager.dir/source/Data.cpp.i
+
+CMakeFiles/DownloadManager.dir/source/Data.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DownloadManager.dir/source/Data.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/puki/CLionProjects/DownloadManager/source/Data.cpp -o CMakeFiles/DownloadManager.dir/source/Data.cpp.s
+
 # Object files for target DownloadManager
 DownloadManager_OBJECTS = \
 "CMakeFiles/DownloadManager.dir/main.cpp.o" \
 "CMakeFiles/DownloadManager.dir/source/server.cpp.o" \
 "CMakeFiles/DownloadManager.dir/source/client.cpp.o" \
-"CMakeFiles/DownloadManager.dir/source/http.cpp.o" \
-"CMakeFiles/DownloadManager.dir/source/manager.cpp.o" \
-"CMakeFiles/DownloadManager.dir/source/Parser.cpp.o"
+"CMakeFiles/DownloadManager.dir/source/Http.cpp.o" \
+"CMakeFiles/DownloadManager.dir/source/Manager.cpp.o" \
+"CMakeFiles/DownloadManager.dir/source/Parser.cpp.o" \
+"CMakeFiles/DownloadManager.dir/source/Data.cpp.o"
 
 # External object files for target DownloadManager
 DownloadManager_EXTERNAL_OBJECTS =
@@ -168,12 +183,13 @@ DownloadManager_EXTERNAL_OBJECTS =
 DownloadManager: CMakeFiles/DownloadManager.dir/main.cpp.o
 DownloadManager: CMakeFiles/DownloadManager.dir/source/server.cpp.o
 DownloadManager: CMakeFiles/DownloadManager.dir/source/client.cpp.o
-DownloadManager: CMakeFiles/DownloadManager.dir/source/http.cpp.o
-DownloadManager: CMakeFiles/DownloadManager.dir/source/manager.cpp.o
+DownloadManager: CMakeFiles/DownloadManager.dir/source/Http.cpp.o
+DownloadManager: CMakeFiles/DownloadManager.dir/source/Manager.cpp.o
 DownloadManager: CMakeFiles/DownloadManager.dir/source/Parser.cpp.o
+DownloadManager: CMakeFiles/DownloadManager.dir/source/Data.cpp.o
 DownloadManager: CMakeFiles/DownloadManager.dir/build.make
 DownloadManager: CMakeFiles/DownloadManager.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/puki/CLionProjects/DownloadManager/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable DownloadManager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/puki/CLionProjects/DownloadManager/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable DownloadManager"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DownloadManager.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

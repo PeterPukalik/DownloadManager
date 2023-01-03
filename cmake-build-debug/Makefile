@@ -153,6 +153,78 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+source/Data.o: source/Data.cpp.o
+.PHONY : source/Data.o
+
+# target to build an object file
+source/Data.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Data.cpp.o
+.PHONY : source/Data.cpp.o
+
+source/Data.i: source/Data.cpp.i
+.PHONY : source/Data.i
+
+# target to preprocess a source file
+source/Data.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Data.cpp.i
+.PHONY : source/Data.cpp.i
+
+source/Data.s: source/Data.cpp.s
+.PHONY : source/Data.s
+
+# target to generate assembly for a file
+source/Data.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Data.cpp.s
+.PHONY : source/Data.cpp.s
+
+source/Http.o: source/Http.cpp.o
+.PHONY : source/Http.o
+
+# target to build an object file
+source/Http.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Http.cpp.o
+.PHONY : source/Http.cpp.o
+
+source/Http.i: source/Http.cpp.i
+.PHONY : source/Http.i
+
+# target to preprocess a source file
+source/Http.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Http.cpp.i
+.PHONY : source/Http.cpp.i
+
+source/Http.s: source/Http.cpp.s
+.PHONY : source/Http.s
+
+# target to generate assembly for a file
+source/Http.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Http.cpp.s
+.PHONY : source/Http.cpp.s
+
+source/Manager.o: source/Manager.cpp.o
+.PHONY : source/Manager.o
+
+# target to build an object file
+source/Manager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Manager.cpp.o
+.PHONY : source/Manager.cpp.o
+
+source/Manager.i: source/Manager.cpp.i
+.PHONY : source/Manager.i
+
+# target to preprocess a source file
+source/Manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Manager.cpp.i
+.PHONY : source/Manager.cpp.i
+
+source/Manager.s: source/Manager.cpp.s
+.PHONY : source/Manager.s
+
+# target to generate assembly for a file
+source/Manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Manager.cpp.s
+.PHONY : source/Manager.cpp.s
+
 source/Parser.o: source/Parser.cpp.o
 .PHONY : source/Parser.o
 
@@ -201,54 +273,6 @@ source/client.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/client.cpp.s
 .PHONY : source/client.cpp.s
 
-source/http.o: source/http.cpp.o
-.PHONY : source/http.o
-
-# target to build an object file
-source/http.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/http.cpp.o
-.PHONY : source/http.cpp.o
-
-source/http.i: source/http.cpp.i
-.PHONY : source/http.i
-
-# target to preprocess a source file
-source/http.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/http.cpp.i
-.PHONY : source/http.cpp.i
-
-source/http.s: source/http.cpp.s
-.PHONY : source/http.s
-
-# target to generate assembly for a file
-source/http.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/http.cpp.s
-.PHONY : source/http.cpp.s
-
-source/manager.o: source/manager.cpp.o
-.PHONY : source/manager.o
-
-# target to build an object file
-source/manager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/manager.cpp.o
-.PHONY : source/manager.cpp.o
-
-source/manager.i: source/manager.cpp.i
-.PHONY : source/manager.i
-
-# target to preprocess a source file
-source/manager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/manager.cpp.i
-.PHONY : source/manager.cpp.i
-
-source/manager.s: source/manager.cpp.s
-.PHONY : source/manager.s
-
-# target to generate assembly for a file
-source/manager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/manager.cpp.s
-.PHONY : source/manager.cpp.s
-
 source/server.o: source/server.cpp.o
 .PHONY : source/server.o
 
@@ -285,18 +309,21 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... source/Data.o"
+	@echo "... source/Data.i"
+	@echo "... source/Data.s"
+	@echo "... source/Http.o"
+	@echo "... source/Http.i"
+	@echo "... source/Http.s"
+	@echo "... source/Manager.o"
+	@echo "... source/Manager.i"
+	@echo "... source/Manager.s"
 	@echo "... source/Parser.o"
 	@echo "... source/Parser.i"
 	@echo "... source/Parser.s"
 	@echo "... source/client.o"
 	@echo "... source/client.i"
 	@echo "... source/client.s"
-	@echo "... source/http.o"
-	@echo "... source/http.i"
-	@echo "... source/http.s"
-	@echo "... source/manager.o"
-	@echo "... source/manager.i"
-	@echo "... source/manager.s"
 	@echo "... source/server.o"
 	@echo "... source/server.i"
 	@echo "... source/server.s"

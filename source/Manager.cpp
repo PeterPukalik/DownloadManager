@@ -1,7 +1,7 @@
 //
 // Created by puki on 1.1.2023.
 //
-#include "../header/manager.h"
+#include "../header/Manager.h"
 #include <ctime>
 #include <string>
 #include <iostream>
@@ -23,12 +23,13 @@ int compareDates(std::string date){
     tm.tm_hour = std::stoi(parameters.at(3));
     tm.tm_min = std::stoi(parameters.at(4));
     tm.tm_sec = std::stoi(parameters.at(5));
+    tm.tm_isdst = 0;
 //    tm.tm_year = 123;//od 1900
 //    tm.tm_mon = 0;//mesiac jan = 0
 //    tm.tm_mday = 2;
     t_input = mktime(&tm);
-    printf("%s",ctime(&t_input));
-    printf("%s",ctime(&t_now));
+    //printf("%s",ctime(&t_input));
+    //printf("%s",ctime(&t_now));
 
     return std::difftime(t_now, t_input);
 }

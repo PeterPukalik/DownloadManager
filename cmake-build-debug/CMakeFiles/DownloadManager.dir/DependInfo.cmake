@@ -9,10 +9,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/puki/CLionProjects/DownloadManager/main.cpp" "CMakeFiles/DownloadManager.dir/main.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/main.cpp.o.d"
+  "/home/puki/CLionProjects/DownloadManager/source/Data.cpp" "CMakeFiles/DownloadManager.dir/source/Data.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/Data.cpp.o.d"
+  "/home/puki/CLionProjects/DownloadManager/source/Http.cpp" "CMakeFiles/DownloadManager.dir/source/Http.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/Http.cpp.o.d"
+  "/home/puki/CLionProjects/DownloadManager/source/Manager.cpp" "CMakeFiles/DownloadManager.dir/source/Manager.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/Manager.cpp.o.d"
   "/home/puki/CLionProjects/DownloadManager/source/Parser.cpp" "CMakeFiles/DownloadManager.dir/source/Parser.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/Parser.cpp.o.d"
   "/home/puki/CLionProjects/DownloadManager/source/client.cpp" "CMakeFiles/DownloadManager.dir/source/client.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/client.cpp.o.d"
-  "/home/puki/CLionProjects/DownloadManager/source/http.cpp" "CMakeFiles/DownloadManager.dir/source/http.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/http.cpp.o.d"
-  "/home/puki/CLionProjects/DownloadManager/source/manager.cpp" "CMakeFiles/DownloadManager.dir/source/manager.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/manager.cpp.o.d"
   "/home/puki/CLionProjects/DownloadManager/source/server.cpp" "CMakeFiles/DownloadManager.dir/source/server.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/server.cpp.o.d"
   )
 

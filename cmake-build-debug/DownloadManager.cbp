@@ -82,16 +82,19 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/puki/CLionProjects/DownloadManager/header/Data.h">
+			<Option target="DownloadManager"/>
+		</Unit>
+		<Unit filename="/home/puki/CLionProjects/DownloadManager/header/Http.h">
+			<Option target="DownloadManager"/>
+		</Unit>
+		<Unit filename="/home/puki/CLionProjects/DownloadManager/header/Manager.h">
+			<Option target="DownloadManager"/>
+		</Unit>
 		<Unit filename="/home/puki/CLionProjects/DownloadManager/header/Parser.h">
 			<Option target="DownloadManager"/>
 		</Unit>
 		<Unit filename="/home/puki/CLionProjects/DownloadManager/header/client.h">
-			<Option target="DownloadManager"/>
-		</Unit>
-		<Unit filename="/home/puki/CLionProjects/DownloadManager/header/http.h">
-			<Option target="DownloadManager"/>
-		</Unit>
-		<Unit filename="/home/puki/CLionProjects/DownloadManager/header/manager.h">
 			<Option target="DownloadManager"/>
 		</Unit>
 		<Unit filename="/home/puki/CLionProjects/DownloadManager/header/server.h">
@@ -100,16 +103,19 @@
 		<Unit filename="/home/puki/CLionProjects/DownloadManager/main.cpp">
 			<Option target="DownloadManager"/>
 		</Unit>
+		<Unit filename="/home/puki/CLionProjects/DownloadManager/source/Data.cpp">
+			<Option target="DownloadManager"/>
+		</Unit>
+		<Unit filename="/home/puki/CLionProjects/DownloadManager/source/Http.cpp">
+			<Option target="DownloadManager"/>
+		</Unit>
+		<Unit filename="/home/puki/CLionProjects/DownloadManager/source/Manager.cpp">
+			<Option target="DownloadManager"/>
+		</Unit>
 		<Unit filename="/home/puki/CLionProjects/DownloadManager/source/Parser.cpp">
 			<Option target="DownloadManager"/>
 		</Unit>
 		<Unit filename="/home/puki/CLionProjects/DownloadManager/source/client.cpp">
-			<Option target="DownloadManager"/>
-		</Unit>
-		<Unit filename="/home/puki/CLionProjects/DownloadManager/source/http.cpp">
-			<Option target="DownloadManager"/>
-		</Unit>
-		<Unit filename="/home/puki/CLionProjects/DownloadManager/source/manager.cpp">
 			<Option target="DownloadManager"/>
 		</Unit>
 		<Unit filename="/home/puki/CLionProjects/DownloadManager/source/server.cpp">
