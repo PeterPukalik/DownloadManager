@@ -18,7 +18,7 @@
 
 using boost::asio::ip::tcp;
 
-int http(std::string web, std::string path, std::string name,int startPoint,bool &stop,long long index, int *allreadyDownloaded)
+int http(std::string web, std::string path, std::string name,int startPoint,bool &stop,long long index, double *allreadyDownloaded,int *totalSize)
 {
     try
     {
@@ -85,6 +85,9 @@ int http(std::string web, std::string path, std::string name,int startPoint,bool
         std::string header;
         int i = 0;
         while (std::getline(response_stream, header) && header != "\r"){
+            if(header.compare(0,16,"Content-Length: ")== 0){
+                 *totalSize = std::stoi(header.substr(16,header.length()));
+            }
             std::cout << header << "\n";
         }
         //std::cout << "\n";
@@ -99,19 +102,19 @@ int http(std::string web, std::string path, std::string name,int startPoint,bool
         if (response.size() > 0) {
             //std::cout << &response;
             //tu bude premenna kolko mi prislo +=
-            responselength += response.size();
+            *allreadyDownloaded += response.size();
             outdata << &response;
         }
 
         // Read until EOF, writing Data to output as we go.
         boost::system::error_code error;
         while (boost::asio::read(socket, response,boost::asio::transfer_at_least(1), error) && !stop) {
-            responselength += response.size();
+            *allreadyDownloaded += response.size();
             outdata << &response;
         }
         outdata.close();
 
-        *allreadyDownloaded = responselength;
+
 
         std::cout << std::endl;
 

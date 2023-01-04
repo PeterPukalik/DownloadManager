@@ -86,12 +86,12 @@ void Data::setStartPoint(int startPoint) {
 
 Data::Data(const std::string &aProtocol, const std::string &web, const std::string &path, const std::string &name,
            long long int index, int priority, const std::string &time, bool stop, int bufferPriority, int startPoint,
-           pthread_mutex_t *mutex, pthread_cond_t *condSpravcaPriority, pthread_cond_t *condVlakno,int allreadyDownloaded)
+           pthread_mutex_t *mutex, pthread_cond_t *condSpravcaPriority, pthread_cond_t *condVlakno,int allreadyDownloaded,int totalSize)
            : protocol(aProtocol), web(web), path(path), name(name), index(index), priority(priority), time(time), stop(stop),
             bufferPriority(bufferPriority),
             startPoint(startPoint),
             mutex(mutex),
-            cond_spravcaPriority(condSpravcaPriority),cond_vlakno(condVlakno),allreadyDownloaded(allreadyDownloaded) {
+            cond_spravcaPriority(condSpravcaPriority),cond_vlakno(condVlakno),allreadyDownloaded(allreadyDownloaded),totalSize(totalSize) {
 
 
 }
@@ -108,11 +108,19 @@ pthread_cond_t *Data::getCondVlakno()  {
     return cond_vlakno;
 }
 
-int* Data::getAllreadyDownloaded()  {
+double* Data::getAllreadyDownloaded()  {
     return &allreadyDownloaded;
 }
 
 void Data::setAllreadyDownloaded(int allreadyDownloaded) {
     Data::allreadyDownloaded = allreadyDownloaded;
+}
+
+int* Data::getTotalSize()  {
+    return &totalSize;
+}
+
+void Data::setTotalSize(int totalSize) {
+    Data::totalSize = totalSize;
 }
 

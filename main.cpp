@@ -15,16 +15,22 @@
 
 
 void *managerPriority(void * sdata) {
+    std::vector<Data*>* data = (std::vector<Data*>*) sdata;
+
+
+
     return nullptr;
 }
 
 
+
 void *downloand(void * sdata) {
+
     Data* data = (Data*) sdata;
-    pthread_mutex_lock(data->getMutex());
-    int index = data->getIndex();
+//    pthread_mutex_lock(data->getMutex());
+//    pthread_cond_wait(data->getCondSpravcaPriority(),data->getMutex());
+//    pthread_mutex_unlock(data->getMutex());
     std::string time = data->getTime();
-    pthread_mutex_unlock(data->getMutex());
     while(true){
         int seconds = compareDates(time);
         //std::cout << seconds << std::endl;
@@ -36,7 +42,7 @@ void *downloand(void * sdata) {
         }
     }
     //http(data->getWeb(),data->getPath(),data->getName(),data->getStartPoint(),&data->isStop(),data->getIndex());
-    http(data->getWeb(),data->getPath(),data->getName(),data->getStartPoint(),data->isStop(),data->getIndex(),data->getAllreadyDownloaded());
+    http(data->getWeb(),data->getPath(),data->getName(),data->getStartPoint(),data->isStop(),data->getIndex(),data->getAllreadyDownloaded(),data->getTotalSize());
 
     return nullptr;
 }
@@ -66,7 +72,7 @@ int main(int argc, char* argv[]) {
 
     while(running){                                                                                                     //http pukalik.sk /pos/dog.jpeg dog 1
         std::cout << std::endl << "choose you command \nfor exit type \"exit\"\n(http,https,ftp,ftps,help)" << std::endl;//http pukalik.sk /pos/pos_big.zip testStop 1 // 2023 1 3 19:44:00
-        // http pukalik.sk /pos/big_file.zip testThread1 1 // 2023 1 3 21:47:01
+        // http pukalik.sk /pos/big_file.zip testThread1 1 // 2023 1 4 13:00:01
         std::string command;
         std::cin >> command;
         if(command == "download"){
@@ -85,26 +91,16 @@ int main(int argc, char* argv[]) {
             pthread_mutex_lock(&mutex);
             data.push_back(new Data(parameters.at(0),parameters.at(1),parameters.at(2),parameters.at(3),
                                     index,std::stoi(parameters.at(4)),parameters.at(5),stop,3,0,
-                                    &mutex,&cond_spravcaPriority,&cond_vlakno,0));
+                                    &mutex,&cond_spravcaPriority,&cond_vlakno,0,0));
             index++;
             pthread_mutex_unlock(&mutex);
             parameters.clear();
             pthread_t vlakna;
             pthread_create(&vlakna, nullptr,&downloand,data.at(data.size()-1));
-//            pthread_t vlakna;
-//            pthread_create(&vlakna, nullptr,&downloand,&Data);
-//            pthread_mutex_lock(&mutex);
-//            vectorOfThreads.push_back(vlakna);
-//            pthread_mutex_unlock(&mutex);
 
 
         }
-//        if(command == "time"){
-//            std::cout << std::endl << "time date and time in format(jan 2 20:34:00 2023)" << std::endl;
-//            std::cin.ignore();//kvoli 2 endl nad tym
-//            getline(std::cin, command);
-//            std::cout << compareDates(command);
-//        }
+
         if(command == "stop"){
             pthread_mutex_lock(&mutex);
             stop = true;
@@ -116,7 +112,10 @@ int main(int argc, char* argv[]) {
             pthread_mutex_unlock(&mutex);
         }
         if(command == "status"){
-            std::cout << "not implemented yet \n";
+            for (int i = 0; i < data.size(); ++i) {
+                std::cout << data.at(i)->getName() << " file has total size of: " << *data.at(i)->getTotalSize() << " B and downloaded is "<< (double)(*data.at(i)->getAllreadyDownloaded()/ *data.at(i)->getTotalSize())*100<< " %\n";
+
+            }
         }
 
 

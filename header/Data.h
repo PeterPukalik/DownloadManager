@@ -19,6 +19,10 @@ public:
 
     pthread_cond_t *getCondVlakno() ;
 
+    int* getTotalSize() ;
+
+    void setTotalSize(int totalSize);
+
 private:
     std::string protocol;
     std::string web;
@@ -33,11 +37,12 @@ private:
     pthread_mutex_t* mutex;
     pthread_cond_t* cond_spravcaPriority;
     pthread_cond_t* cond_vlakno;
-    int allreadyDownloaded;
+    double allreadyDownloaded;
+    int totalSize;
 public:
     Data(const std::string &aProtocol, const std::string &web, const std::string &path, const std::string &name,
          long long int index, int priority, const std::string &time, bool stop, int bufferPriority, int startPoint,
-         pthread_mutex_t *mutex, pthread_cond_t *condSpravcaPriority, pthread_cond_t *condVlakno,int allreadyDownloaded);
+         pthread_mutex_t *mutex, pthread_cond_t *condSpravcaPriority, pthread_cond_t *condVlakno,int allreadyDownloaded,int totalSize);
 
 
 public:
@@ -57,7 +62,7 @@ public:
 
     void setName(const std::string &name);
 
-    int* getAllreadyDownloaded();
+    double* getAllreadyDownloaded();
 
     void setAllreadyDownloaded(int allreadyDownloaded);
 
