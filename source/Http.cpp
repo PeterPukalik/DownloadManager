@@ -15,6 +15,7 @@
 #include <boost/asio.hpp>
 #include <boost/lexical_cast.hpp>
 #include <fstream>
+#include <filesystem>
 #include "../header/Http.h"
 
 using boost::asio::ip::tcp;
@@ -96,7 +97,7 @@ int http(Data* data)
 
         // Write whatever content we already have to output.
         std::ofstream outdata;
-        outdata.open((data->getName() + ".dat"));
+        outdata.open((data->getName() + ".dat"), std::ios::out);
         if(!outdata){
             std::cerr << "Error : file could not be opened" << std::endl;
             return 1;
@@ -117,7 +118,7 @@ int http(Data* data)
             outdata << &response;
         }
         outdata.close();
-        if(!data->isStop() == true){
+        if(data->isStop()){
             data->setFlag(2);//stoped
         }else{
             data->setFlag(3);//finished

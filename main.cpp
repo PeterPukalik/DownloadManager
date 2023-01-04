@@ -21,7 +21,7 @@ void *managerPriority(void * sdata) {
 
     pthread_mutex_lock(data->at(0)->getMutex());
     pthread_cond_wait(data->at(0)->getCondSpravcaPriority(),data->at(0)->getMutex());
-    pthread_mutex_lock(data->at(0)->getMutex());
+    pthread_mutex_unlock(data->at(0)->getMutex());
 
     pthread_cond_broadcast(data->at(0)->getCondVlakno());
     return nullptr;
@@ -93,7 +93,7 @@ int main(int argc, char* argv[]) {
 
 
     while(running){                                                                                                      //http pukalik.sk /pos/dog.jpeg dog 1
-        std::cout << std::endl << "choose you command \nfor exit type \"exit\"\n(http,https,ftp,ftps,help)" << std::endl;//http pukalik.sk /pos/pos_big.zip testStop 1 // 2023 1 3 19:44:00
+        std::cout << std::endl << "choose you command \nfor exit type \"exit\"\n(download,help,exit,stop,resume,status)" << std::endl;//http pukalik.sk /pos/pos_big.zip testStop 1 // 2023 1 3 19:44:00
         // http pukalik.sk /pos/big_file.zip testThread1 1 // 2023 1 4 13:00:01
         std::string command;
         std::cin >> command;
@@ -121,15 +121,17 @@ int main(int argc, char* argv[]) {
             pthread_create(&vlakna, nullptr,&downloand,data.at(data.size()-1));
         }
 
-        if(command == "stop"){
+        else if(command == "stop"){
+            std::cout << "som v stop"<< std::endl;
             pthread_mutex_lock(&mutex);
+            std::cout << "som v mutexe"<< std::endl;
             for (int i = 0; i < data.size(); i++) {
                 if(data.at(i)->getFlag() == 1)
                     data.at(i)->setStop(true);
             }
             pthread_mutex_unlock(&mutex);
         }
-        if(command == "resume"){
+        else if(command == "resume"){
             pthread_mutex_lock(&mutex);
             for (int i = 0; i < data.size(); i++) {
                 data.at(i)->setStop(false);
@@ -142,7 +144,7 @@ int main(int argc, char* argv[]) {
                 pthread_create(&managerR, nullptr,&managerResume,&data);
             }
         }
-        if(command == "status"){
+        else if(command == "status"){
             for (int i = 0; i < data.size(); ++i) {
                 std::cout << data.at(i)->getName() << " file has total size of: " << data.at(i)->getTotalSize() << " B and downloaded is "<< (double)(data.at(i)->getAllreadyDownloaded()/ data.at(i)->getTotalSize())*100<< " %\n";
 
