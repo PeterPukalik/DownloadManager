@@ -60,7 +60,7 @@ void Data::setTime(const std::string &time) {
     Data::time = time;
 }
 
-bool& Data::isStop(){
+bool Data::isStop(){
     return stop;
 }
 
@@ -68,13 +68,6 @@ void Data::setStop(bool stop) {
     Data::stop = stop;
 }
 
-int Data::getBufferPriority() const {
-    return bufferPriority;
-}
-
-void Data::setBufferPriority(int bufferPriority) {
-    Data::bufferPriority = bufferPriority;
-}
 
 int Data::getStartPoint() const {
     return startPoint;
@@ -85,13 +78,11 @@ void Data::setStartPoint(int startPoint) {
 }
 
 Data::Data(const std::string &aProtocol, const std::string &web, const std::string &path, const std::string &name,
-           long long int index, int priority, const std::string &time, bool stop, int bufferPriority, int startPoint,
-           pthread_mutex_t *mutex, pthread_cond_t *condSpravcaPriority, pthread_cond_t *condVlakno,int allreadyDownloaded,int totalSize)
+           long long int index, int priority, const std::string &time, bool stop, int startPoint,
+           pthread_mutex_t *mutex, pthread_cond_t *condSpravcaPriority, pthread_cond_t *condVlakno,int allreadyDownloaded,int totalSize,int flag)
            : protocol(aProtocol), web(web), path(path), name(name), index(index), priority(priority), time(time), stop(stop),
-            bufferPriority(bufferPriority),
-            startPoint(startPoint),
-            mutex(mutex),
-            cond_spravcaPriority(condSpravcaPriority),cond_vlakno(condVlakno),allreadyDownloaded(allreadyDownloaded),totalSize(totalSize) {
+            startPoint(startPoint),mutex(mutex),cond_spravcaPriority(condSpravcaPriority),cond_vlakno(condVlakno),
+            allreadyDownloaded(allreadyDownloaded),totalSize(totalSize),flag(flag) {
 
 
 }
@@ -108,19 +99,31 @@ pthread_cond_t *Data::getCondVlakno()  {
     return cond_vlakno;
 }
 
-double* Data::getAllreadyDownloaded()  {
-    return &allreadyDownloaded;
+double Data::getAllreadyDownloaded()  {
+    return allreadyDownloaded;
 }
 
 void Data::setAllreadyDownloaded(int allreadyDownloaded) {
     Data::allreadyDownloaded = allreadyDownloaded;
 }
 
-int* Data::getTotalSize()  {
-    return &totalSize;
+int Data::getTotalSize()  {
+    return totalSize;
 }
 
 void Data::setTotalSize(int totalSize) {
     Data::totalSize = totalSize;
+}
+
+int Data::getFlag() {
+    return flag;
+}
+
+void Data::setFlag(int flag) {
+    Data::flag = flag;
+}
+
+void Data::addAllreadyDownloaded(int plusSize ) {
+    allreadyDownloaded += plusSize;
 }
 

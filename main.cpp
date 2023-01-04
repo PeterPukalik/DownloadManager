@@ -2,23 +2,28 @@
 #include "header/Manager.h"
 #include "header/Parser.h"
 #include "header/Data.h"
-#include <cstring>
+
 #include <string>
 #include <iostream>
 #include <pthread.h>
-#include <ctime>
+
 #include <unistd.h>
 #include <vector>
 #include <fstream>
 #include <map>
+
+#define MAX_NUMBER_OF_THREADS 3
 
 
 
 void *managerPriority(void * sdata) {
     std::vector<Data*>* data = (std::vector<Data*>*) sdata;
 
+    pthread_mutex_lock(data->at(0)->getMutex());
+    pthread_cond_wait(data->at(0)->getCondSpravcaPriority(),data->at(0)->getMutex());
+    pthread_mutex_lock(data->at(0)->getMutex());
 
-
+    pthread_cond_broadcast(data->at(0)->getCondVlakno());
     return nullptr;
 }
 
@@ -27,9 +32,9 @@ void *managerPriority(void * sdata) {
 void *downloand(void * sdata) {
 
     Data* data = (Data*) sdata;
-//    pthread_mutex_lock(data->getMutex());
-//    pthread_cond_wait(data->getCondSpravcaPriority(),data->getMutex());
-//    pthread_mutex_unlock(data->getMutex());
+    pthread_mutex_lock(data->getMutex());
+    pthread_cond_signal(data->getCondSpravcaPriority());
+    pthread_mutex_unlock(data->getMutex());
     std::string time = data->getTime();
     while(true){
         int seconds = compareDates(time);
@@ -42,8 +47,24 @@ void *downloand(void * sdata) {
         }
     }
     //http(data->getWeb(),data->getPath(),data->getName(),data->getStartPoint(),&data->isStop(),data->getIndex());
-    http(data->getWeb(),data->getPath(),data->getName(),data->getStartPoint(),data->isStop(),data->getIndex(),data->getAllreadyDownloaded(),data->getTotalSize());
+    //http(data->getWeb(),data->getPath(),data->getName(),data->getStartPoint(),data->isStop(),data->getIndex(),data->getAllreadyDownloaded(),data->getTotalSize(),data->getFlag());
+    http(data);
 
+    return nullptr;
+}
+
+void *managerResume(void * sdata) {
+    std::vector<Data*>* data = (std::vector<Data*>*) sdata;
+    for (int i = 0; i < data->size(); i++) {
+        if(data->at(i)->getFlag()==2){
+            pthread_mutex_lock(data->at(i)->getMutex());
+            data->at(i)->setFlag(0);
+            data->at(i)->setStartPoint((int)data->at(i)->getAllreadyDownloaded());
+            pthread_mutex_unlock(data->at(i)->getMutex());
+            pthread_t resumedThred;
+            pthread_create(&resumedThred, nullptr,&downloand,data->at(i));
+        }
+    }
     return nullptr;
 }
 
@@ -52,8 +73,9 @@ int main(int argc, char* argv[]) {
 
     bool running = true;
     std::ofstream ("resume.txt");
-    bool stop = false;
+    bool managerExisting = false;
     long long index=0;
+
     pthread_mutex_t mutex;
     pthread_cond_t  cond_vlakno,cond_spravcaPriority;
     pthread_t managerP;
@@ -68,9 +90,9 @@ int main(int argc, char* argv[]) {
     std::vector<std::string> parameters{};
 
     std::vector<pthread_t> vectorOfThreads;
-    pthread_create(&managerP, nullptr,&managerPriority,&data);
 
-    while(running){                                                                                                     //http pukalik.sk /pos/dog.jpeg dog 1
+
+    while(running){                                                                                                      //http pukalik.sk /pos/dog.jpeg dog 1
         std::cout << std::endl << "choose you command \nfor exit type \"exit\"\n(http,https,ftp,ftps,help)" << std::endl;//http pukalik.sk /pos/pos_big.zip testStop 1 // 2023 1 3 19:44:00
         // http pukalik.sk /pos/big_file.zip testThread1 1 // 2023 1 4 13:00:01
         std::string command;
@@ -90,38 +112,48 @@ int main(int argc, char* argv[]) {
             parameters.push_back(command);
             pthread_mutex_lock(&mutex);
             data.push_back(new Data(parameters.at(0),parameters.at(1),parameters.at(2),parameters.at(3),
-                                    index,std::stoi(parameters.at(4)),parameters.at(5),stop,3,0,
-                                    &mutex,&cond_spravcaPriority,&cond_vlakno,0,0));
+                                    index,std::stoi(parameters.at(4)),parameters.at(5),false,0,
+                                    &mutex,&cond_spravcaPriority,&cond_vlakno,0,0,0));
             index++;
             pthread_mutex_unlock(&mutex);
             parameters.clear();
             pthread_t vlakna;
             pthread_create(&vlakna, nullptr,&downloand,data.at(data.size()-1));
-
-
         }
 
         if(command == "stop"){
             pthread_mutex_lock(&mutex);
-            stop = true;
+            for (int i = 0; i < data.size(); i++) {
+                if(data.at(i)->getFlag() == 1)
+                    data.at(i)->setStop(true);
+            }
             pthread_mutex_unlock(&mutex);
         }
         if(command == "resume"){
             pthread_mutex_lock(&mutex);
-            stop = false;
+            for (int i = 0; i < data.size(); i++) {
+                data.at(i)->setStop(false);
+            }
             pthread_mutex_unlock(&mutex);
+            if(data.empty()){
+                std::cout << "nothing to resume\n";
+            }else{
+                pthread_t managerR;
+                pthread_create(&managerR, nullptr,&managerResume,&data);
+            }
         }
         if(command == "status"){
             for (int i = 0; i < data.size(); ++i) {
-                std::cout << data.at(i)->getName() << " file has total size of: " << *data.at(i)->getTotalSize() << " B and downloaded is "<< (double)(*data.at(i)->getAllreadyDownloaded()/ *data.at(i)->getTotalSize())*100<< " %\n";
+                std::cout << data.at(i)->getName() << " file has total size of: " << data.at(i)->getTotalSize() << " B and downloaded is "<< (double)(data.at(i)->getAllreadyDownloaded()/ data.at(i)->getTotalSize())*100<< " %\n";
 
             }
         }
-
-
         else if(command == "exit"){
             running = false;
-
+        }
+        if(!data.empty() && managerExisting == false){
+            pthread_create(&managerP, nullptr,&managerPriority,&data);
+            managerExisting = true;
         }
     }
     //TODO join

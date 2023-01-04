@@ -19,9 +19,13 @@ public:
 
     pthread_cond_t *getCondVlakno() ;
 
-    int* getTotalSize() ;
+    int getTotalSize() ;
+
+    int getFlag();
 
     void setTotalSize(int totalSize);
+
+    void setFlag(int flag);
 
 private:
     std::string protocol;
@@ -32,17 +36,18 @@ private:
     int priority;
     std::string time;
     bool stop;
-    int bufferPriority;
+
     int startPoint;
     pthread_mutex_t* mutex;
     pthread_cond_t* cond_spravcaPriority;
     pthread_cond_t* cond_vlakno;
     double allreadyDownloaded;
     int totalSize;
+    int flag; //0 initialized,1 started downloanding, 2 stoped,3 finished
 public:
     Data(const std::string &aProtocol, const std::string &web, const std::string &path, const std::string &name,
-         long long int index, int priority, const std::string &time, bool stop, int bufferPriority, int startPoint,
-         pthread_mutex_t *mutex, pthread_cond_t *condSpravcaPriority, pthread_cond_t *condVlakno,int allreadyDownloaded,int totalSize);
+         long long int index, int priority, const std::string &time, bool stop, int startPoint,
+         pthread_mutex_t *mutex, pthread_cond_t *condSpravcaPriority, pthread_cond_t *condVlakno,int allreadyDownloaded,int totalSize,int flag);
 
 
 public:
@@ -62,9 +67,11 @@ public:
 
     void setName(const std::string &name);
 
-    double* getAllreadyDownloaded();
+    double getAllreadyDownloaded();
+
 
     void setAllreadyDownloaded(int allreadyDownloaded);
+    void addAllreadyDownloaded(int plusSize);
 
     long long int getIndex() const;
 
@@ -78,7 +85,7 @@ public:
 
     void setTime(const std::string &time);
 
-    bool& isStop();
+    bool isStop();
 
     void setStop(bool stop);
 

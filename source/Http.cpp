@@ -15,10 +15,12 @@
 #include <boost/asio.hpp>
 #include <boost/lexical_cast.hpp>
 #include <fstream>
+#include "../header/Http.h"
 
 using boost::asio::ip::tcp;
 
-int http(std::string web, std::string path, std::string name,int startPoint,bool &stop,long long index, double *allreadyDownloaded,int *totalSize)
+//int http(std::string web, std::string path, std::string name,int startPoint,bool *stop,long long index, double *allreadyDownloaded,int *totalSize,int* flag)
+int http(Data* data)
 {
     try
     {
@@ -33,7 +35,7 @@ int http(std::string web, std::string path, std::string name,int startPoint,bool
         int responselength = 0;
         // Get a list of endpoints corresponding to the server name.
         tcp::resolver resolver(io_context);
-        tcp::resolver::results_type endpoints = resolver.resolve(web, "http");
+        tcp::resolver::results_type endpoints = resolver.resolve(data->getWeb(), "http");
 
         // Try each endpoint until we successfully establish a connection.
         tcp::socket socket(io_context);
@@ -44,9 +46,9 @@ int http(std::string web, std::string path, std::string name,int startPoint,bool
         // allow us to treat all Data up until the EOF as the content.
         boost::asio::streambuf request;
         std::ostream request_stream(&request);
-        request_stream << "GET " << path << " HTTP/1.0\r\n";
-        request_stream << "Host: " << web << "\r\n";
-        request_stream << "Range:  bytes=" + boost::lexical_cast<std::string>(startPoint)+ "-"<< "\r\n";;
+        request_stream << "GET " << data->getPath() << " HTTP/1.0\r\n";
+        request_stream << "Host: " << data->getWeb() << "\r\n";
+        request_stream << "Range:  bytes=" + boost::lexical_cast<std::string>(data->getStartPoint())+ "-"<< "\r\n";;
         request_stream << "Accept: */*\r\n";
         request_stream << "Connection: close\r\n\r\n";
 
@@ -83,10 +85,10 @@ int http(std::string web, std::string path, std::string name,int startPoint,bool
 
         // Process the response headers.
         std::string header;
-        int i = 0;
+        data->setFlag(1);//started
         while (std::getline(response_stream, header) && header != "\r"){
             if(header.compare(0,16,"Content-Length: ")== 0){
-                 *totalSize = std::stoi(header.substr(16,header.length()));
+                 data->setTotalSize(std::stoi(header.substr(16,header.length())));
             }
             std::cout << header << "\n";
         }
@@ -94,7 +96,7 @@ int http(std::string web, std::string path, std::string name,int startPoint,bool
 
         // Write whatever content we already have to output.
         std::ofstream outdata;
-        outdata.open((name + ".dat"));
+        outdata.open((data->getName() + ".dat"));
         if(!outdata){
             std::cerr << "Error : file could not be opened" << std::endl;
             return 1;
@@ -102,21 +104,24 @@ int http(std::string web, std::string path, std::string name,int startPoint,bool
         if (response.size() > 0) {
             //std::cout << &response;
             //tu bude premenna kolko mi prislo +=
-            *allreadyDownloaded += response.size();
+            data->addAllreadyDownloaded(response.size());
+            //*allreadyDownloaded += response.size();
             outdata << &response;
         }
 
         // Read until EOF, writing Data to output as we go.
         boost::system::error_code error;
-        while (boost::asio::read(socket, response,boost::asio::transfer_at_least(1), error) && !stop) {
-            *allreadyDownloaded += response.size();
+        while (boost::asio::read(socket, response,boost::asio::transfer_at_least(1), error) && !data->isStop()) {
+            data->addAllreadyDownloaded(response.size());
+            //*allreadyDownloaded += response.size();
             outdata << &response;
         }
         outdata.close();
-
-
-
-        std::cout << std::endl;
+        if(!data->isStop() == true){
+            data->setFlag(2);//stoped
+        }else{
+            data->setFlag(3);//finished
+        }
 
         if (error != boost::asio::error::eof)
             throw boost::system::system_error(error);
