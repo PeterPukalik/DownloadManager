@@ -17,19 +17,24 @@ int compareDates(std::string date){
     struct std::tm tm={0};
     Parser::timeParser(parameters,date);
     //i=0//rok i=1//mesiac i=2//deni=3 meni sa deliemeter //hodina //minuta //sec
-    tm.tm_year = std::stoi(parameters.at(0))-1900;
-    tm.tm_mon = std::stoi(parameters.at(1))-1;
-    tm.tm_mday = std::stoi(parameters.at(2));
-    tm.tm_hour = std::stoi(parameters.at(3));
-    tm.tm_min = std::stoi(parameters.at(4));
-    tm.tm_sec = std::stoi(parameters.at(5));
-    tm.tm_isdst = 0;
+    if(parameters.at(0) != "now"){
+        tm.tm_year = std::stoi(parameters.at(0))-1900;
+        tm.tm_mon = std::stoi(parameters.at(1))-1;
+        tm.tm_mday = std::stoi(parameters.at(2));
+        tm.tm_hour = std::stoi(parameters.at(3));
+        tm.tm_min = std::stoi(parameters.at(4));
+        tm.tm_sec = std::stoi(parameters.at(5));
+        tm.tm_isdst = 0;
 //    tm.tm_year = 123;//od 1900
 //    tm.tm_mon = 0;//mesiac jan = 0
 //    tm.tm_mday = 2;
-    t_input = mktime(&tm);
-    //printf("%s",ctime(&t_input));
-    //printf("%s",ctime(&t_now));
+        t_input = mktime(&tm);
+        //printf("%s",ctime(&t_input));
+        //printf("%s",ctime(&t_now));
+    }else{
+        t_input = t_now;
+    }
+
 
     return std::difftime(t_now, t_input);
 }

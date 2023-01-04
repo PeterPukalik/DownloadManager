@@ -15,14 +15,37 @@
 #define MAX_NUMBER_OF_THREADS 3
 
 
-
+//TODO: priority not working properly
 void *managerPriority(void * sdata) {
     std::vector<Data*>* data = (std::vector<Data*>*) sdata;
 
     pthread_mutex_lock(data->at(0)->getMutex());
     pthread_cond_wait(data->at(0)->getCondSpravcaPriority(),data->at(0)->getMutex());
     pthread_mutex_unlock(data->at(0)->getMutex());
-
+    int numberOfActiveThread = 0;
+    for (int i = 0; i < data->size(); i++) {
+        if(data->at(i)->getFlag() == 1){
+            numberOfActiveThread++;
+        }
+        if( numberOfActiveThread > MAX_NUMBER_OF_THREADS ){
+            break;
+        }
+    }
+    if( numberOfActiveThread > MAX_NUMBER_OF_THREADS ) {
+        int worstPriority = INT16_MIN;
+        long long int worstPriorityID = 0;
+        for (int i = 0; i < data->size(); i++) {
+            if (data->at(i)->getPriority() > worstPriority) {
+                worstPriority = data->at(i)->getPriority();
+                worstPriorityID = i;
+            }
+        }
+        //http pukalik.sk /pos/dog.jpeg dogprioty1 1
+        //2023 1 4 19:11:31
+        pthread_mutex_lock(data->at(0)->getMutex());
+        data->at(worstPriorityID)->setStop(true);
+        pthread_mutex_unlock(data->at(0)->getMutex());
+    }
     pthread_cond_broadcast(data->at(0)->getCondVlakno());
     return nullptr;
 }
@@ -48,7 +71,19 @@ void *downloand(void * sdata) {
     }
     //http(data->getWeb(),data->getPath(),data->getName(),data->getStartPoint(),&data->isStop(),data->getIndex());
     //http(data->getWeb(),data->getPath(),data->getName(),data->getStartPoint(),data->isStop(),data->getIndex(),data->getAllreadyDownloaded(),data->getTotalSize(),data->getFlag());
-    http(data);
+    if(data->getAProtocol() == "http"){
+        http(data);
+    }
+    else if(data->getAProtocol() == "https"){
+
+    }
+    else if(data->getAProtocol() == "ftp"){
+
+    }
+    else if(data->getAProtocol() == "ftps"){
+
+    }
+
 
     return nullptr;
 }
@@ -79,6 +114,7 @@ int main(int argc, char* argv[]) {
     pthread_mutex_t mutex;
     pthread_cond_t  cond_vlakno,cond_spravcaPriority;
     pthread_t managerP;
+    pthread_t vlakna;
 
     int thread;
 
@@ -105,8 +141,12 @@ int main(int argc, char* argv[]) {
             getline(std::cin, command);
             Parser::setter(parameters, command);
             //std::cout << "enter time(2023 {1=(jan),2=(feb)...} 2 20:20:20)" << std::endl;
-            std::cout << "2023 1 3 19:44:00" << std::endl; //2023 1 3 21:02:00
-
+            std::cout << "2023 1 3 19:44:00    or type \"now\"" << std::endl; //2023 1 3 21:02:00
+            //http pukalik.sk /pos/big_file.zip testPriority1 1
+            //http pukalik.sk /pos/big_file.zip testPriority2 2
+            //http pukalik.sk /pos/big_file.zip testPriority3 3
+            //http pukalik.sk /pos/big_file.zip testPriority4 4
+            //2023 1 4 22:15:01
             //std::cin.ignore();
             getline(std::cin, command);
             parameters.push_back(command);
@@ -117,7 +157,7 @@ int main(int argc, char* argv[]) {
             index++;
             pthread_mutex_unlock(&mutex);
             parameters.clear();
-            pthread_t vlakna;
+
             pthread_create(&vlakna, nullptr,&downloand,data.at(data.size()-1));
         }
 
@@ -159,6 +199,10 @@ int main(int argc, char* argv[]) {
         }
     }
     //TODO join
+    data.clear();
+    pthread_join(managerP, nullptr);
+    pthread_join(vlakna,nullptr);
+
     pthread_mutex_destroy(&mutex);
     pthread_cond_destroy(&cond_spravcaPriority);
     pthread_cond_destroy(&cond_vlakno);
