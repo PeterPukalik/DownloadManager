@@ -1,4 +1,9 @@
 #include "header/Http.h"
+#include "header/Https.h"
+
+
+
+
 #include "header/Manager.h"
 #include "header/Parser.h"
 #include "header/Data.h"
@@ -75,7 +80,7 @@ void *downloand(void * sdata) {
         http(data);
     }
     else if(data->getAProtocol() == "https"){
-
+        https(data);
     }
     else if(data->getAProtocol() == "ftp"){
 
@@ -126,7 +131,8 @@ int main(int argc, char* argv[]) {
     std::vector<std::string> parameters{};
 
     std::vector<pthread_t> vectorOfThreads;
-
+//    Ssl_connection con("https://google.com");
+//    con.get_sec();
 
     while(running){                                                                                                      //http pukalik.sk /pos/dog.jpeg dog 1
         std::cout << std::endl << "choose you command \nfor exit type \"exit\"\n(download,help,exit,stop,resume,status)" << std::endl;//http pukalik.sk /pos/pos_big.zip testStop 1 // 2023 1 3 19:44:00

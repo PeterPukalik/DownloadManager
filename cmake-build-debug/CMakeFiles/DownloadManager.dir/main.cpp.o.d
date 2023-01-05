@@ -140,6 +140,7 @@ CMakeFiles/DownloadManager.dir/main.cpp.o: \
  /usr/include/c++/11/bits/charconv.h \
  /usr/include/c++/11/bits/basic_string.tcc \
  /home/puki/CLionProjects/DownloadManager/header/Data.h \
+ /home/puki/CLionProjects/DownloadManager/header/Https.h \
  /home/puki/CLionProjects/DownloadManager/header/Manager.h \
  /home/puki/CLionProjects/DownloadManager/header/Parser.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \

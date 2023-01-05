@@ -201,6 +201,30 @@ source/Http.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Http.cpp.s
 .PHONY : source/Http.cpp.s
 
+source/Https.o: source/Https.cpp.o
+.PHONY : source/Https.o
+
+# target to build an object file
+source/Https.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Https.cpp.o
+.PHONY : source/Https.cpp.o
+
+source/Https.i: source/Https.cpp.i
+.PHONY : source/Https.i
+
+# target to preprocess a source file
+source/Https.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Https.cpp.i
+.PHONY : source/Https.cpp.i
+
+source/Https.s: source/Https.cpp.s
+.PHONY : source/Https.s
+
+# target to generate assembly for a file
+source/Https.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Https.cpp.s
+.PHONY : source/Https.cpp.s
+
 source/Manager.o: source/Manager.cpp.o
 .PHONY : source/Manager.o
 
@@ -315,6 +339,9 @@ help:
 	@echo "... source/Http.o"
 	@echo "... source/Http.i"
 	@echo "... source/Http.s"
+	@echo "... source/Https.o"
+	@echo "... source/Https.i"
+	@echo "... source/Https.s"
 	@echo "... source/Manager.o"
 	@echo "... source/Manager.i"
 	@echo "... source/Manager.s"
