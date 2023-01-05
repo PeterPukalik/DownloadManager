@@ -79,10 +79,10 @@ void Data::setStartPoint(int startPoint) {
 
 Data::Data(const std::string &aProtocol, const std::string &web, const std::string &path, const std::string &name,
            long long int index, int priority, const std::string &time, bool stop, int startPoint,
-           pthread_mutex_t *mutex, pthread_cond_t *condSpravcaPriority, pthread_cond_t *condVlakno,int allreadyDownloaded,int totalSize,int flag)
+           pthread_mutex_t *mutex, pthread_cond_t *condSpravcaPriority, pthread_cond_t *condVlakno,int allreadyDownloaded,int totalSize,int flag,bool* totalStop)
            : protocol(aProtocol), web(web), path(path), name(name), index(index), priority(priority), time(time), stop(stop),
             startPoint(startPoint),mutex(mutex),cond_spravcaPriority(condSpravcaPriority),cond_vlakno(condVlakno),
-            allreadyDownloaded(allreadyDownloaded),totalSize(totalSize),flag(flag) {
+            allreadyDownloaded(allreadyDownloaded),totalSize(totalSize),flag(flag),totalStop(totalStop) {
 
 
 }
@@ -126,4 +126,10 @@ void Data::setFlag(int flag) {
 void Data::addAllreadyDownloaded(int plusSize ) {
     allreadyDownloaded += plusSize;
 }
+
+bool* Data::isTotalStop()  {
+    return &totalStop;
+}
+
+
 

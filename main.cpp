@@ -17,7 +17,7 @@
 #include <fstream>
 #include <map>
 
-#define MAX_NUMBER_OF_THREADS 3
+#define MAX_NUMBER_OF_THREADS 2
 
 
 //TODO: priority not working properly
@@ -61,8 +61,8 @@ void *managerPriority(void * sdata) {
         std::cout << "koncim v manazerovi \n";
 
     }
-    std::cout << "boradcast pre download \n";
-    pthread_cond_broadcast(data->at(0)->getCondVlakno());
+   // std::cout << "boradcast pre download \n";
+    //pthread_cond_broadcast(data->at(0)->getCondVlakno());
     return nullptr;
 }
 
@@ -72,7 +72,7 @@ void *downloand(void * sdata) {
 
     Data* data = (Data*) sdata;
     std::cout << "som v downloade \n";
-    pthread_cond_signal(data->getCondSpravcaPriority());
+
 
 //    pthread_mutex_lock(data->getMutex());
 //    pthread_cond_wait(data->getCondVlakno(),data->getMutex());
@@ -106,7 +106,7 @@ void *downloand(void * sdata) {
 
     }
 
-
+    pthread_cond_signal(data->getCondSpravcaPriority());
     return nullptr;
 }
 
@@ -124,6 +124,26 @@ void *managerResume(void * sdata) {
     }
     return nullptr;
 }
+void *managerResumePriority(void * sdata) {
+    std::vector<Data*>* data = (std::vector<Data*>*) sdata;
+
+    while(data->at(0)->isTotalStop()){
+        pthread_mutex_lock(data->at(0)->getMutex());
+        pthread_cond_wait(data->at(0)->getCondSpravcaPriority(),data->at(0)->getMutex());
+        pthread_mutex_unlock(data->at(0)->getMutex());
+        for (int i = 0; i < data->size(); i++) {
+            if(data->at(i)->getFlag()==4){
+                pthread_mutex_lock(data->at(i)->getMutex());
+                data->at(i)->setFlag(0);
+                data->at(i)->setStartPoint((int)data->at(i)->getAllreadyDownloaded());
+                pthread_mutex_unlock(data->at(i)->getMutex());
+                pthread_t resumedThred;
+                pthread_create(&resumedThred, nullptr,&downloand,data->at(i));
+            }
+        }
+    }
+    return nullptr;
+}
 
 
 int main(int argc, char* argv[]) {
@@ -137,6 +157,7 @@ int main(int argc, char* argv[]) {
     pthread_cond_t  cond_vlakno,cond_spravcaPriority;
     pthread_t managerP;
     pthread_t managerR;
+    pthread_t managerResumeAftefPriorityStop;
     pthread_t vlakna;
 
     int thread;
@@ -164,6 +185,8 @@ int main(int argc, char* argv[]) {
         ///https jetbrains.com /pycharm/download/download-thanks.html?platform=linux pycharm1 1
 
         //https speed.hetzner.de /1GB.bin 1gbfilepriorty10 10
+        //https speed.hetzner.de /100MB.bin 1gbfilepriorty10 10
+        //
 
         //https github.com /pytorch/pytorch/archive/refs/tags/v1.13.1.tar.gz pytorch 1
         //https codeload.github.com /pytorch/pytorch/tar.gz/refs/tags/v1.13.1 pytorch 1
@@ -193,12 +216,13 @@ int main(int argc, char* argv[]) {
             pthread_mutex_lock(&mutex);
             data.push_back(new Data(parameters.at(0),parameters.at(1),parameters.at(2),parameters.at(3),
                                     index,std::stoi(parameters.at(4)),parameters.at(5),false,0,
-                                    &mutex,&cond_spravcaPriority,&cond_vlakno,0,0,0));
+                                    &mutex,&cond_spravcaPriority,&cond_vlakno,0,0,0,&running));
             index++;
             pthread_mutex_unlock(&mutex);
             parameters.clear();
 
             pthread_create(&vlakna, nullptr,&downloand,data.at(data.size()-1));
+            pthread_create(&managerP, nullptr,&managerPriority,&data);
 
         }
 
@@ -235,7 +259,7 @@ int main(int argc, char* argv[]) {
             running = false;
         }
         if(!data.empty() && !managerExists){
-            pthread_create(&managerP, nullptr,&managerPriority,&data);
+            pthread_create(&managerResumeAftefPriorityStop, nullptr,&managerResumePriority,&data);
             managerExists = true;
         }
 
@@ -247,8 +271,9 @@ int main(int argc, char* argv[]) {
     data.clear();
     //pthread_join(vlakna,nullptr);
     //pthread_join(managerP, nullptr);
-
+    //pthread_join(managerResumeAftefPriorityStop, nullptr);
     //pthread_join(managerR, nullptr);
+
 
     pthread_mutex_destroy(&mutex);
     pthread_cond_destroy(&cond_spravcaPriority);
