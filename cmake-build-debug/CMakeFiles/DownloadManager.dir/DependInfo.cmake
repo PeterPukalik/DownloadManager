@@ -1,17 +1,20 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "CXX"
   )
-# The set of files for implicit dependencies of each language:
-set(CMAKE_DEPENDS_CHECK_CXX
-  "/tmp/tmp.gRW5lYt2Vc/main.cpp" "/tmp/tmp.gRW5lYt2Vc/cmake-build-debug/CMakeFiles/DownloadManager.dir/main.cpp.o"
-  "/tmp/tmp.gRW5lYt2Vc/source/client.cpp" "/tmp/tmp.gRW5lYt2Vc/cmake-build-debug/CMakeFiles/DownloadManager.dir/source/client.cpp.o"
-  "/tmp/tmp.gRW5lYt2Vc/source/server.cpp" "/tmp/tmp.gRW5lYt2Vc/cmake-build-debug/CMakeFiles/DownloadManager.dir/source/server.cpp.o"
-  )
-set(CMAKE_CXX_COMPILER_ID "GNU")
 
-# The include file search paths:
-set(CMAKE_CXX_TARGET_INCLUDE_PATH
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/puki/CLionProjects/DownloadManager/main.cpp" "CMakeFiles/DownloadManager.dir/main.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/main.cpp.o.d"
+  "/home/puki/CLionProjects/DownloadManager/source/Data.cpp" "CMakeFiles/DownloadManager.dir/source/Data.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/Data.cpp.o.d"
+  "/home/puki/CLionProjects/DownloadManager/source/Http.cpp" "CMakeFiles/DownloadManager.dir/source/Http.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/Http.cpp.o.d"
+  "/home/puki/CLionProjects/DownloadManager/source/Manager.cpp" "CMakeFiles/DownloadManager.dir/source/Manager.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/Manager.cpp.o.d"
+  "/home/puki/CLionProjects/DownloadManager/source/Parser.cpp" "CMakeFiles/DownloadManager.dir/source/Parser.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/Parser.cpp.o.d"
+  "/home/puki/CLionProjects/DownloadManager/source/client.cpp" "CMakeFiles/DownloadManager.dir/source/client.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/client.cpp.o.d"
+  "/home/puki/CLionProjects/DownloadManager/source/server.cpp" "CMakeFiles/DownloadManager.dir/source/server.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/server.cpp.o.d"
   )
 
 # Targets to which this target links.
