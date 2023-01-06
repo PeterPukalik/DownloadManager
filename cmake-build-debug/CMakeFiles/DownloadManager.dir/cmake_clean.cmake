@@ -5,7 +5,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/DownloadManager.dir/source/Manager.cpp.o"
   "CMakeFiles/DownloadManager.dir/source/Parser.cpp.o"
   "CMakeFiles/DownloadManager.dir/source/client.cpp.o"
-  "CMakeFiles/DownloadManager.dir/source/ftp.cpp.o"
   "CMakeFiles/DownloadManager.dir/source/server.cpp.o"
   "DownloadManager"
   "DownloadManager.pdb"

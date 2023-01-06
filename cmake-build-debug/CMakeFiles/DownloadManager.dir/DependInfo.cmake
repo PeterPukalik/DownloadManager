@@ -10,7 +10,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/tmp/tmp.EcH8gbyCDc/source/Manager.cpp" "/tmp/tmp.EcH8gbyCDc/cmake-build-debug/CMakeFiles/DownloadManager.dir/source/Manager.cpp.o"
   "/tmp/tmp.EcH8gbyCDc/source/Parser.cpp" "/tmp/tmp.EcH8gbyCDc/cmake-build-debug/CMakeFiles/DownloadManager.dir/source/Parser.cpp.o"
   "/tmp/tmp.EcH8gbyCDc/source/client.cpp" "/tmp/tmp.EcH8gbyCDc/cmake-build-debug/CMakeFiles/DownloadManager.dir/source/client.cpp.o"
-  "/tmp/tmp.EcH8gbyCDc/source/ftp.cpp" "/tmp/tmp.EcH8gbyCDc/cmake-build-debug/CMakeFiles/DownloadManager.dir/source/ftp.cpp.o"
   "/tmp/tmp.EcH8gbyCDc/source/server.cpp" "/tmp/tmp.EcH8gbyCDc/cmake-build-debug/CMakeFiles/DownloadManager.dir/source/server.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

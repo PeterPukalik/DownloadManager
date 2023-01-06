@@ -304,33 +304,6 @@ source/client.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/client.cpp.s
 .PHONY : source/client.cpp.s
 
-source/ftp.o: source/ftp.cpp.o
-
-.PHONY : source/ftp.o
-
-# target to build an object file
-source/ftp.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/ftp.cpp.o
-.PHONY : source/ftp.cpp.o
-
-source/ftp.i: source/ftp.cpp.i
-
-.PHONY : source/ftp.i
-
-# target to preprocess a source file
-source/ftp.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/ftp.cpp.i
-.PHONY : source/ftp.cpp.i
-
-source/ftp.s: source/ftp.cpp.s
-
-.PHONY : source/ftp.s
-
-# target to generate assembly for a file
-source/ftp.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/ftp.cpp.s
-.PHONY : source/ftp.cpp.s
-
 source/server.o: source/server.cpp.o
 
 .PHONY : source/server.o
@@ -385,9 +358,6 @@ help:
 	@echo "... source/client.o"
 	@echo "... source/client.i"
 	@echo "... source/client.s"
-	@echo "... source/ftp.o"
-	@echo "... source/ftp.i"
-	@echo "... source/ftp.s"
 	@echo "... source/server.o"
 	@echo "... source/server.i"
 	@echo "... source/server.s"

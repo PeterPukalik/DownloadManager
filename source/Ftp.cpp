@@ -114,18 +114,20 @@ int ftp(Data* data)
         request_stream << "RETR /third-party/README.txt\r\n";
         boost::asio::write(socket, request);
 
-        std::ofstream output_file;
-        output_file.open("text.txt",  std::ios::binary);
+        // Open a file to write the data to.
+        std::ofstream output_file("file.txt", std::ios::binary);
+        if (output_file.fail()) {
+            std::cerr << "Error opening file\n";
+            return 1;
+        }
 
-        // Read the file from the server and write it to the output file.
+        // Read the FTP server's response and write the data to the file.
         boost::system::error_code error;
-        boost::asio::read(socket, response,
-                          boost::asio::transfer_at_least(1), error);
-        while (response.size() > 0)
-        {
-            std::cout << &response;
-            boost::asio::read(socket, response,
-                              boost::asio::transfer_at_least(1), error);
+        boost::asio::read(socket, response, boost::asio::transfer_at_least(1), error);
+        while (response.size() > 0) {
+            output_file << &response;
+            response.consume(response.size());
+            boost::asio::read(socket, response, boost::asio::transfer_at_least(1), error);
         }
 
         output_file.close();
