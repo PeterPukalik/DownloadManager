@@ -131,5 +131,21 @@ bool* Data::isTotalStop()  {
     return &totalStop;
 }
 
+const std::string &Data::getFtpUser() const {
+    return ftpUSER;
+}
+
+void Data::setFtpUser(const std::string &ftpUser) {
+    ftpUSER = ftpUser;
+}
+
+const std::string &Data::getFtpPass() const {
+    return ftpPASS;
+}
+
+void Data::setFtpPass(const std::string &ftpPass) {
+    ftpPASS = ftpPass;
+}
+
 
 

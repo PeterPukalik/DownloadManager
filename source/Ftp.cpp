@@ -21,12 +21,13 @@ int ftp(Data* data) {
     // Create a socket and connect to the FTP server.
     boost::asio::ip::tcp::socket socket(io_context);
     boost::asio::ip::tcp::resolver resolver(io_context);
-    boost::asio::connect(socket, resolver.resolve("ftp.funet.fi", "21"));
+    boost::asio::connect(socket, resolver.resolve(data->getWeb(), "21"));
+
 
     // Send the FTP USER command to log in.
     boost::asio::streambuf request;
     std::ostream request_stream(&request);
-    request_stream << "USER\r\n";
+    request_stream << "USER "<< data->getFtpUser() << "\r\n";
     boost::asio::write(socket, request);
 
     // Receive the FTP server's response.
@@ -37,10 +38,11 @@ int ftp(Data* data) {
     std::getline(response_stream, response_string);
     std::cout << "USER FTP server response: " << response_string << "\n";
 
+
     // Send the FTP PASS command to log in.
     request.consume(request.size());
     request_stream.clear();
-    request_stream << "PASS\r\n";
+    request_stream << "PASS "<< data->getFtpPass() << "\r\n";
     boost::asio::write(socket, request);
 
     // Receive the FTP server's response.
@@ -83,7 +85,7 @@ int ftp(Data* data) {
     // Send the FTP SIZE command to check the size of a file.
     request.consume(request.size());
     request_stream.clear();
-    request_stream << "SIZE /README\r\n";
+    request_stream << "SIZE " << data->getPath()<<"\r\n";
     boost::asio::write(socket, request);
 
     // Receive the FTP server's response.
@@ -96,14 +98,28 @@ int ftp(Data* data) {
     if (response_string.substr(0, 3) == "213") {
         std::string file_size = response_string.substr(4);
         std::cout << "File size: " << file_size << " bytes\n";
+        pthread_mutex_lock(data->getMutex());
+        data->setTotalSize(stoi(file_size));
+        pthread_mutex_unlock(data->getMutex());
     } else {
         std::cerr << "Error: invalid response from FTP server\n";
     }
 
+    // Send the FTP REST command to specify the starting position of the file to download.
+    request.consume(request.size());
+    request_stream.clear();
+    request_stream << "REST " << data->getStartPoint() << "\r\n";
+    boost::asio::write(socket, request);
+
+// Receive the FTP server's response.
+    response.consume(response.size());
+    boost::asio::read_until(socket, response, "\r\n");
+    std::getline(response_stream, response_string);
+    std::cout << "REST FTP server response: " << response_string << "\n";
     // Send the FTP RETR command to retrieve a file.
     request.consume(request.size());
     request_stream.clear();
-    request_stream << "RETR /README\r\n";
+    request_stream << "RETR " << data->getPath()<<"\r\n";
     boost::asio::write(socket, request);
     // Open a file to write the data to.
     std::ofstream output_file("testftp.dat", std::ios::binary);
@@ -114,13 +130,26 @@ int ftp(Data* data) {
 
     // Read the FTP server's response and write the data to the file.
     boost::system::error_code error;
-    boost::asio::read(data_socket, response, boost::asio::transfer_at_least(1), error);
-    while (response.size() > 0) {
+//    int responseSizeout = 0;
+//    boost::asio::read(data_socket, response, boost::asio::transfer_at_least(1), error);
+//    while (response.size() > 0 && !data->isStop()) {
+//        responseSizeout+= response.size();
+//        pthread_mutex_lock(data->getMutex());
+//        data->addAllreadyDownloaded(response.size());
+//        pthread_mutex_unlock(data->getMutex());
+//        output_file << &response;
+//        boost::asio::read(data_socket, response, boost::asio::transfer_at_least(1), error);
+//    }
+    while (boost::asio::read(data_socket, response, boost::asio::transfer_at_least(1), error))
+    {
+        pthread_mutex_lock(data->getMutex());
+        data->addAllreadyDownloaded(response.size());
+        pthread_mutex_unlock(data->getMutex());
         output_file << &response;
-        boost::asio::read(data_socket, response, boost::asio::transfer_at_least(1), error);
     }
 
     output_file.close();
+    //std::cerr << responseSizeout << std::endl;
     if (error == boost::asio::error::eof) {
         error.clear();
     } else if (error) {

@@ -49,6 +49,18 @@ private:
     double allreadyDownloaded;
     int totalSize;
     int flag; //0 initialized,1 started downloanding, 2 stoped,3 finished; 4 stopped worstpriorty
+    std::string ftpUSER;
+public:
+    const std::string &getFtpUser() const;
+
+    void setFtpUser(const std::string &ftpUser);
+
+    const std::string &getFtpPass() const;
+
+    void setFtpPass(const std::string &ftpPass);
+
+private:
+    std::string ftpPASS;
 public:
     Data(const std::string &aProtocol, const std::string &web, const std::string &path, const std::string &name,
          long long int index, int priority, const std::string &time, bool stop, int startPoint,

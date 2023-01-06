@@ -4,5 +4,7 @@
 
 #ifndef DOWNLOADMANAGER_FTPS_H
 #define DOWNLOADMANAGER_FTPS_H
+#include "Data.h"
 
+int ftps(Data* data);
 #endif //DOWNLOADMANAGER_FTPS_H

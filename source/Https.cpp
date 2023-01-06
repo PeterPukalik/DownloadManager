@@ -28,7 +28,7 @@ int https(Data *data) {
 
 // Create a context that uses the default paths for
 // finding CA certificates.
-        ssl::context ctx(ssl::context::tls);//podmienka tiez na tls
+        ssl::context ctx(ssl::context::sslv23);//podmienka tiez na tls
         ctx.set_default_verify_paths();
 
 // Open a socket and connect it to the remote host.

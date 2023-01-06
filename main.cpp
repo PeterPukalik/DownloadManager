@@ -103,6 +103,7 @@ void *downloand(void * sdata) {
         https(data);
     }
     else if(data->getAProtocol() == "ftp"){
+
       ftp(data);
     }
     else if(data->getAProtocol() == "ftps"){
@@ -183,6 +184,13 @@ int main(int argc, char* argv[]) {
         //https github.com /pytorch/pytorch/archive/refs/tags/v1.13.1.tar.gz pytorch 1
         //https codeload.github.com /pytorch/pytorch/tar.gz/refs/tags/v1.13.1 pytorch 1
         // 2023 1 5 13:03:01
+
+        //ftp ftp.funet.fi /README funckneftp 1
+        // /pub/graphics/opensourcegaming/test_textures/Parallaxed_Qarl.7z
+        // ftp ftp.funet.fi /pub/languages/c++/old/Motif1.1-g++.tar.Z funckneftp22 2
+
+
+
         std::string command;
         std::cin >> command;
 
@@ -212,6 +220,18 @@ int main(int argc, char* argv[]) {
             index++;
             pthread_mutex_unlock(&mutex);
             parameters.clear();
+
+            std::string input;
+            std::cout << "INPUT USER NAME FOR FTP: \n";
+            std::getline(std::cin, input);
+            pthread_mutex_lock(&mutex);
+            data.at(data.size()-1)->setFtpUser(input);
+            pthread_mutex_unlock(&mutex);
+            std::cout << "INPUT PASS FOR FTP: \n";
+            std::getline(std::cin, input);
+            pthread_mutex_lock(&mutex);
+            data.at(data.size()-1)->setFtpUser(input);
+            pthread_mutex_unlock(&mutex);
 
             pthread_create(&vlakna, nullptr,&downloand,data.at(data.size()-1));
             pthread_create(&managerP, nullptr,&managerPriority,&data);
