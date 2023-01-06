@@ -1,4 +1,9 @@
 #include "header/Http.h"
+#include "header/Https.h"
+
+
+
+
 #include "header/Manager.h"
 #include "header/Parser.h"
 #include "header/Data.h"
@@ -7,23 +12,60 @@
 #include <iostream>
 #include <pthread.h>
 
+
 #include <unistd.h>
 #include <vector>
 #include <fstream>
 #include <map>
 
-#define MAX_NUMBER_OF_THREADS 3
+#define MAX_NUMBER_OF_THREADS 2
 
 
-
+//TODO: priority not working properly
 void *managerPriority(void * sdata) {
+
     std::vector<Data*>* data = (std::vector<Data*>*) sdata;
+    std::cout << "som v managerovi managerPriority\n";
+//    pthread_mutex_lock(data->at(0)->getMutex());
+//    pthread_cond_wait(data->at(0)->getCondSpravcaPriority(),data->at(0)->getMutex());
+//    pthread_mutex_unlock(data->at(0)->getMutex());
 
-    pthread_mutex_lock(data->at(0)->getMutex());
-    pthread_cond_wait(data->at(0)->getCondSpravcaPriority(),data->at(0)->getMutex());
-    pthread_mutex_unlock(data->at(0)->getMutex());
 
-    pthread_cond_broadcast(data->at(0)->getCondVlakno());
+    if(data->size() > MAX_NUMBER_OF_THREADS){
+
+        std::cout << "som v managerovi za condom\n";
+        int numberOfActiveThread = 0;
+
+        for (int i = 0; i < data->size(); i++) {
+            if(data->at(i)->getFlag() == 1 || data->at(i)->getFlag() == 0){
+                numberOfActiveThread++;
+            }
+            if( numberOfActiveThread > MAX_NUMBER_OF_THREADS ){
+                break;
+            }
+        }
+        if( numberOfActiveThread > MAX_NUMBER_OF_THREADS ) {
+            int worstPriority = INT16_MIN;
+            long long int worstPriorityID = 0;
+            for (int i = 0; i < data->size(); i++) {
+                if (data->at(i)->getPriority() > worstPriority && data->at(i)->getFlag() != 4) {
+                    worstPriority = data->at(i)->getPriority();
+                    worstPriorityID = i;
+                }
+            }
+            std::cout << "lockol som mutex managerPriority\n";
+            pthread_mutex_lock(data->at(0)->getMutex());
+            data->at(worstPriorityID)->setStop(true);
+            data->at(worstPriorityID)->setFlag(4);
+            pthread_mutex_unlock(data->at(0)->getMutex());
+            std::cout << "unlockol som mutex managerPriority\n";
+            std::cout << "stopujem vlakno  managerPriority\n";
+        }
+        std::cout << "koncim v manazerovi managerPriority\n";
+
+    }
+   // std::cout << "boradcast pre download \n";
+    //pthread_cond_broadcast(data->at(0)->getCondVlakno());
     return nullptr;
 }
 
@@ -32,9 +74,8 @@ void *managerPriority(void * sdata) {
 void *downloand(void * sdata) {
 
     Data* data = (Data*) sdata;
-    pthread_mutex_lock(data->getMutex());
-    pthread_cond_signal(data->getCondSpravcaPriority());
-    pthread_mutex_unlock(data->getMutex());
+    std::cout << "som v downloade \n";
+    std::cout << "idem stahovat \n";
     std::string time = data->getTime();
     while(true){
         int seconds = compareDates(time);
@@ -48,7 +89,23 @@ void *downloand(void * sdata) {
     }
     //http(data->getWeb(),data->getPath(),data->getName(),data->getStartPoint(),&data->isStop(),data->getIndex());
     //http(data->getWeb(),data->getPath(),data->getName(),data->getStartPoint(),data->isStop(),data->getIndex(),data->getAllreadyDownloaded(),data->getTotalSize(),data->getFlag());
-    http(data);
+    std::cout << "zacinam download \n";
+    if(data->getAProtocol() == "http"){
+        http(data);
+    }
+    else if(data->getAProtocol() == "https"){
+        https(data);
+    }
+    else if(data->getAProtocol() == "ftp"){
+
+    }
+    else if(data->getAProtocol() == "ftps"){
+
+    }
+
+//    pthread_mutex_lock(data->getMutex());
+//    pthread_cond_wait(data->getCondVlakno(),data->getMutex());
+//    pthread_mutex_unlock(data->getMutex());
 
     return nullptr;
 }
@@ -57,28 +114,36 @@ void *managerResume(void * sdata) {
     std::vector<Data*>* data = (std::vector<Data*>*) sdata;
     for (int i = 0; i < data->size(); i++) {
         if(data->at(i)->getFlag()==2){
+            std::cout << "lockol som mutex managerResume\n";
             pthread_mutex_lock(data->at(i)->getMutex());
             data->at(i)->setFlag(0);
             data->at(i)->setStartPoint((int)data->at(i)->getAllreadyDownloaded());
+            std::cout << "unlockol som mutex managerResume\n";
             pthread_mutex_unlock(data->at(i)->getMutex());
             pthread_t resumedThred;
             pthread_create(&resumedThred, nullptr,&downloand,data->at(i));
+            pthread_detach(resumedThred);
         }
     }
     return nullptr;
 }
 
 
+
+
 int main(int argc, char* argv[]) {
 
     bool running = true;
     std::ofstream ("resume.txt");
-    bool managerExisting = false;
-    long long index=0;
 
+    long long index=0;
+    bool managerExists = false;
     pthread_mutex_t mutex;
     pthread_cond_t  cond_vlakno,cond_spravcaPriority;
     pthread_t managerP;
+    pthread_t managerR;
+    pthread_t managerResumeAftefPriorityStop;
+    pthread_t vlakna;
 
     int thread;
 
@@ -90,13 +155,32 @@ int main(int argc, char* argv[]) {
     std::vector<std::string> parameters{};
 
     std::vector<pthread_t> vectorOfThreads;
+//    Ssl_connection con("https://google.com");
+//    con.get_sec();
+
+
 
 
     while(running){                                                                                                      //http pukalik.sk /pos/dog.jpeg dog 1
-        std::cout << std::endl << "choose you command \nfor exit type \"exit\"\n(download,help,exit,stop,resume,status)" << std::endl;//http pukalik.sk /pos/pos_big.zip testStop 1 // 2023 1 3 19:44:00
+        std::cout << std::endl << "choose you command \nfor exit type \"exit\"\n(download,help,exit,stop,resume,status,manager)" << std::endl;//http pukalik.sk /pos/pos_big.zip testStop 1 // 2023 1 3 19:44:00
         // http pukalik.sk /pos/big_file.zip testThread1 1 // 2023 1 4 13:00:01
+        // https frcatel.fri.uniza.sk /users/beerb/ma1/ma-1.pdf ma-1 1
+        //https://frcatel.fri.uniza.sk/users/beerb/ma1/
+        // https github.com /pytorch/pytorch.git test 1
+        ///https jetbrains.com /pycharm/download/download-thanks.html?platform=linux pycharm1 1
+
+        //https speed.hetzner.de /1GB.bin 1gbfilepriorty10 10
+        //https speed.hetzner.de /100MB.bin 1gbfilepriorty10 10
+        //
+
+        //https github.com /pytorch/pytorch/archive/refs/tags/v1.13.1.tar.gz pytorch 1
+        //https codeload.github.com /pytorch/pytorch/tar.gz/refs/tags/v1.13.1 pytorch 1
+        // 2023 1 5 13:03:01
         std::string command;
         std::cin >> command;
+
+
+
         if(command == "download"){
             std::cout << "you choose download" << std::endl;
             //std::cout << "http(0) pukalik.sk(1) /pos/dog.jpeg(2) (name)(3) priority(4)" << std::endl;
@@ -105,20 +189,28 @@ int main(int argc, char* argv[]) {
             getline(std::cin, command);
             Parser::setter(parameters, command);
             //std::cout << "enter time(2023 {1=(jan),2=(feb)...} 2 20:20:20)" << std::endl;
-            std::cout << "2023 1 3 19:44:00" << std::endl; //2023 1 3 21:02:00
-
+            std::cout << "2023 1 3 19:44:00    or type \"now\"" << std::endl; //2023 1 3 21:02:00
+            //http pukalik.sk /pos/big_file.zip testPriority1 1
+            //http pukalik.sk /pos/big_file.zip testPriority2 2
+            //http pukalik.sk /pos/big_file.zip testPriority3 3
+            //http pukalik.sk /pos/big_file.zip testPriority4 4
+            //2023 1 4 22:15:01
             //std::cin.ignore();
             getline(std::cin, command);
             parameters.push_back(command);
             pthread_mutex_lock(&mutex);
             data.push_back(new Data(parameters.at(0),parameters.at(1),parameters.at(2),parameters.at(3),
                                     index,std::stoi(parameters.at(4)),parameters.at(5),false,0,
-                                    &mutex,&cond_spravcaPriority,&cond_vlakno,0,0,0));
+                                    &mutex,&cond_spravcaPriority,&cond_vlakno,0,0,0,&running));
             index++;
             pthread_mutex_unlock(&mutex);
             parameters.clear();
-            pthread_t vlakna;
+
             pthread_create(&vlakna, nullptr,&downloand,data.at(data.size()-1));
+            pthread_create(&managerP, nullptr,&managerPriority,&data);
+            pthread_detach(vlakna);
+            pthread_detach(managerP);
+
         }
 
         else if(command == "stop"){
@@ -140,7 +232,7 @@ int main(int argc, char* argv[]) {
             if(data.empty()){
                 std::cout << "nothing to resume\n";
             }else{
-                pthread_t managerR;
+
                 pthread_create(&managerR, nullptr,&managerResume,&data);
             }
         }
@@ -150,15 +242,38 @@ int main(int argc, char* argv[]) {
 
             }
         }
+        else if(command == "manager"){
+            std::cout << "you choose manager" << std::endl;
+            //std::cout << "http(0) pukalik.sk(1) /pos/dog.jpeg(2) (name)(3) priority(4)" << std::endl;
+            std::cout << "comands: ls,mkdir,mv" << std::endl;
+            std::cin.ignore();
+            getline(std::cin, command);
+            int output = system(command.c_str());
+            if (output != 0) {
+                std::cerr << ("Error executing command\n");
+            }
+
+        }
         else if(command == "exit"){
             running = false;
         }
-        if(!data.empty() && managerExisting == false){
-            pthread_create(&managerP, nullptr,&managerPriority,&data);
-            managerExisting = true;
+        if(!data.empty() && !managerExists){
+            //pthread_create(&managerResumeAftefPriorityStop, nullptr,&managerResumePriority,&data);
+            managerExists = true;
         }
+
     }
     //TODO join
+    for (int i = 0; i < data.size(); i++) {
+        delete data.at(i);
+    }
+    data.clear();
+    //pthread_join(vlakna,nullptr);
+    //pthread_join(managerP, nullptr);
+    //pthread_join(managerResumeAftefPriorityStop, nullptr);
+   // pthread_join(managerR, nullptr);
+
+
     pthread_mutex_destroy(&mutex);
     pthread_cond_destroy(&cond_spravcaPriority);
     pthread_cond_destroy(&cond_vlakno);

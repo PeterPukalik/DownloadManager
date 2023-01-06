@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/puki/CLionProjects/DownloadManager/main.cpp" "CMakeFiles/DownloadManager.dir/main.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/main.cpp.o.d"
   "/home/puki/CLionProjects/DownloadManager/source/Data.cpp" "CMakeFiles/DownloadManager.dir/source/Data.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/Data.cpp.o.d"
   "/home/puki/CLionProjects/DownloadManager/source/Http.cpp" "CMakeFiles/DownloadManager.dir/source/Http.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/Http.cpp.o.d"
+  "/home/puki/CLionProjects/DownloadManager/source/Https.cpp" "CMakeFiles/DownloadManager.dir/source/Https.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/Https.cpp.o.d"
   "/home/puki/CLionProjects/DownloadManager/source/Manager.cpp" "CMakeFiles/DownloadManager.dir/source/Manager.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/Manager.cpp.o.d"
   "/home/puki/CLionProjects/DownloadManager/source/Parser.cpp" "CMakeFiles/DownloadManager.dir/source/Parser.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/Parser.cpp.o.d"
   "/home/puki/CLionProjects/DownloadManager/source/client.cpp" "CMakeFiles/DownloadManager.dir/source/client.cpp.o" "gcc" "CMakeFiles/DownloadManager.dir/source/client.cpp.o.d"

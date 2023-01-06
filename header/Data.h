@@ -36,18 +36,23 @@ private:
     int priority;
     std::string time;
     bool stop;
+    bool totalStop;
+public:
+    bool* isTotalStop() ;
 
+
+private:
     int startPoint;
     pthread_mutex_t* mutex;
     pthread_cond_t* cond_spravcaPriority;
     pthread_cond_t* cond_vlakno;
     double allreadyDownloaded;
     int totalSize;
-    int flag; //0 initialized,1 started downloanding, 2 stoped,3 finished
+    int flag; //0 initialized,1 started downloanding, 2 stoped,3 finished; 4 stopped worstpriorty
 public:
     Data(const std::string &aProtocol, const std::string &web, const std::string &path, const std::string &name,
          long long int index, int priority, const std::string &time, bool stop, int startPoint,
-         pthread_mutex_t *mutex, pthread_cond_t *condSpravcaPriority, pthread_cond_t *condVlakno,int allreadyDownloaded,int totalSize,int flag);
+         pthread_mutex_t *mutex, pthread_cond_t *condSpravcaPriority, pthread_cond_t *condVlakno,int allreadyDownloaded,int totalSize,int flag,bool *totalStop);
 
 
 public:
