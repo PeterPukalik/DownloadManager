@@ -85,6 +85,9 @@
 		<Unit filename="/tmp/tmp.EcH8gbyCDc/header/Data.h">
 			<Option target="DownloadManager"/>
 		</Unit>
+		<Unit filename="/tmp/tmp.EcH8gbyCDc/header/Ftp.h">
+			<Option target="DownloadManager"/>
+		</Unit>
 		<Unit filename="/tmp/tmp.EcH8gbyCDc/header/Http.h">
 			<Option target="DownloadManager"/>
 		</Unit>
@@ -95,9 +98,6 @@
 			<Option target="DownloadManager"/>
 		</Unit>
 		<Unit filename="/tmp/tmp.EcH8gbyCDc/header/client.h">
-			<Option target="DownloadManager"/>
-		</Unit>
-		<Unit filename="/tmp/tmp.EcH8gbyCDc/header/ftp.h">
 			<Option target="DownloadManager"/>
 		</Unit>
 		<Unit filename="/tmp/tmp.EcH8gbyCDc/header/server.h">

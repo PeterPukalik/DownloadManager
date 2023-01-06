@@ -23,5 +23,8 @@ CMakeFiles/DownloadManager.dir/source/Parser.cpp.o: ../source/Parser.cpp
 
 CMakeFiles/DownloadManager.dir/source/client.cpp.o: ../source/client.cpp
 
+CMakeFiles/DownloadManager.dir/source/ftp.cpp.o: ../header/Data.h
+CMakeFiles/DownloadManager.dir/source/ftp.cpp.o: ../source/ftp.cpp
+
 CMakeFiles/DownloadManager.dir/source/server.cpp.o: ../source/server.cpp
 

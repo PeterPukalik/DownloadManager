@@ -1,4 +1,4 @@
-#include "header/Http.h"
+#include "header/Ftp.h"
 #include "header/Manager.h"
 #include "header/Parser.h"
 #include "header/Data.h"
@@ -48,7 +48,7 @@ void *downloand(void * sdata) {
     }
     //http(data->getWeb(),data->getPath(),data->getName(),data->getStartPoint(),&data->isStop(),data->getIndex());
     //http(data->getWeb(),data->getPath(),data->getName(),data->getStartPoint(),data->isStop(),data->getIndex(),data->getAllreadyDownloaded(),data->getTotalSize(),data->getFlag());
-    http(data);
+    ftp(data);
 
     return nullptr;
 }
