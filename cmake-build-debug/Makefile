@@ -58,10 +58,12 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
+
 CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
 RM = /usr/bin/cmake -E rm -f
+
 
 # Escaping for special characters.
 EQUALS = =
@@ -75,10 +77,18 @@ CMAKE_BINARY_DIR = /tmp/tmp.EcH8gbyCDc/cmake-build-debug
 #=============================================================================
 # Targets provided globally by CMake.
 
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
 	/usr/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/snap/clion/219/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -223,6 +233,30 @@ source/Http.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Http.cpp.s
 .PHONY : source/Http.cpp.s
 
+source/Https.o: source/Https.cpp.o
+.PHONY : source/Https.o
+
+# target to build an object file
+source/Https.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Https.cpp.o
+.PHONY : source/Https.cpp.o
+
+source/Https.i: source/Https.cpp.i
+.PHONY : source/Https.i
+
+# target to preprocess a source file
+source/Https.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Https.cpp.i
+.PHONY : source/Https.cpp.i
+
+source/Https.s: source/Https.cpp.s
+.PHONY : source/Https.s
+
+# target to generate assembly for a file
+source/Https.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DownloadManager.dir/build.make CMakeFiles/DownloadManager.dir/source/Https.cpp.s
+.PHONY : source/Https.cpp.s
+
 source/Manager.o: source/Manager.cpp.o
 
 .PHONY : source/Manager.o
@@ -349,6 +383,9 @@ help:
 	@echo "... source/Http.o"
 	@echo "... source/Http.i"
 	@echo "... source/Http.s"
+	@echo "... source/Https.o"
+	@echo "... source/Https.i"
+	@echo "... source/Https.s"
 	@echo "... source/Manager.o"
 	@echo "... source/Manager.i"
 	@echo "... source/Manager.s"

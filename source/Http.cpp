@@ -105,7 +105,9 @@ int http(Data* data)
         if (response.size() > 0) {
             //std::cout << &response;
             //tu bude premenna kolko mi prislo +=
+            pthread_mutex_lock(data->getMutex());
             data->addAllreadyDownloaded(response.size());
+            pthread_mutex_unlock(data->getMutex());
             //*allreadyDownloaded += response.size();
             outdata << &response;
         }
@@ -113,15 +115,21 @@ int http(Data* data)
         // Read until EOF, writing Data to output as we go.
         boost::system::error_code error;
         while (boost::asio::read(socket, response,boost::asio::transfer_at_least(1), error) && !data->isStop()) {
+            pthread_mutex_lock(data->getMutex());
             data->addAllreadyDownloaded(response.size());
+            pthread_mutex_unlock(data->getMutex());
             //*allreadyDownloaded += response.size();
             outdata << &response;
         }
         outdata.close();
         if(data->isStop()){
+            pthread_mutex_lock(data->getMutex());
             data->setFlag(2);//stoped
+            pthread_mutex_unlock(data->getMutex());
         }else{
+            pthread_mutex_lock(data->getMutex());
             data->setFlag(3);//finished
+            pthread_mutex_unlock(data->getMutex());
         }
 
         if (error != boost::asio::error::eof)

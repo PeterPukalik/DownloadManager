@@ -2,6 +2,11 @@ file(REMOVE_RECURSE
   "CMakeFiles/DownloadManager.dir/main.cpp.o"
   "CMakeFiles/DownloadManager.dir/source/Data.cpp.o"
   "CMakeFiles/DownloadManager.dir/source/Http.cpp.o"
+
+  "CMakeFiles/DownloadManager.dir/source/Http.cpp.o.d"
+  "CMakeFiles/DownloadManager.dir/source/Https.cpp.o"
+  "CMakeFiles/DownloadManager.dir/source/Https.cpp.o.d"
+
   "CMakeFiles/DownloadManager.dir/source/Manager.cpp.o"
   "CMakeFiles/DownloadManager.dir/source/Parser.cpp.o"
   "CMakeFiles/DownloadManager.dir/source/client.cpp.o"
