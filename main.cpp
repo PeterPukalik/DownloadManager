@@ -12,6 +12,7 @@
 #include <iostream>
 #include <pthread.h>
 
+
 #include <unistd.h>
 #include <vector>
 #include <fstream>
@@ -121,6 +122,7 @@ void *managerResume(void * sdata) {
             pthread_mutex_unlock(data->at(i)->getMutex());
             pthread_t resumedThred;
             pthread_create(&resumedThred, nullptr,&downloand,data->at(i));
+            pthread_detach(resumedThred);
         }
     }
     return nullptr;
@@ -160,7 +162,7 @@ int main(int argc, char* argv[]) {
 
 
     while(running){                                                                                                      //http pukalik.sk /pos/dog.jpeg dog 1
-        std::cout << std::endl << "choose you command \nfor exit type \"exit\"\n(download,help,exit,stop,resume,status)" << std::endl;//http pukalik.sk /pos/pos_big.zip testStop 1 // 2023 1 3 19:44:00
+        std::cout << std::endl << "choose you command \nfor exit type \"exit\"\n(download,help,exit,stop,resume,status,manager)" << std::endl;//http pukalik.sk /pos/pos_big.zip testStop 1 // 2023 1 3 19:44:00
         // http pukalik.sk /pos/big_file.zip testThread1 1 // 2023 1 4 13:00:01
         // https frcatel.fri.uniza.sk /users/beerb/ma1/ma-1.pdf ma-1 1
         //https://frcatel.fri.uniza.sk/users/beerb/ma1/
@@ -206,6 +208,8 @@ int main(int argc, char* argv[]) {
 
             pthread_create(&vlakna, nullptr,&downloand,data.at(data.size()-1));
             pthread_create(&managerP, nullptr,&managerPriority,&data);
+            pthread_detach(vlakna);
+            pthread_detach(managerP);
 
         }
 
@@ -238,6 +242,18 @@ int main(int argc, char* argv[]) {
 
             }
         }
+        else if(command == "manager"){
+            std::cout << "you choose manager" << std::endl;
+            //std::cout << "http(0) pukalik.sk(1) /pos/dog.jpeg(2) (name)(3) priority(4)" << std::endl;
+            std::cout << "comands: ls,mkdir,mv" << std::endl;
+            std::cin.ignore();
+            getline(std::cin, command);
+            int output = system(command.c_str());
+            if (output != 0) {
+                std::cerr << ("Error executing command\n");
+            }
+
+        }
         else if(command == "exit"){
             running = false;
         }
@@ -252,10 +268,10 @@ int main(int argc, char* argv[]) {
         delete data.at(i);
     }
     data.clear();
-    pthread_join(vlakna,nullptr);
+    //pthread_join(vlakna,nullptr);
     //pthread_join(managerP, nullptr);
     //pthread_join(managerResumeAftefPriorityStop, nullptr);
-    pthread_join(managerR, nullptr);
+   // pthread_join(managerR, nullptr);
 
 
     pthread_mutex_destroy(&mutex);
