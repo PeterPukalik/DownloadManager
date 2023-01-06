@@ -249,8 +249,10 @@ int https(Data *data) {
             if(header.compare(0,16,"Content-Length: ")== 0){
                 data->setTotalSize(std::stoi(header.substr(16,header.length())));
             }
-            std::cout << header << "\n";
+            //std::cout << header << "\n";
+            //
         }
+        std::cout << "zacal som stahovat" << "\n";
         //std::cout << "\n";
 
         // Write whatever content we already have to output.
@@ -263,7 +265,9 @@ int https(Data *data) {
         if (response.size() > 0) {
             //std::cout << &response;
             //tu bude premenna kolko mi prislo +=
+            pthread_mutex_lock(data->getMutex());
             data->addAllreadyDownloaded(response.size());
+            pthread_mutex_unlock(data->getMutex());
             //*allreadyDownloaded += response.size();
             outdata << &response;
         }
@@ -271,15 +275,24 @@ int https(Data *data) {
         // Read until EOF, writing Data to output as we go.
         boost::system::error_code error;
         while (boost::asio::read(sock , response,boost::asio::transfer_at_least(1), error) && !data->isStop()) {
+            pthread_mutex_lock(data->getMutex());
             data->addAllreadyDownloaded(response.size());
+            pthread_mutex_unlock(data->getMutex());
             //*allreadyDownloaded += response.size();
             outdata << &response;
         }
         outdata.close();
         if(data->isStop()){
-            data->setFlag(2);//stoped
+            if(data->getFlag() != 4){
+                pthread_mutex_lock(data->getMutex());
+                data->setFlag(2);//stoped
+                pthread_mutex_unlock(data->getMutex());
+            }
+
         }else{
+            pthread_mutex_lock(data->getMutex());
             data->setFlag(3);//finished
+            pthread_mutex_unlock(data->getMutex());
         }
 
         if (error != boost::asio::error::eof)

@@ -24,7 +24,7 @@
 void *managerPriority(void * sdata) {
 
     std::vector<Data*>* data = (std::vector<Data*>*) sdata;
-    std::cout << "som v managerovi \n";
+    std::cout << "som v managerovi managerPriority\n";
 //    pthread_mutex_lock(data->at(0)->getMutex());
 //    pthread_cond_wait(data->at(0)->getCondSpravcaPriority(),data->at(0)->getMutex());
 //    pthread_mutex_unlock(data->at(0)->getMutex());
@@ -52,13 +52,15 @@ void *managerPriority(void * sdata) {
                     worstPriorityID = i;
                 }
             }
+            std::cout << "lockol som mutex managerPriority\n";
             pthread_mutex_lock(data->at(0)->getMutex());
             data->at(worstPriorityID)->setStop(true);
             data->at(worstPriorityID)->setFlag(4);
             pthread_mutex_unlock(data->at(0)->getMutex());
-            std::cout << "stopujem vlakno  \n";
+            std::cout << "unlockol som mutex managerPriority\n";
+            std::cout << "stopujem vlakno  managerPriority\n";
         }
-        std::cout << "koncim v manazerovi \n";
+        std::cout << "koncim v manazerovi managerPriority\n";
 
     }
    // std::cout << "boradcast pre download \n";
@@ -72,12 +74,6 @@ void *downloand(void * sdata) {
 
     Data* data = (Data*) sdata;
     std::cout << "som v downloade \n";
-
-
-//    pthread_mutex_lock(data->getMutex());
-//    pthread_cond_wait(data->getCondVlakno(),data->getMutex());
-//    pthread_mutex_unlock(data->getMutex());
-
     std::cout << "idem stahovat \n";
     std::string time = data->getTime();
     while(true){
@@ -106,7 +102,10 @@ void *downloand(void * sdata) {
 
     }
 
-    pthread_cond_signal(data->getCondSpravcaPriority());
+//    pthread_mutex_lock(data->getMutex());
+//    pthread_cond_wait(data->getCondVlakno(),data->getMutex());
+//    pthread_mutex_unlock(data->getMutex());
+
     return nullptr;
 }
 
@@ -114,9 +113,11 @@ void *managerResume(void * sdata) {
     std::vector<Data*>* data = (std::vector<Data*>*) sdata;
     for (int i = 0; i < data->size(); i++) {
         if(data->at(i)->getFlag()==2){
+            std::cout << "lockol som mutex managerResume\n";
             pthread_mutex_lock(data->at(i)->getMutex());
             data->at(i)->setFlag(0);
             data->at(i)->setStartPoint((int)data->at(i)->getAllreadyDownloaded());
+            std::cout << "unlockol som mutex managerResume\n";
             pthread_mutex_unlock(data->at(i)->getMutex());
             pthread_t resumedThred;
             pthread_create(&resumedThred, nullptr,&downloand,data->at(i));
@@ -124,26 +125,8 @@ void *managerResume(void * sdata) {
     }
     return nullptr;
 }
-void *managerResumePriority(void * sdata) {
-    std::vector<Data*>* data = (std::vector<Data*>*) sdata;
 
-    while(data->at(0)->isTotalStop()){
-        pthread_mutex_lock(data->at(0)->getMutex());
-        pthread_cond_wait(data->at(0)->getCondSpravcaPriority(),data->at(0)->getMutex());
-        pthread_mutex_unlock(data->at(0)->getMutex());
-        for (int i = 0; i < data->size(); i++) {
-            if(data->at(i)->getFlag()==4){
-                pthread_mutex_lock(data->at(i)->getMutex());
-                data->at(i)->setFlag(0);
-                data->at(i)->setStartPoint((int)data->at(i)->getAllreadyDownloaded());
-                pthread_mutex_unlock(data->at(i)->getMutex());
-                pthread_t resumedThred;
-                pthread_create(&resumedThred, nullptr,&downloand,data->at(i));
-            }
-        }
-    }
-    return nullptr;
-}
+
 
 
 int main(int argc, char* argv[]) {
@@ -259,7 +242,7 @@ int main(int argc, char* argv[]) {
             running = false;
         }
         if(!data.empty() && !managerExists){
-            pthread_create(&managerResumeAftefPriorityStop, nullptr,&managerResumePriority,&data);
+            //pthread_create(&managerResumeAftefPriorityStop, nullptr,&managerResumePriority,&data);
             managerExists = true;
         }
 
@@ -269,10 +252,10 @@ int main(int argc, char* argv[]) {
         delete data.at(i);
     }
     data.clear();
-    //pthread_join(vlakna,nullptr);
+    pthread_join(vlakna,nullptr);
     //pthread_join(managerP, nullptr);
     //pthread_join(managerResumeAftefPriorityStop, nullptr);
-    //pthread_join(managerR, nullptr);
+    pthread_join(managerR, nullptr);
 
 
     pthread_mutex_destroy(&mutex);
