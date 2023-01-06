@@ -1,5 +1,8 @@
+
+#include "header/Ftp.h"
 #include "header/Http.h"
 #include "header/Https.h"
+
 
 
 
@@ -89,6 +92,9 @@ void *downloand(void * sdata) {
     }
     //http(data->getWeb(),data->getPath(),data->getName(),data->getStartPoint(),&data->isStop(),data->getIndex());
     //http(data->getWeb(),data->getPath(),data->getName(),data->getStartPoint(),data->isStop(),data->getIndex(),data->getAllreadyDownloaded(),data->getTotalSize(),data->getFlag());
+
+    
+
     std::cout << "zacinam download \n";
     if(data->getAProtocol() == "http"){
         http(data);
@@ -97,7 +103,7 @@ void *downloand(void * sdata) {
         https(data);
     }
     else if(data->getAProtocol() == "ftp"){
-
+      ftp(data);
     }
     else if(data->getAProtocol() == "ftps"){
 
@@ -106,6 +112,7 @@ void *downloand(void * sdata) {
 //    pthread_mutex_lock(data->getMutex());
 //    pthread_cond_wait(data->getCondVlakno(),data->getMutex());
 //    pthread_mutex_unlock(data->getMutex());
+
 
     return nullptr;
 }
