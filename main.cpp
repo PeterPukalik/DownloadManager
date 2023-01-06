@@ -215,6 +215,7 @@ int main(int argc, char* argv[]) {
 
             pthread_create(&vlakna, nullptr,&downloand,data.at(data.size()-1));
             pthread_create(&managerP, nullptr,&managerPriority,&data);
+
             pthread_detach(vlakna);
             pthread_detach(managerP);
 

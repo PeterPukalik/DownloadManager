@@ -1,7 +1,7 @@
 CMakeFiles/DownloadManager.dir/main.cpp.o: \
  /home/puki/CLionProjects/DownloadManager/main.cpp \
  /usr/include/stdc-predef.h \
- /home/puki/CLionProjects/DownloadManager/header/Http.h \
+ /home/puki/CLionProjects/DownloadManager/header/Ftp.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -140,6 +140,7 @@ CMakeFiles/DownloadManager.dir/main.cpp.o: \
  /usr/include/c++/11/bits/charconv.h \
  /usr/include/c++/11/bits/basic_string.tcc \
  /home/puki/CLionProjects/DownloadManager/header/Data.h \
+ /home/puki/CLionProjects/DownloadManager/header/Http.h \
  /home/puki/CLionProjects/DownloadManager/header/Https.h \
  /home/puki/CLionProjects/DownloadManager/header/Manager.h \
  /home/puki/CLionProjects/DownloadManager/header/Parser.h \
