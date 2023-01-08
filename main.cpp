@@ -279,6 +279,7 @@ int main(int argc, char* argv[]) {
 
         // ftps test.rebex.net /pub/example/readme.txt testftps 1 //demo/password
         // ftp test.rebex.net /pub/example/readme.txt testftp 1 //hocico
+        // https frcatel.fri.uniza.sk /users/beerb/ma1/prednasky/integraly.pdf integraly 1
 
         //http pukalik.sk /pos/CoffeeHouse.rtf dokumentacia10 10
         //http pukalik.sk /pos/CoffeeHouse.rtf dokumentacia10 10
