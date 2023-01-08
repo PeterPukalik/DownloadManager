@@ -149,8 +149,8 @@ void *managerResume(void * sdata) {
 
 void *managerResumePriority(void * sdata) {
     std::vector<Data *> *data = (std::vector<Data *> *) sdata;
-    while (data->at(0)->isTotalStop()){
-        if (!data->empty()) {
+    while (*(data->at(0)->isTotalStop())){
+        //std::cout << "start       managerResumePriority\n";
             int numberOfActiveThread = 0;
             for (int i = 0; i < data->size(); i++) {
                 if (data->at(i)->getFlag() == 1 || data->at(i)->getFlag() == 0) {
@@ -198,11 +198,12 @@ void *managerResumePriority(void * sdata) {
             }
 
             //if stahuje sa viac ako 2
+        //std::cout << "idem spat       managerResumePriority\n";
             sleep(5);
-        }
-        return nullptr;
-    }
 
+
+    }
+    return nullptr;
 }
 
 
@@ -396,8 +397,8 @@ int main(int argc, char* argv[]) {
 
     }
     //TODO join
-
-    pthread_join(managerResumeAftefPriorityStop,nullptr);
+    //if(data.size() > 1)
+        pthread_join(managerResumeAftefPriorityStop,nullptr);
 
 
     for (int i = 0; i < data.size(); i++) {
