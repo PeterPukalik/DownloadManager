@@ -104,9 +104,6 @@ void *downloand(void * sdata) {
 
     if (seconds >= 0) {
         std::cout << "zacinam download \n";
-        pthread_mutex_lock(data->getMutex());
-        data->addNumberOfActiveDownlaods(1);
-        pthread_mutex_unlock(data->getMutex());
         if (data->getAProtocol() == "http") {
             http(data);
         } else if (data->getAProtocol() == "https") {
@@ -117,9 +114,6 @@ void *downloand(void * sdata) {
         } else if (data->getAProtocol() == "ftps") {
             ftps(data);
         }
-        pthread_mutex_lock(data->getMutex());
-        data->subNumberOfActiveDownlaods(1);
-        pthread_mutex_unlock(data->getMutex());
     }
 //    pthread_mutex_lock(data->getMutex());
 //    pthread_cond_wait(data->getCondVlakno(),data->getMutex());
@@ -292,7 +286,7 @@ int main(int argc, char* argv[]) {
             pthread_mutex_lock(&mutex);
             data.push_back(new Data(parameters.at(0),parameters.at(1),parameters.at(2),parameters.at(3),
                                     index,std::stoi(parameters.at(4)),parameters.at(5),false,0,
-                                    &mutex,&cond_spravcaPriority,&cond_vlakno,0,0,0,&running,&numberOfActiveDownloads));
+                                    &mutex,0,0,0,&running));
             index++;
             pthread_mutex_unlock(&mutex);
 
@@ -366,7 +360,12 @@ int main(int argc, char* argv[]) {
 
         }
         else if(command =="history"){
-
+            std::ifstream input_file("history.txt");
+            std::string line;
+            while (std::getline(input_file, line)) {
+                std::cout << line << std::endl;
+            }
+            input_file.close();
         }
         else if(command == "exit"){
             std::cout << "this will terminate all your current downlaods: type Y or N :  ";
