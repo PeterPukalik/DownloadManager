@@ -102,9 +102,11 @@ int ftp(Data* data) {
     if (response_string.substr(0, 3) == "213") {
         std::string file_size = response_string.substr(4);
         std::cout << "File size: " << file_size << " bytes\n";
-        pthread_mutex_lock(data->getMutex());
-        data->setTotalSize(stoi(file_size));
-        pthread_mutex_unlock(data->getMutex());
+        if(data->getTotalSize() == 0) {
+            pthread_mutex_lock(data->getMutex());
+            data->setTotalSize(stoi(file_size));
+            pthread_mutex_unlock(data->getMutex());
+        }
     } else {
         std::cerr << "Error: invalid response from FTP server\n";
     }
@@ -132,7 +134,7 @@ int ftp(Data* data) {
     std::getline(response_stream, response_string);
     std::cout << "RETR FTP server response: " << response_string << "\n";
     // Open a file to write the data to.
-    std::ofstream output_file("testftp.dat", std::ios::binary);
+    std::ofstream output_file(data->getName() +".dat", std::ios::binary | std::ios_base::app);
     if (output_file.fail()) {
         std::cerr << "Error opening file\n";
         return 1;

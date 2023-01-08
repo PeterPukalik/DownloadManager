@@ -241,6 +241,7 @@ int main(int argc, char* argv[]) {
         std::cout << std::endl << "choose you command \nfor exit type \"exit\"\n(download,help,exit,stop,resume,status,manager)" << std::endl;//http pukalik.sk /pos/pos_big.zip testStop 1 // 2023 1 3 19:44:00
         // http pukalik.sk /pos/big_file.zip testThread1 1 // 2023 1 4 13:00:01
         // https frcatel.fri.uniza.sk /users/beerb/ma1/ma-1.pdf ma-1 1
+        // https frcatel.fri.uniza.sk /users/beerb/ma1/prednasky/integraly.pdf integraly 1
         //https://frcatel.fri.uniza.sk/users/beerb/ma1/
         // https github.com /pytorch/pytorch.git test 1
         ///https jetbrains.com /pycharm/download/download-thanks.html?platform=linux pycharm1 1
@@ -264,6 +265,8 @@ int main(int argc, char* argv[]) {
         // ftp test.rebex.net /pub/example/readme.txt testftp 1 //hocico
 
         //http pukalik.sk /pos/CoffeeHouse.rtf dokumentacia10 10
+        //http pukalik.sk /pos/CoffeeHouse.rtf dokumentacia10 10
+        //http pukalik.sk /pos/video.mp4 video10 10
         std::string command;
         std::cin >> command;
 

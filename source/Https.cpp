@@ -14,7 +14,6 @@
 #include <boost/asio/ssl.hpp>
 #include <boost/lexical_cast.hpp>
 #include <fstream>
-#include <filesystem>
 
 enum { max_length = 1024 };
 using boost::asio::ip::tcp;
@@ -121,17 +120,7 @@ int https(Data *data) {
 
         // Write whatever content we already have to output.
         std::ofstream outdata;
-        if (std::filesystem::exists(data->getName() + ".dat")) {
-            int i = 0;
-            while (std::filesystem::exists(data->getName() + ".dat")) {
-                pthread_mutex_lock(data->getMutex());
-                data->setName(data->getName()+ std::to_string(i));
-                pthread_mutex_unlock(data->getMutex());
-
-                i++;
-            }
-        }
-        outdata.open((data->getName() + ".dat"), std::ios::out);
+        outdata.open((data->getName() + ".dat"), std::ios_base::app);
         if(!outdata){
             std::cerr << "Error : file could not be opened" << std::endl;
             return 1;

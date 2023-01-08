@@ -103,19 +103,19 @@ int http(Data* data)
         // Write whatever content we already have to output.
         std::ofstream outdata;
         //outdata.open((data->getName() + ".dat"), std::ios::out);
-        if (std::filesystem::exists(data->getName() + ".dat")) {
-            int i = 0;
-            while (std::filesystem::exists(data->getName() + ".dat")) {
-                pthread_mutex_lock(data->getMutex());
-                data->setName(data->getName()+ std::to_string(i));
-                pthread_mutex_unlock(data->getMutex());
-
-                i++;
-            }
-
-
-
-        }
+//        if (std::filesystem::exists(data->getName() + ".dat")) {
+//            int i = 0;
+//            while (std::filesystem::exists(data->getName() + ".dat")) {
+//                pthread_mutex_lock(data->getMutex());
+//                data->setName(data->getName()+ std::to_string(i));
+//                pthread_mutex_unlock(data->getMutex());
+//
+//                i++;
+//            }
+//
+//
+//
+//        }
         outdata.open((data->getName() + ".dat"), std::ios_base::app);
         if(!outdata){
             std::cerr << "Error : file could not be opened" << std::endl;
