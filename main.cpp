@@ -211,12 +211,7 @@ void *managerResumePriority(void * sdata) {
 int main(int argc, char* argv[]) {
 
     bool running = true;
-    std::ofstream outdata;
-    if (!std::filesystem::exists("history.txt")) {
-        // file does not exist or could not be opened
-        outdata.open("history.txt", std::ios::out);
-        outdata.close();
-    }
+
 
 
 
@@ -314,10 +309,9 @@ int main(int argc, char* argv[]) {
             }
             parameters.clear();
             pthread_create(&vlakna, nullptr,&downloand,data.at(data.size()-1));
-            //pthread_create(&managerP, nullptr,&managerPriority,&data);
 
             pthread_detach(vlakna);
-            //pthread_detach(managerP);
+
 
         }
 
@@ -382,7 +376,8 @@ int main(int argc, char* argv[]) {
                         pthread_mutex_unlock(&mutex);
                     }
                 }
-                outdata.open("history.txt", std::ios::out);
+                std::ofstream outdata;
+                outdata.open("history.txt", std::ios_base::app);
                 if(!outdata){
                     std::cerr << "Error : file could not be opened" << std::endl;
                     return 1;
