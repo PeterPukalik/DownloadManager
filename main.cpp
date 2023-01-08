@@ -219,6 +219,7 @@ int main(int argc, char* argv[]) {
     }
 
 
+
     long long index=0;
     bool managerExists = false;
     pthread_mutex_t mutex;
