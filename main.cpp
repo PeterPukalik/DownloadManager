@@ -21,6 +21,7 @@
 #include <vector>
 #include <fstream>
 #include <map>
+#include <filesystem>
 
 #define MAX_NUMBER_OF_THREADS 2
 
@@ -211,6 +212,11 @@ int main(int argc, char* argv[]) {
 
     bool running = true;
     std::ofstream outdata;
+    if (!std::filesystem::exists("history.txt")) {
+        // file does not exist or could not be opened
+        outdata.open("history.txt", std::ios::out);
+        outdata.close();
+    }
 
 
     long long index=0;
@@ -362,16 +368,7 @@ int main(int argc, char* argv[]) {
 
         }
         else if(command =="history"){
-            std::ofstream outdata;
-            outdata.open("history.txt", std::ios::out);
-            if(!outdata){
-                std::cerr << "Error : file could not be opened" << std::endl;
-                return 1;
-            }
-            for (int i = 0; i < data.size(); i++) {
-                outdata <<"ID: "<<data.at(i)->getIndex() <<" "<< data.at(i)->getName() << " stiahnute: " << (double)(data.at(i)->getAllreadyDownloaded()/ data.at(i)->getTotalSize())*100 << " %" << std::endl;;
-            }
-            outdata.close();
+
         }
         else if(command == "exit"){
             std::cout << "this will terminate all your current downlaods: type Y or N :  ";
@@ -384,6 +381,15 @@ int main(int argc, char* argv[]) {
                         pthread_mutex_unlock(&mutex);
                     }
                 }
+                outdata.open("history.txt", std::ios::out);
+                if(!outdata){
+                    std::cerr << "Error : file could not be opened" << std::endl;
+                    return 1;
+                }
+                for (int i = 0; i < data.size(); i++) {
+                    outdata <<"ID: "<<data.at(i)->getIndex() <<" "<< data.at(i)->getName() << " stiahnute: " << (double)(data.at(i)->getAllreadyDownloaded()/ data.at(i)->getTotalSize())*100 << " %" << std::endl;;
+                }
+                outdata.close();
                 running = false;
             }else{
 

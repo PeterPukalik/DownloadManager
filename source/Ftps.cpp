@@ -16,7 +16,10 @@ namespace ssl = boost::asio::ssl;
 typedef ssl::stream<tcp::socket> ssl_socket;
 
 int ftps(Data* data) {
-    // Create a context that uses the default paths for
+    try
+    {
+
+        // Create a context that uses the default paths for
 // finding CA certificates.
     ssl::context ctx(ssl::context::tls);//podmienka tiez na tls
     ctx.set_default_verify_paths();
@@ -241,6 +244,10 @@ int ftps(Data* data) {
     boost::asio::read_until(socket, response, "\r\n");
     std::getline(response_stream, response_string);
     std::cout << "FTP server response: " << response_string << "\n";
-
+    }
+    catch (std::exception& e)
+    {
+        std::cerr << "Exception: " << e.what() << "\n";
+    }
     return 0;
 }

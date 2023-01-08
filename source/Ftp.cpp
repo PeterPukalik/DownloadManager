@@ -16,7 +16,8 @@ std::vector<std::string> split_string(const std::string& s, char delimiter) {
 }
 
 int ftp(Data* data) {
-
+    try
+    {
 
     // Create a socket and connect to the FTP server.
     boost::asio::io_context io_context;
@@ -189,6 +190,10 @@ int ftp(Data* data) {
     boost::asio::read_until(socket, response, "\r\n");
     std::getline(response_stream, response_string);
     std::cout << "FTP server response: " << response_string << "\n";
-
+    }
+    catch (std::exception& e)
+    {
+        std::cerr << "Exception: " << e.what() << "\n";
+    }
     return 0;
 }

@@ -232,7 +232,35 @@ CMakeFiles/DownloadManager.dir/main.cpp.o: /home/puki/CLionProjects/DownloadMana
   /usr/include/c++/11/bits/uses_allocator.h \
   /usr/include/c++/11/bits/invoke.h \
   /usr/include/c++/11/bits/stl_multimap.h \
-  /usr/include/c++/11/bits/erase_if.h
+  /usr/include/c++/11/bits/erase_if.h \
+  /usr/include/c++/11/filesystem \
+  /usr/include/c++/11/bits/fs_fwd.h \
+  /usr/include/c++/11/chrono \
+  /usr/include/c++/11/ratio \
+  /usr/include/c++/11/limits \
+  /usr/include/c++/11/ctime \
+  /usr/include/c++/11/bits/parse_numbers.h \
+  /usr/include/c++/11/bits/fs_path.h \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/bits/unique_ptr.h \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/bits/quoted_string.h \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/bits/sstream.tcc \
+  /usr/include/c++/11/codecvt \
+  /usr/include/c++/11/ext/concurrence.h \
+  /usr/include/c++/11/bits/shared_ptr.h \
+  /usr/include/c++/11/bits/shared_ptr_base.h \
+  /usr/include/c++/11/bits/allocated_ptr.h \
+  /usr/include/c++/11/bits/refwrap.h \
+  /usr/include/c++/11/bits/fs_dir.h \
+  /usr/include/c++/11/bits/fs_ops.h
 
 CMakeFiles/DownloadManager.dir/source/Data.cpp.o: /home/puki/CLionProjects/DownloadManager/source/Data.cpp \
   /usr/include/stdc-predef.h \
@@ -6532,8 +6560,7 @@ CMakeFiles/DownloadManager.dir/source/Manager.cpp.o: /home/puki/CLionProjects/Do
 
 CMakeFiles/DownloadManager.dir/source/Parser.cpp.o: /home/puki/CLionProjects/DownloadManager/source/Parser.cpp \
   /usr/include/stdc-predef.h \
-  /home/puki/CLionProjects/DownloadManager/header/Parser.h \
-  /usr/include/c++/11/string \
+  /usr/include/c++/11/iostream \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
   /usr/include/features.h \
@@ -6546,32 +6573,11 @@ CMakeFiles/DownloadManager.dir/source/Parser.cpp.o: /home/puki/CLionProjects/Dow
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h \
   /usr/include/c++/11/pstl/pstl_config.h \
+  /usr/include/c++/11/ostream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/iosfwd \
   /usr/include/c++/11/bits/stringfwd.h \
   /usr/include/c++/11/bits/memoryfwd.h \
-  /usr/include/c++/11/bits/char_traits.h \
-  /usr/include/c++/11/bits/stl_algobase.h \
-  /usr/include/c++/11/bits/functexcept.h \
-  /usr/include/c++/11/bits/exception_defines.h \
-  /usr/include/c++/11/bits/cpp_type_traits.h \
-  /usr/include/c++/11/ext/type_traits.h \
-  /usr/include/c++/11/ext/numeric_traits.h \
-  /usr/include/c++/11/bits/stl_pair.h \
-  /usr/include/c++/11/bits/move.h \
-  /usr/include/c++/11/type_traits \
-  /usr/include/c++/11/compare \
-  /usr/include/c++/11/concepts \
-  /usr/include/c++/11/bits/stl_iterator_base_types.h \
-  /usr/include/c++/11/bits/iterator_concepts.h \
-  /usr/include/c++/11/bits/ptr_traits.h \
-  /usr/include/c++/11/bits/ranges_cmp.h \
-  /usr/include/c++/11/bits/stl_iterator_base_funcs.h \
-  /usr/include/c++/11/bits/concept_check.h \
-  /usr/include/c++/11/debug/assertions.h \
-  /usr/include/c++/11/bits/stl_iterator.h \
-  /usr/include/c++/11/new \
-  /usr/include/c++/11/bits/exception.h \
-  /usr/include/c++/11/debug/debug.h \
-  /usr/include/c++/11/bits/predefined_ops.h \
   /usr/include/c++/11/bits/postypes.h \
   /usr/include/c++/11/cwchar \
   /usr/include/wchar.h \
@@ -6588,6 +6594,36 @@ CMakeFiles/DownloadManager.dir/source/Parser.cpp.o: /home/puki/CLionProjects/Dow
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/c++/11/exception \
+  /usr/include/c++/11/bits/exception.h \
+  /usr/include/c++/11/bits/exception_ptr.h \
+  /usr/include/c++/11/bits/exception_defines.h \
+  /usr/include/c++/11/bits/cxxabi_init_exception.h \
+  /usr/include/c++/11/typeinfo \
+  /usr/include/c++/11/bits/hash_bytes.h \
+  /usr/include/c++/11/new \
+  /usr/include/c++/11/bits/move.h \
+  /usr/include/c++/11/type_traits \
+  /usr/include/c++/11/bits/nested_exception.h \
+  /usr/include/c++/11/bits/char_traits.h \
+  /usr/include/c++/11/bits/stl_algobase.h \
+  /usr/include/c++/11/bits/functexcept.h \
+  /usr/include/c++/11/bits/cpp_type_traits.h \
+  /usr/include/c++/11/ext/type_traits.h \
+  /usr/include/c++/11/ext/numeric_traits.h \
+  /usr/include/c++/11/bits/stl_pair.h \
+  /usr/include/c++/11/compare \
+  /usr/include/c++/11/concepts \
+  /usr/include/c++/11/bits/stl_iterator_base_types.h \
+  /usr/include/c++/11/bits/iterator_concepts.h \
+  /usr/include/c++/11/bits/ptr_traits.h \
+  /usr/include/c++/11/bits/ranges_cmp.h \
+  /usr/include/c++/11/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/11/bits/concept_check.h \
+  /usr/include/c++/11/debug/assertions.h \
+  /usr/include/c++/11/bits/stl_iterator.h \
+  /usr/include/c++/11/debug/debug.h \
+  /usr/include/c++/11/bits/predefined_ops.h \
   /usr/include/c++/11/cstdint \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h \
   /usr/include/stdint.h \
@@ -6596,19 +6632,52 @@ CMakeFiles/DownloadManager.dir/source/Parser.cpp.o: /home/puki/CLionProjects/Dow
   /usr/include/x86_64-linux-gnu/bits/time64.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  /usr/include/c++/11/bits/allocator.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
-  /usr/include/c++/11/ext/new_allocator.h \
   /usr/include/c++/11/bits/localefwd.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h \
   /usr/include/c++/11/clocale \
   /usr/include/locale.h \
   /usr/include/x86_64-linux-gnu/bits/locale.h \
-  /usr/include/c++/11/iosfwd \
   /usr/include/c++/11/cctype \
   /usr/include/ctype.h \
   /usr/include/x86_64-linux-gnu/bits/endian.h \
   /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/c++/11/bits/ios_base.h \
+  /usr/include/c++/11/ext/atomicity.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/time.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/timex.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h \
+  /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/string \
+  /usr/include/c++/11/bits/allocator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
+  /usr/include/c++/11/ext/new_allocator.h \
   /usr/include/c++/11/bits/ostream_insert.h \
   /usr/include/c++/11/bits/cxxabi_forced.h \
   /usr/include/c++/11/bits/stl_function.h \
@@ -6619,25 +6688,12 @@ CMakeFiles/DownloadManager.dir/source/Parser.cpp.o: /home/puki/CLionProjects/Dow
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/sys/types.h \
-  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
   /usr/include/endian.h \
   /usr/include/x86_64-linux-gnu/bits/byteswap.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
-  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
-  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
-  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
-  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
-  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
-  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
   /usr/include/c++/11/bits/std_abs.h \
@@ -6649,29 +6705,10 @@ CMakeFiles/DownloadManager.dir/source/Parser.cpp.o: /home/puki/CLionProjects/Dow
   /usr/include/c++/11/bits/uniform_int_dist.h \
   /usr/include/c++/11/bits/range_access.h \
   /usr/include/c++/11/bits/basic_string.h \
-  /usr/include/c++/11/ext/atomicity.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h \
-  /usr/include/pthread.h \
-  /usr/include/sched.h \
-  /usr/include/x86_64-linux-gnu/bits/sched.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
-  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
-  /usr/include/time.h \
-  /usr/include/x86_64-linux-gnu/bits/time.h \
-  /usr/include/x86_64-linux-gnu/bits/timex.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
-  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
-  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h \
-  /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
   /usr/include/c++/11/ext/alloc_traits.h \
   /usr/include/c++/11/bits/alloc_traits.h \
   /usr/include/c++/11/string_view \
   /usr/include/c++/11/bits/functional_hash.h \
-  /usr/include/c++/11/bits/hash_bytes.h \
   /usr/include/c++/11/bits/ranges_base.h \
   /usr/include/c++/11/bits/max_size_type.h \
   /usr/include/c++/11/numbers \
@@ -6694,6 +6731,26 @@ CMakeFiles/DownloadManager.dir/source/Parser.cpp.o: /home/puki/CLionProjects/Dow
   /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
   /usr/include/c++/11/bits/charconv.h \
   /usr/include/c++/11/bits/basic_string.tcc \
+  /usr/include/c++/11/bits/locale_classes.tcc \
+  /usr/include/c++/11/system_error \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
+  /usr/include/c++/11/stdexcept \
+  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/bits/streambuf.tcc \
+  /usr/include/c++/11/bits/basic_ios.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
+  /usr/include/c++/11/bits/streambuf_iterator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
+  /usr/include/c++/11/bits/locale_facets.tcc \
+  /usr/include/c++/11/bits/basic_ios.tcc \
+  /usr/include/c++/11/bits/ostream.tcc \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/bits/istream.tcc \
+  /home/puki/CLionProjects/DownloadManager/header/Parser.h \
   /usr/include/c++/11/vector \
   /usr/include/c++/11/bits/stl_uninitialized.h \
   /usr/include/c++/11/bits/stl_vector.h \
@@ -6926,18 +6983,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /home/puki/CLionProjects/DownloadManager/source/Https.cpp:
 
-/usr/include/c++/11/bits/fs_ops.h:
-
-/usr/include/c++/11/codecvt:
-
-/usr/include/c++/11/bits/quoted_string.h:
-
-/usr/include/c++/11/iomanip:
-
-/usr/include/c++/11/bits/fs_path.h:
-
-/usr/include/c++/11/filesystem:
-
 /usr/include/boost/detail/basic_pointerbuf.hpp:
 
 /usr/include/boost/integer.hpp:
@@ -7116,10 +7161,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/mpl/list/aux_/clear.hpp:
 
-/usr/include/c++/11/bits/fs_fwd.h:
-
-/usr/include/boost/mpl/list/aux_/front.hpp:
-
 /usr/include/boost/mpl/list/aux_/push_back.hpp:
 
 /usr/include/boost/mpl/pop_front_fwd.hpp:
@@ -7153,14 +7194,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 /usr/include/boost/noncopyable.hpp:
 
 /usr/include/boost/lexical_cast/detail/lcast_unsigned_converters.hpp:
-
-/usr/include/c++/11/bits/locale_facets_nonio.tcc:
-
-/usr/include/libintl.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h:
-
-/usr/include/c++/11/locale:
 
 /usr/include/boost/lexical_cast/detail/converter_lexical_streams.hpp:
 
@@ -7234,23 +7267,25 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/preprocessor/seq/cat.hpp:
 
-/usr/include/boost/date_time/gregorian/gregorian_types.hpp:
+/usr/include/boost/preprocessor/control/deduce_d.hpp:
 
-/usr/include/boost/mpl/aux_/is_msvc_eti_arg.hpp:
+/usr/include/boost/preprocessor/repetition/repeat_from_to.hpp:
 
-/usr/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_long_long.hpp:
+/usr/include/boost/preprocessor/repetition/enum_binary_params.hpp:
 
-/usr/include/boost/asio/detail/bulk_executor_op.hpp:
+/usr/include/boost/utility/base_from_member.hpp:
 
-/usr/include/boost/asio/ssl/detail/handshake_op.hpp:
+/usr/include/boost/utility.hpp:
 
-/usr/include/boost/date_time/time_resolution_traits.hpp:
+/usr/include/boost/range/detail/has_member_size.hpp:
 
-/usr/include/boost/operators.hpp:
+/usr/include/boost/type_traits/is_unsigned.hpp:
 
-/usr/include/boost/date_time/special_defs.hpp:
+/usr/include/boost/range/detail/misc_concept.hpp:
 
-/usr/include/c++/11/tr1/poly_laguerre.tcc:
+/usr/include/boost/range/value_type.hpp:
+
+/usr/include/boost/concept/detail/concept_undef.hpp:
 
 /usr/include/c++/11/tr1/legendre_function.tcc:
 
@@ -7270,29 +7305,17 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/type_traits/is_scalar.hpp:
 
-/usr/include/asm-generic/ioctl.h:
-
-/usr/include/boost/asio/detail/signal_handler.hpp:
-
-/usr/include/openssl/http.h:
-
 /usr/include/boost/asio/io_context.hpp:
 
 /usr/include/boost/asio/deadline_timer.hpp:
-
-/usr/include/boost/asio/execution/allocator.hpp:
 
 /usr/include/boost/config/no_tr1/cmath.hpp:
 
 /usr/include/boost/date_time/posix_time/ptime.hpp:
 
-/usr/include/boost/date_time/time_duration.hpp:
-
-/usr/include/boost/predef/language/stdcpp.h:
+/usr/include/c++/11/bits/ranges_util.h:
 
 /usr/include/c++/11/bits/hash_bytes.h:
-
-/usr/include/c++/11/bits/ranges_util.h:
 
 /usr/include/c++/11/pstl/glue_algorithm_defs.h:
 
@@ -7384,16 +7407,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/asio/this_coro.hpp:
 
-/usr/include/c++/11/bits/locale_facets_nonio.h:
-
-/usr/include/boost/mpl/aux_/preprocessed/gcc/and.hpp:
-
-/usr/include/boost/mpl/vector/aux_/pop_back.hpp:
-
-/usr/include/boost/asio/executor_work_guard.hpp:
-
-/usr/include/boost/preprocessor/arithmetic/inc.hpp:
-
 /usr/include/boost/type_traits/has_right_shift.hpp:
 
 /usr/include/boost/config/pragma_message.hpp:
@@ -7422,15 +7435,9 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/x86_64-linux-gnu/bits/types/stack_t.h:
 
-/usr/include/c++/11/tr1/riemann_zeta.tcc:
-
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
-/usr/include/boost/numeric/conversion/detail/conversion_traits.hpp:
-
-/usr/include/boost/asio/socket_base.hpp:
-
-/usr/include/boost/preprocessor/seq/detail/is_empty.hpp:
+/usr/include/c++/11/tr1/riemann_zeta.tcc:
 
 /usr/include/boost/asio/detail/posix_signal_blocker.hpp:
 
@@ -7438,17 +7445,11 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/asio/execution/mapping.hpp:
 
-/usr/include/boost/date_time/gregorian/greg_weekday.hpp:
-
 /usr/include/x86_64-linux-gnu/sys/timerfd.h:
 
 /usr/include/boost/asio/detail/impl/timer_queue_set.ipp:
 
 /usr/include/boost/asio/detail/timer_queue_set.hpp:
-
-/usr/include/c++/11/bits/locale_conv.h:
-
-/usr/include/boost/asio/detail/timer_queue_base.hpp:
 
 /usr/include/asm-generic/int-ll64.h:
 
@@ -7496,19 +7497,11 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/date_time/posix_time/posix_time_duration.hpp:
 
-/usr/include/boost/asio/detail/socket_types.hpp:
-
-/usr/include/fcntl.h:
-
-/usr/include/c++/11/bits/functional_hash.h:
-
-/usr/include/boost/mpl/aux_/O1_size_impl.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
-
 /usr/include/x86_64-linux-gnu/bits/statx-generic.h:
 
 /usr/include/asm-generic/types.h:
+
+/usr/include/c++/11/bits/locale_facets_nonio.tcc:
 
 /usr/include/boost/preprocessor/logical/bool.hpp:
 
@@ -7618,13 +7611,9 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/x86_64-linux-gnu/bits/termios-c_cc.h:
 
-/usr/include/boost/asio/traits/bulk_execute_member.hpp:
-
 /usr/include/boost/asio/impl/execution_context.hpp:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/or.hpp:
-
-/usr/include/boost/date_time/period.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h:
 
@@ -7646,10 +7635,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/c++/11/fstream:
 
-/usr/include/c++/11/pstl/execution_defs.h:
-
-/usr/include/linux/posix_types.h:
-
 /usr/include/boost/mpl/vector/aux_/push_back.hpp:
 
 /usr/include/boost/asio/detail/epoll_reactor.hpp:
@@ -7659,8 +7644,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 /usr/include/boost/mpl/aux_/numeric_op.hpp:
 
 /usr/include/asm-generic/socket.h:
-
-/usr/include/boost/utility.hpp:
 
 /usr/include/x86_64-linux-gnu/asm/socket.h:
 
@@ -7678,8 +7661,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/x86_64-linux-gnu/bits/socket_type.h:
 
-/usr/include/boost/preprocessor/control/deduce_d.hpp:
-
 /usr/include/x86_64-linux-gnu/bits/socket.h:
 
 /usr/include/x86_64-linux-gnu/bits/termios-misc.h:
@@ -7688,35 +7669,21 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/netinet/tcp.h:
 
+/usr/include/c++/11/codecvt:
+
 /usr/include/x86_64-linux-gnu/sys/socket.h:
 
 /usr/include/boost/asio/detail/conditionally_enabled_mutex.hpp:
-
-/usr/include/boost/static_assert.hpp:
-
-/usr/include/boost/mpl/aux_/preprocessed/gcc/iter_fold_if_impl.hpp:
-
-/usr/include/boost/mpl/aux_/template_arity_fwd.hpp:
 
 /usr/include/boost/numeric/conversion/numeric_cast_traits.hpp:
 
 /usr/include/c++/11/cassert:
 
-/usr/include/boost/date_time/year_month_day.hpp:
-
-/usr/include/boost/preprocessor/seq/seq.hpp:
-
 /usr/include/boost/asio/detail/reactive_socket_sendto_op.hpp:
-
-/usr/include/boost/smart_ptr/detail/sp_has_sync_intrinsics.hpp:
-
-/usr/include/boost/mpl/bool.hpp:
-
-/usr/include/boost/system/detail/system_category_posix.hpp:
 
 /usr/include/boost/system/detail/generic_category.hpp:
 
-/usr/include/boost/asio/detail/impl/socket_ops.ipp:
+/usr/include/c++/11/iomanip:
 
 /usr/include/string.h:
 
@@ -7778,6 +7745,10 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/asio/execution/blocking_adaptation.hpp:
 
+/usr/include/boost/mpl/aux_/preprocessed/gcc/and.hpp:
+
+/usr/include/c++/11/bits/locale_facets_nonio.h:
+
 /usr/include/boost/asio/detail/impl/service_registry.ipp:
 
 /usr/include/boost/utility/binary.hpp:
@@ -7794,15 +7765,11 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/asio/detail/impl/resolver_service_base.ipp:
 
+/usr/include/boost/date_time/special_defs.hpp:
+
 /usr/include/boost/asio/detail/mutex.hpp:
 
-/usr/include/boost/range/detail/has_member_size.hpp:
-
 /usr/include/boost/exception/exception.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/signum-arch.h:
-
-/usr/include/boost/date_time/gregorian/greg_date.hpp:
 
 /usr/include/openssl/ssl3.h:
 
@@ -7840,6 +7807,8 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/asio/detail/handler_alloc_helpers.hpp:
 
+/usr/include/c++/11/locale:
+
 /usr/include/boost/asio/detail/cstddef.hpp:
 
 /usr/include/boost/asio/detail/tss_ptr.hpp:
@@ -7861,6 +7830,60 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 /usr/include/linux/close_range.h:
 
 /usr/include/openssl/comp.h:
+
+/usr/include/boost/date_time/time_duration.hpp:
+
+/usr/include/boost/predef/language/stdcpp.h:
+
+/usr/include/boost/asio/is_applicable_property.hpp:
+
+/usr/include/boost/asio/detail/bind_handler.hpp:
+
+/usr/include/boost/asio/execution/start.hpp:
+
+/usr/include/arpa/inet.h:
+
+/usr/include/boost/predef/detail/_cassert.h:
+
+/usr/include/boost/preprocessor/logical/not.hpp:
+
+/usr/include/boost/asio/execution/connect.hpp:
+
+/usr/include/boost/asio/execution/receiver.hpp:
+
+/usr/include/boost/asio/detail/reactive_descriptor_service.hpp:
+
+/usr/include/boost/asio/ssl/detail/impl/engine.ipp:
+
+/usr/include/boost/asio/execution/detail/void_receiver.hpp:
+
+/usr/include/boost/asio/traits/schedule_free.hpp:
+
+/usr/include/boost/asio/basic_deadline_timer.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
+
+/usr/include/libintl.h:
+
+/usr/include/x86_64-linux-gnu/bits/termios-struct.h:
+
+/usr/include/boost/mpl/list/aux_/tag.hpp:
+
+/usr/include/boost/asio/buffered_read_stream_fwd.hpp:
+
+/usr/include/c++/11/mutex:
+
+/usr/include/boost/asio/detail/fenced_block.hpp:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:
+
+/usr/include/boost/date_time/compiler_config.hpp:
+
+/usr/include/sched.h:
+
+/usr/include/c++/11/bits/shared_ptr_atomic.h:
+
+/usr/include/boost/numeric/conversion/converter.hpp:
 
 /usr/include/asm-generic/errno.h:
 
@@ -7914,20 +7937,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/type_traits/is_member_pointer.hpp:
 
-/usr/include/boost/asio/execution/receiver.hpp:
-
-/usr/include/boost/asio/detail/reactive_descriptor_service.hpp:
-
-/usr/include/boost/asio/ssl/detail/impl/engine.ipp:
-
-/usr/include/sched.h:
-
-/usr/include/c++/11/bits/shared_ptr_atomic.h:
-
-/usr/include/boost/date_time/compiler_config.hpp:
-
-/usr/include/boost/numeric/conversion/converter.hpp:
-
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 
 /usr/include/x86_64-linux-gnu/bits/timex.h:
@@ -7970,23 +7979,11 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/c++/11/ext/concurrence.h:
 
-/usr/include/boost/mpl/list/aux_/tag.hpp:
-
-/usr/include/boost/asio/buffered_read_stream_fwd.hpp:
-
-/usr/include/c++/11/mutex:
-
-/usr/include/boost/asio/detail/fenced_block.hpp:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:
-
 /usr/include/boost/asio/execution/bulk_guarantee.hpp:
 
 /usr/include/boost/preprocessor/arithmetic/add.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
-
-/usr/include/boost/asio/basic_deadline_timer.hpp:
 
 /usr/include/c++/11/bits/exception_defines.h:
 
@@ -8005,10 +8002,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 /usr/include/boost/asio/executor.hpp:
 
 /usr/include/boost/asio/detail/reactive_socket_service.hpp:
-
-/usr/include/c++/11/bits/parse_numbers.h:
-
-/usr/include/openssl/x509_vfy.h:
 
 /usr/include/boost/asio/ssl/detail/buffered_handshake_op.hpp:
 
@@ -8096,16 +8089,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/c++/11/bits/ios_base.h:
 
-/usr/include/c++/11/bits/max_size_type.h:
-
-/usr/include/boost/asio/impl/system_context.hpp:
-
-/usr/include/boost/regex/v4/match_flags.hpp:
-
-/usr/include/c++/11/bits/ranges_cmp.h:
-
-/usr/include/c++/11/cstdlib:
-
 /usr/include/boost/asio/detail/handler_cont_helpers.hpp:
 
 /usr/include/c++/11/bits/unique_lock.h:
@@ -8152,19 +8135,59 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/type_traits/is_enum.hpp:
 
+/usr/include/boost/asio/traits/connect_free.hpp:
+
+/usr/include/c++/11/bits/stl_uninitialized.h:
+
+/usr/include/boost/asio/prefer.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:
+
+/usr/include/boost/asio/ip/host_name.hpp:
+
+/usr/include/c++/11/bits/iterator_concepts.h:
+
+/usr/include/c++/11/bits/semaphore_base.h:
+
+/usr/include/boost/mpl/aux_/config/gpu.hpp:
+
 /usr/include/boost/move/detail/std_ns_begin.hpp:
 
 /usr/include/asm-generic/errno-base.h:
 
 /usr/include/boost/asio/detail/type_traits.hpp:
 
-/usr/include/boost/preprocessor/logical/not.hpp:
+/usr/include/fcntl.h:
 
-/usr/include/boost/asio/execution/connect.hpp:
+/usr/include/c++/11/bits/functional_hash.h:
+
+/usr/include/boost/mpl/aux_/O1_size_impl.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
+
+/usr/include/boost/asio/detail/socket_types.hpp:
+
+/usr/include/boost/asio/detail/is_executor.hpp:
+
+/usr/include/boost/asio/dispatch.hpp:
+
+/usr/include/boost/mpl/find.hpp:
+
+/usr/include/boost/mpl/aux_/config/bcc.hpp:
 
 /home/puki/CLionProjects/DownloadManager/main.cpp:
 
 /usr/include/c++/11/bits/stl_pair.h:
+
+/usr/include/boost/smart_ptr/detail/sp_has_sync_intrinsics.hpp:
+
+/usr/include/boost/system/detail/system_category_posix.hpp:
+
+/usr/include/openssl/x509_vfy.h:
+
+/usr/include/c++/11/bits/parse_numbers.h:
+
+/usr/include/boost/mpl/bool.hpp:
 
 /usr/include/boost/asio/impl/detached.hpp:
 
@@ -8179,6 +8202,8 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 /usr/include/c++/11/ext/type_traits.h:
 
 /usr/include/boost/predef/language/objc.h:
+
+/usr/include/boost/asio/execution/allocator.hpp:
 
 /usr/include/c++/11/bits/unique_ptr.h:
 
@@ -8206,6 +8231,14 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/asio/ssl/detail/stream_core.hpp:
 
+/usr/include/boost/asio/traits/connect_member.hpp:
+
+/usr/include/boost/numeric/conversion/detail/numeric_cast_traits.hpp:
+
+/usr/include/boost/asio/detail/impl/posix_thread.ipp:
+
+/usr/include/c++/11/bits/stl_iterator_base_funcs.h:
+
 /usr/include/openssl/cryptoerr_legacy.h:
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
@@ -8226,19 +8259,11 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/asio/ip/multicast.hpp:
 
-/usr/include/boost/type_traits/integral_constant.hpp:
-
-/usr/include/boost/asio/detail/scheduler.hpp:
-
-/usr/include/c++/11/bits/char_traits.h:
-
 /usr/include/boost/smart_ptr/detail/sp_thread_pause.hpp:
 
 /usr/include/c++/11/bits/std_function.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h:
-
-/usr/include/c++/11/string:
 
 /usr/include/boost/asio/detail/work_dispatcher.hpp:
 
@@ -8290,15 +8315,7 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/c++/11/bits/codecvt.h:
 
-/usr/include/c++/11/bits/stl_uninitialized.h:
-
-/usr/include/boost/asio/traits/connect_free.hpp:
-
-/usr/include/boost/asio/prefer.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:
-
-/usr/include/boost/asio/ip/host_name.hpp:
+/usr/include/c++/11/bits/ranges_cmp.h:
 
 /usr/include/c++/11/cwctype:
 
@@ -8362,6 +8379,8 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/asio/traits/start_free.hpp:
 
+/usr/include/c++/11/filesystem:
+
 /usr/include/boost/predef/architecture/x86.h:
 
 /usr/include/c++/11/bits/algorithmfwd.h:
@@ -8376,9 +8395,7 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/asio/detail/socket_ops.hpp:
 
-/usr/include/openssl/bnerr.h:
-
-/usr/include/asm-generic/posix_types.h:
+/usr/include/boost/asio/traits/equality_comparable.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/long-double.h:
 
@@ -8454,10 +8471,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/c++/11/ext/alloc_traits.h:
 
-/usr/include/c++/11/limits:
-
-/usr/include/boost/asio/detail/buffer_sequence_adapter.hpp:
-
 /usr/include/c++/11/bits/uses_allocator.h:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
@@ -8502,6 +8515,16 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/predef/compiler/ekopath.h:
 
+/usr/include/boost/asio/traits/bulk_execute_member.hpp:
+
+/usr/include/boost/mpl/aux_/preprocessor/params.hpp:
+
+/usr/include/boost/asio/execution/sender.hpp:
+
+/usr/include/boost/numeric/conversion/detail/bounds.hpp:
+
+/usr/include/c++/11/bits/fs_path.h:
+
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
 /usr/include/openssl/uierr.h:
@@ -8509,8 +8532,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 /usr/include/boost/asio/detail/event.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
-
-/usr/include/boost/predef/detail/_cassert.h:
 
 /usr/include/boost/asio/detail/completion_handler.hpp:
 
@@ -8584,6 +8605,10 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/c++/11/backward/binders.h:
 
+/usr/include/errno.h:
+
+/usr/include/boost/predef/hardware/simd/arm.h:
+
 /usr/include/boost/asio/ip/address_v4.hpp:
 
 /usr/include/boost/asio/defer.hpp:
@@ -8605,10 +8630,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 /usr/include/boost/concept/assert.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
-
-/usr/include/boost/asio/detail/bind_handler.hpp:
-
-/usr/include/boost/asio/execution/start.hpp:
 
 /usr/include/c++/11/ext/new_allocator.h:
 
@@ -8644,7 +8665,11 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/c++/11/bits/stl_map.h:
 
-/usr/include/boost/asio/traits/equality_comparable.hpp:
+/usr/include/boost/type_traits/is_signed.hpp:
+
+/usr/include/boost/asio/posix/basic_stream_descriptor.hpp:
+
+/usr/include/boost/range/detail/msvc_has_iterator_workaround.hpp:
 
 /usr/include/boost/asio/require_concept.hpp:
 
@@ -8682,22 +8707,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/asio/detail/variadic_templates.hpp:
 
-/usr/include/boost/asio/detail/posix_thread.hpp:
-
-/usr/include/c++/11/tuple:
-
-/usr/include/boost/mpl/advance.hpp:
-
-/usr/include/semaphore.h:
-
-/usr/include/boost/predef/os/cygwin.h:
-
-/usr/include/boost/asio/detail/thread_context.hpp:
-
-/usr/include/c++/11/bits/invoke.h:
-
-/usr/include/boost/asio/detail/strand_executor_service.hpp:
-
 /usr/include/c++/11/bits/exception_ptr.h:
 
 /usr/include/boost/mpl/back_fwd.hpp:
@@ -8705,8 +8714,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 /usr/include/c++/11/bits/locale_classes.h:
 
 /usr/include/c++/11/ext/atomicity.h:
-
-/usr/include/boost/preprocessor/repetition/repeat_from_to.hpp:
 
 /usr/include/c++/11/streambuf:
 
@@ -8736,21 +8743,15 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/c++/11/bits/basic_string.tcc:
 
-/usr/include/boost/asio/basic_serial_port.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
-
-/usr/include/boost/asio/detail/impl/posix_thread.ipp:
-
-/usr/include/c++/11/bits/stl_iterator_base_funcs.h:
-
-/usr/include/boost/asio/traits/connect_member.hpp:
-
-/usr/include/boost/numeric/conversion/detail/numeric_cast_traits.hpp:
-
 /usr/include/boost/predef/architecture/x86/64.h:
 
 /usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
+
+/usr/include/boost/mpl/vector/aux_/pop_back.hpp:
+
+/usr/include/boost/asio/executor_work_guard.hpp:
+
+/usr/include/boost/preprocessor/arithmetic/inc.hpp:
 
 /usr/include/boost/asio/detail/impl/handler_tracking.ipp:
 
@@ -8774,11 +8775,9 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/c++/11/bits/stl_tree.h:
 
-/usr/include/boost/core/enable_if.hpp:
+/usr/include/boost/type_traits/add_volatile.hpp:
 
-/usr/include/boost/asio/detail/impl/null_event.ipp:
-
-/usr/include/boost/asio/detail/config.hpp:
+/usr/include/boost/asio/detail/noncopyable.hpp:
 
 /usr/include/boost/asio/execution/operation_state.hpp:
 
@@ -8808,19 +8807,107 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/c++/11/ext/aligned_buffer.h:
 
-/usr/include/boost/cerrno.hpp:
+/usr/include/c++/11/bits/erase_if.h:
+
+/usr/include/boost/date_time/gregorian/greg_date.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/signum-arch.h:
+
+/usr/include/boost/numeric/conversion/detail/conversion_traits.hpp:
+
+/usr/include/boost/asio/socket_base.hpp:
+
+/usr/include/boost/preprocessor/seq/detail/is_empty.hpp:
+
+/usr/include/c++/11/bits/fs_ops.h:
+
+/usr/include/boost/asio/basic_serial_port.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
+
+/usr/include/boost/mpl/list/aux_/front.hpp:
+
+/usr/include/c++/11/bits/fs_fwd.h:
 
 /usr/include/boost/regex/user.hpp:
 
-/usr/include/c++/11/bits/erase_if.h:
+/usr/include/boost/cerrno.hpp:
+
+/usr/include/boost/asio/detail/impl/socket_ops.ipp:
+
+/usr/include/boost/asio/detail/buffer_sequence_adapter.hpp:
+
+/usr/include/c++/11/limits:
+
+/usr/include/c++/11/bits/max_size_type.h:
+
+/usr/include/boost/asio/impl/system_context.hpp:
+
+/usr/include/boost/regex/v4/match_flags.hpp:
+
+/usr/include/c++/11/cstdlib:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h:
+
+/usr/include/c++/11/string:
+
+/usr/include/boost/asio/detail/timer_queue_base.hpp:
+
+/usr/include/c++/11/bits/locale_conv.h:
+
+/usr/include/boost/date_time/time_iterator.hpp:
+
+/usr/include/boost/asio/buffered_write_stream_fwd.hpp:
+
+/usr/include/boost/asio/detail/posix_thread.hpp:
+
+/usr/include/c++/11/tuple:
+
+/usr/include/boost/mpl/advance.hpp:
+
+/usr/include/semaphore.h:
+
+/usr/include/boost/predef/os/cygwin.h:
+
+/usr/include/boost/asio/detail/thread_context.hpp:
+
+/usr/include/c++/11/bits/invoke.h:
+
+/usr/include/boost/asio/detail/strand_executor_service.hpp:
+
+/usr/include/c++/11/bits/quoted_string.h:
+
+/usr/include/x86_64-linux-gnu/bits/time64.h:
+
+/usr/include/boost/type_traits/add_reference.hpp:
+
+/usr/include/boost/detail/workaround.hpp:
+
+/usr/include/c++/11/bits/shared_ptr.h:
+
+/usr/include/boost/type_traits/is_float.hpp:
+
+/usr/include/c++/11/bits/allocated_ptr.h:
+
+/usr/include/asm-generic/ioctl.h:
+
+/home/puki/CLionProjects/DownloadManager/source/Ftps.cpp:
+
+/usr/include/boost/date_time/date.hpp:
+
+/usr/include/boost/asio/detail/signal_handler.hpp:
+
+/usr/include/openssl/http.h:
+
+/usr/include/c++/11/bits/refwrap.h:
+
+/usr/include/boost/mpl/aux_/config/integral.hpp:
+
+/usr/include/boost/asio/streambuf.hpp:
 
 /usr/include/c++/11/bits/node_handle.h:
 
 /usr/include/boost/asio/generic/datagram_protocol.hpp:
-
-/usr/include/boost/date_time/int_adapter.hpp:
-
-/home/puki/CLionProjects/DownloadManager/source/Data.cpp:
 
 /usr/include/boost/config.hpp:
 
@@ -8864,20 +8951,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/openssl/dtls1.h:
 
-/usr/include/boost/detail/workaround.hpp:
-
-/usr/include/c++/11/bits/shared_ptr.h:
-
-/usr/include/boost/type_traits/is_float.hpp:
-
-/usr/include/c++/11/bits/allocated_ptr.h:
-
-/usr/include/c++/11/bits/refwrap.h:
-
-/usr/include/boost/mpl/aux_/config/integral.hpp:
-
-/usr/include/boost/asio/streambuf.hpp:
-
 /usr/include/x86_64-linux-gnu/asm/sockios.h:
 
 /usr/include/c++/11/bits/atomic_lockfree_defines.h:
@@ -8918,9 +8991,9 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/predef/architecture/sys390.h:
 
-/usr/include/c++/11/bits/fs_dir.h:
-
 /usr/include/c++/11/bits/istream.tcc:
+
+/usr/include/c++/11/bits/fs_dir.h:
 
 /usr/include/boost/detail/select_type.hpp:
 
@@ -8940,11 +9013,19 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/predef/compiler/edg.h:
 
+/usr/include/c++/11/bits/sstream.tcc:
+
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
 /usr/include/boost/asio/impl/defer.hpp:
 
 /usr/include/openssl/symhacks.h:
+
+/usr/include/linux/posix_types.h:
+
+/usr/include/c++/11/pstl/execution_defs.h:
+
+/usr/include/boost/date_time/gregorian/greg_weekday.hpp:
 
 /usr/include/boost/asio/traits/prefer_free.hpp:
 
@@ -9014,41 +9095,53 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/mpl/aux_/na_spec.hpp:
 
-/usr/include/boost/asio/detail/is_executor.hpp:
+/usr/include/c++/11/tr1/poly_laguerre.tcc:
 
-/usr/include/boost/asio/dispatch.hpp:
+/usr/include/boost/asio/detail/impl/null_event.ipp:
 
-/usr/include/boost/mpl/find.hpp:
+/usr/include/boost/asio/detail/config.hpp:
 
-/usr/include/boost/mpl/aux_/config/bcc.hpp:
+/usr/include/boost/core/enable_if.hpp:
 
-/usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
+/usr/include/boost/operators.hpp:
 
-/usr/include/x86_64-linux-gnu/bits/termios-struct.h:
+/usr/include/boost/static_assert.hpp:
 
-/usr/include/boost/asio/traits/schedule_free.hpp:
+/usr/include/boost/mpl/aux_/preprocessed/gcc/iter_fold_if_impl.hpp:
 
-/usr/include/errno.h:
+/usr/include/boost/mpl/aux_/template_arity_fwd.hpp:
 
-/usr/include/boost/predef/hardware/simd/arm.h:
+/usr/include/boost/asio/detail/scheduler.hpp:
 
-/usr/include/boost/numeric/conversion/detail/bounds.hpp:
+/usr/include/c++/11/bits/char_traits.h:
 
-/usr/include/boost/mpl/aux_/preprocessor/params.hpp:
+/usr/include/boost/type_traits/integral_constant.hpp:
 
-/usr/include/boost/asio/execution/sender.hpp:
+/usr/include/boost/date_time/time_resolution_traits.hpp:
 
-/usr/include/c++/11/bits/iterator_concepts.h:
+/usr/include/asm-generic/posix_types.h:
 
-/usr/include/c++/11/bits/semaphore_base.h:
+/usr/include/openssl/bnerr.h:
 
-/usr/include/boost/mpl/aux_/config/gpu.hpp:
+/home/puki/CLionProjects/DownloadManager/source/Data.cpp:
 
-/usr/include/boost/asio/execution/detail/void_receiver.hpp:
+/usr/include/boost/date_time/int_adapter.hpp:
 
-/usr/include/arpa/inet.h:
+/usr/include/boost/asio/ssl/detail/handshake_op.hpp:
 
-/usr/include/boost/asio/is_applicable_property.hpp:
+/usr/include/boost/date_time/gregorian/gregorian_types.hpp:
+
+/usr/include/boost/mpl/aux_/is_msvc_eti_arg.hpp:
+
+/usr/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_long_long.hpp:
+
+/usr/include/boost/asio/detail/bulk_executor_op.hpp:
+
+/usr/include/boost/date_time/year_month_day.hpp:
+
+/usr/include/boost/preprocessor/seq/seq.hpp:
+
+/usr/include/boost/date_time/period.hpp:
 
 /usr/include/netinet/in.h:
 
@@ -9098,9 +9191,9 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/date_time/gregorian/greg_ymd.hpp:
 
-/usr/include/c++/11/cerrno:
-
 /usr/include/boost/asio/traits/schedule_member.hpp:
+
+/usr/include/c++/11/cerrno:
 
 /usr/include/boost/asio/detail/impl/timer_queue_ptime.ipp:
 
@@ -9123,8 +9216,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 /usr/include/c++/11/coroutine:
 
 /usr/include/boost/date_time/date_generators.hpp:
-
-/usr/include/c++/11/bits/sstream.tcc:
 
 /usr/include/boost/date_time/date_clock_device.hpp:
 
@@ -9154,9 +9245,9 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/date_time/time.hpp:
 
-/usr/include/boost/smart_ptr/detail/shared_count.hpp:
-
 /usr/include/boost/asio/detail/scheduler_thread_info.hpp:
+
+/usr/include/boost/smart_ptr/detail/shared_count.hpp:
 
 /usr/include/boost/date_time/posix_time/date_duration_operators.hpp:
 
@@ -9392,8 +9483,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/preprocessor/array/elem.hpp:
 
-/usr/include/boost/concept/detail/concept_undef.hpp:
-
 /usr/include/boost/preprocessor/array/data.hpp:
 
 /usr/include/boost/date_time/microsec_time_clock.hpp:
@@ -9484,10 +9573,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/asio/ip/impl/address.ipp:
 
-/usr/include/boost/asio/detail/noncopyable.hpp:
-
-/usr/include/boost/type_traits/add_volatile.hpp:
-
 /usr/include/boost/mpl/aux_/preprocessed/gcc/times.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
@@ -9504,17 +9589,13 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/numeric/conversion/converter_policies.hpp:
 
-/usr/include/boost/asio/ip/impl/network_v4.ipp:
-
-/usr/include/boost/predef/compiler/pgi.h:
-
-/usr/include/boost/date_time/time_iterator.hpp:
-
-/usr/include/boost/asio/buffered_write_stream_fwd.hpp:
+/usr/include/boost/asio/ssl/verify_context.hpp:
 
 /usr/include/boost/numeric/conversion/detail/converter.hpp:
 
-/usr/include/boost/asio/ssl/verify_context.hpp:
+/usr/include/boost/asio/ip/impl/network_v4.ipp:
+
+/usr/include/boost/predef/compiler/pgi.h:
 
 /usr/include/openssl/objects.h:
 
@@ -10090,10 +10171,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/asio/impl/write_at.hpp:
 
-/usr/include/boost/date_time/date.hpp:
-
-/home/puki/CLionProjects/DownloadManager/source/Ftps.cpp:
-
 /usr/include/boost/asio/ssl/detail/openssl_init.hpp:
 
 /usr/include/c++/11/bits/stl_relops.h:
@@ -10258,10 +10335,6 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/type_traits/detail/yes_no_type.hpp:
 
-/usr/include/x86_64-linux-gnu/bits/time64.h:
-
-/usr/include/boost/type_traits/add_reference.hpp:
-
 /usr/include/boost/iterator/detail/config_undef.hpp:
 
 /usr/include/boost/iterator/iterator_categories.hpp:
@@ -10344,9 +10417,9 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 
 /usr/include/boost/preprocessor/seq/elem.hpp:
 
-/usr/include/boost/predef/compiler/microtec.h:
-
 /usr/include/stdio.h:
+
+/usr/include/boost/predef/compiler/microtec.h:
 
 /usr/include/x86_64-linux-gnu/bits/termios-c_lflag.h:
 
@@ -10355,19 +10428,3 @@ CMakeFiles/DownloadManager.dir/source/server.cpp.o: /home/puki/CLionProjects/Dow
 /usr/include/boost/preprocessor/seq/size.hpp:
 
 /usr/include/boost/preprocessor/seq/enum.hpp:
-
-/usr/include/boost/range/value_type.hpp:
-
-/usr/include/boost/range/detail/misc_concept.hpp:
-
-/usr/include/boost/asio/posix/basic_stream_descriptor.hpp:
-
-/usr/include/boost/range/detail/msvc_has_iterator_workaround.hpp:
-
-/usr/include/boost/type_traits/is_signed.hpp:
-
-/usr/include/boost/type_traits/is_unsigned.hpp:
-
-/usr/include/boost/utility/base_from_member.hpp:
-
-/usr/include/boost/preprocessor/repetition/enum_binary_params.hpp:
