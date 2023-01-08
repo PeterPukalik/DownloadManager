@@ -201,7 +201,7 @@ void *managerResumePriority(void * sdata) {
 
             //if stahuje sa viac ako 2
         //std::cout << "idem spat       managerResumePriority\n";
-            sleep(5);
+            sleep(3);
 
 
     }
@@ -254,7 +254,7 @@ int main(int argc, char* argv[]) {
 
 
     while(running){                                                                                                      //http pukalik.sk /pos/dog.jpeg dog 1
-        std::cout << std::endl << "choose you command \nfor exit type \"exit\"\n(download,help,exit,stop,resume,status,manager)" << std::endl;//http pukalik.sk /pos/pos_big.zip testStop 1 // 2023 1 3 19:44:00
+        std::cout << std::endl << "choose you command \nfor exit type \"exit\"\n(download,help,exit,stop,resume,status,manager,history)" << std::endl;//http pukalik.sk /pos/pos_big.zip testStop 1 // 2023 1 3 19:44:00
         // http pukalik.sk /pos/big_file.zip testThread1 1 // 2023 1 4 13:00:01
         // https frcatel.fri.uniza.sk /users/beerb/ma1/ma-1.pdf ma-1 1
         // https frcatel.fri.uniza.sk /users/beerb/ma1/prednasky/integraly.pdf integraly 1
@@ -335,12 +335,13 @@ int main(int argc, char* argv[]) {
         }
 
         else if(command == "stop"){
-            std::cout << "som v stop"<< std::endl;
+            //std::cout << "som v stop"<< std::endl;
 
-            std::cout << "som v mutexe"<< std::endl;
+            std::string input;
+            std::cout << "INPUT ID TO STOP: \n";
+            std::cin >> input;
             for (int i = 0; i < data.size(); i++) {
-
-                if(data.at(i)->getFlag() == 1){
+                if(data.at(i)->getIndex() == std::stoi(input)){
                     pthread_mutex_lock(&mutex);
                     data.at(i)->setStop(true);
                     pthread_mutex_unlock(&mutex);
@@ -349,15 +350,23 @@ int main(int argc, char* argv[]) {
 
         }
         else if(command == "resume"){
-            pthread_mutex_lock(&mutex);
-            for (int i = 0; i < data.size(); i++) {
-                data.at(i)->setStop(false);
-            }
-            pthread_mutex_unlock(&mutex);
+
+
+
+
             if(data.empty()){
                 std::cout << "nothing to resume\n";
             }else{
-
+                std::string input;
+                std::cout << "INPUT ID TO STOP: \n";
+                std::cin >> input;
+                for (int i = 0; i < data.size(); i++) {
+                    if(data.at(i)->getIndex() == std::stoi(input)) {
+                        pthread_mutex_lock(&mutex);
+                        data.at(i)->setStop(false);
+                        pthread_mutex_unlock(&mutex);
+                    }
+                }
                 pthread_create(&managerR, nullptr,&managerResume,&data);
                 pthread_detach(managerR);
 
@@ -365,7 +374,7 @@ int main(int argc, char* argv[]) {
         }
         else if(command == "status"){
             for (int i = 0; i < data.size(); ++i) {
-                std::cout << data.at(i)->getName() << " file has total size of: " << data.at(i)->getTotalSize() << " B and downloaded is "<< (double)(data.at(i)->getAllreadyDownloaded()/ data.at(i)->getTotalSize())*100<< " % FLAG: "<< data.at(i)->getFlag() <<"\n";
+                std::cout << "ID:" << data.at(i)->getIndex()  << " with name:" << data.at(i)->getName() << " file has total size of: " << data.at(i)->getTotalSize() << " B and downloaded is "<< (double)(data.at(i)->getAllreadyDownloaded()/ data.at(i)->getTotalSize())*100<< " % FLAG: "<< data.at(i)->getFlag()<< " \n";
 
             }
         }
