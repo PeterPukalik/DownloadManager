@@ -27,7 +27,14 @@
 
 
 
+std::string getLastLine(std::ifstream& in)
+{
+    std::string line;
+    while (in >> std::ws && std::getline(in, line)) // skip empty lines
+        ;
 
+    return line;
+}
 
 //TODO: priority not working properly
 //void *managerPriority(void * sdata) {
@@ -205,14 +212,30 @@ void *managerResumePriority(void * sdata) {
 int main(int argc, char* argv[]) {
 
     bool running = true;
-
-
-
-
     long long index=0;
+
+    if (std::filesystem::exists("history.txt")) {
+        std::ifstream file("history.txt");
+        std::string line = getLastLine(file);
+        int i = 4;
+        std::string number;
+        while (line.at(i) != ' ' ){
+            number = number + line.at(i);
+            i++;
+        }
+        index= std::stoi(number) +1;
+        file.close();
+    } else {
+        // File does not exist
+        std::ifstream file("history.txt");
+        file.close();
+    }
+
+
+
+
     bool managerExists = false;
     pthread_mutex_t mutex;
-    pthread_cond_t  cond_vlakno,cond_spravcaPriority;
 
     pthread_t managerR;
     pthread_t managerResumeAftefPriorityStop;
@@ -221,8 +244,7 @@ int main(int argc, char* argv[]) {
     int numberOfActiveDownloads = 0;
 
     pthread_mutex_init(&mutex, nullptr);
-    pthread_cond_init(&cond_spravcaPriority, nullptr);
-    pthread_cond_init(&cond_vlakno, nullptr);
+
 
     std::vector<Data*> data;
     std::vector<std::string> parameters{};
@@ -366,6 +388,8 @@ int main(int argc, char* argv[]) {
                 std::cout << line << std::endl;
             }
             input_file.close();
+
+            // Seek to the end of the file
         }
         else if(command == "exit"){
             std::cout << "this will terminate all your current downlaods: type Y or N :  ";
@@ -385,7 +409,7 @@ int main(int argc, char* argv[]) {
                     return 1;
                 }
                 for (int i = 0; i < data.size(); i++) {
-                    outdata <<"ID: "<<data.at(i)->getIndex() <<" "<< data.at(i)->getName() << " stiahnute: " << (double)(data.at(i)->getAllreadyDownloaded()/ data.at(i)->getTotalSize())*100 << " %" << std::endl;;
+                    outdata <<"ID: "<<data.at(i)->getIndex() <<" "<< data.at(i)->getName() << " stiahnute: " << (double)(data.at(i)->getAllreadyDownloaded()/ data.at(i)->getTotalSize())*100 << " %" << std::endl ;
                 }
                 outdata.close();
                 running = false;
@@ -401,7 +425,7 @@ int main(int argc, char* argv[]) {
 
     }
     //TODO join
-    //if(data.size() > 1)
+    if(data.size() > 1)
         pthread_join(managerResumeAftefPriorityStop,nullptr);
 
 
