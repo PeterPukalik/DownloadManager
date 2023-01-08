@@ -149,8 +149,8 @@ void *managerResume(void * sdata) {
 
 void *managerResumePriority(void * sdata) {
     std::vector<Data *> *data = (std::vector<Data *> *) sdata;
-    if (!data->empty()) {
-        while (data->at(0)->isTotalStop()) {
+    while (data->at(0)->isTotalStop()){
+        if (!data->empty()) {
             int numberOfActiveThread = 0;
             for (int i = 0; i < data->size(); i++) {
                 if (data->at(i)->getFlag() == 1 || data->at(i)->getFlag() == 0) {
@@ -396,6 +396,10 @@ int main(int argc, char* argv[]) {
 
     }
     //TODO join
+
+    pthread_join(managerResumeAftefPriorityStop,nullptr);
+
+
     for (int i = 0; i < data.size(); i++) {
         delete data.at(i);
     }
@@ -405,7 +409,7 @@ int main(int argc, char* argv[]) {
     //pthread_join(managerP, nullptr);
     //pthread_join(managerResumeAftefPriorityStop, nullptr);
    // pthread_join(managerR, nullptr);
-   //pthread_join(managerResumeAftefPriorityStop,nullptr);
+
 
 
     pthread_mutex_destroy(&mutex);

@@ -128,7 +128,7 @@ void Data::addAllreadyDownloaded(int plusSize ) {
 }
 
 bool* Data::isTotalStop()  {
-    return &totalStop;
+    return totalStop;
 }
 
 const std::string &Data::getFtpUser() const {
@@ -147,9 +147,7 @@ void Data::setFtpPass(const std::string &ftpPass) {
     ftpPASS = ftpPass;
 }
 
-void Data::setTotalStop(bool totalStop) {
-    Data::totalStop = totalStop;
-}
+
 
 int* Data::getNumberOfActiveDownlaods() {
     return numberOfActiveDownlaods;

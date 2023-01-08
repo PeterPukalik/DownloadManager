@@ -36,7 +36,7 @@ private:
     int priority;
     std::string time;
     bool stop;
-    bool totalStop;
+    bool* totalStop;
 public:
     bool* isTotalStop() ;
     int* numberOfActiveDownlaods;
