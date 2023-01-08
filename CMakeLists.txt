@@ -7,4 +7,4 @@ add_executable(DownloadManager main.cpp source/server.cpp source/client.cpp head
 
 
 target_link_libraries(DownloadManager pthread ssl crypto)
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=leak ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=leak ")

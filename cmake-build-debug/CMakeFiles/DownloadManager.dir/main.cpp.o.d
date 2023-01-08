@@ -138,16 +138,17 @@ CMakeFiles/DownloadManager.dir/main.cpp.o: \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/11/bits/charconv.h \
- /usr/include/c++/11/bits/basic_string.tcc \
+ /usr/include/c++/11/bits/basic_string.tcc /usr/include/c++/11/vector \
+ /usr/include/c++/11/bits/stl_uninitialized.h \
+ /usr/include/c++/11/bits/stl_vector.h \
+ /usr/include/c++/11/bits/stl_bvector.h \
+ /usr/include/c++/11/bits/vector.tcc \
  /home/puki/CLionProjects/DownloadManager/header/Data.h \
+ /home/puki/CLionProjects/DownloadManager/header/Ftps.h \
  /home/puki/CLionProjects/DownloadManager/header/Http.h \
  /home/puki/CLionProjects/DownloadManager/header/Https.h \
  /home/puki/CLionProjects/DownloadManager/header/Manager.h \
  /home/puki/CLionProjects/DownloadManager/header/Parser.h \
- /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \
- /usr/include/c++/11/bits/stl_vector.h \
- /usr/include/c++/11/bits/stl_bvector.h \
- /usr/include/c++/11/bits/vector.tcc \
  /home/puki/CLionProjects/DownloadManager/header/Parser.h \
  /home/puki/CLionProjects/DownloadManager/header/Data.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \

@@ -16,9 +16,10 @@ std::vector<std::string> split_string(const std::string& s, char delimiter) {
 }
 
 int ftp(Data* data) {
-    boost::asio::io_context io_context;
+
 
     // Create a socket and connect to the FTP server.
+    boost::asio::io_context io_context;
     boost::asio::ip::tcp::socket socket(io_context);
     boost::asio::ip::tcp::resolver resolver(io_context);
     boost::asio::connect(socket, resolver.resolve(data->getWeb(), "21"));
@@ -71,7 +72,9 @@ int ftp(Data* data) {
 
     // Extract the IP address and port number from the FTP server's response.
 
-    response_string = response_string.substr(27,response_string.length()-1);
+    if (response_string.length() >= 27) {
+        response_string = response_string.substr(27, response_string.length() - 1);
+    }
 
     std::vector<std::string> pasv_response_tokens = split_string(response_string, ',');
     std::string data_ip_address = pasv_response_tokens[0] + "." + pasv_response_tokens[1] + "." + pasv_response_tokens[2] + "." + pasv_response_tokens[3];
@@ -104,7 +107,10 @@ int ftp(Data* data) {
     } else {
         std::cerr << "Error: invalid response from FTP server\n";
     }
-
+    request.consume(request.size());
+    request_stream.clear();
+    request_stream << "TYPE I" << "\r\n";
+    boost::asio::write(socket, request);
     // Send the FTP REST command to specify the starting position of the file to download.
     request.consume(request.size());
     request_stream.clear();
@@ -121,6 +127,9 @@ int ftp(Data* data) {
     request_stream.clear();
     request_stream << "RETR " << data->getPath()<<"\r\n";
     boost::asio::write(socket, request);
+    boost::asio::read_until(socket, response, "\r\n");
+    std::getline(response_stream, response_string);
+    std::cout << "RETR FTP server response: " << response_string << "\n";
     // Open a file to write the data to.
     std::ofstream output_file("testftp.dat", std::ios::binary);
     if (output_file.fail()) {
@@ -140,7 +149,7 @@ int ftp(Data* data) {
 //        output_file << &response;
 //        boost::asio::read(data_socket, response, boost::asio::transfer_at_least(1), error);
 //    }
-    while (boost::asio::read(data_socket, response, boost::asio::transfer_at_least(1), error))
+    while (boost::asio::read(data_socket, response, boost::asio::transfer_at_least(1), error) && !data->isStop())
     {
         pthread_mutex_lock(data->getMutex());
         data->addAllreadyDownloaded(response.size());
@@ -150,10 +159,17 @@ int ftp(Data* data) {
 
     output_file.close();
     //std::cerr << responseSizeout << std::endl;
-    if (error == boost::asio::error::eof) {
-        error.clear();
-    } else if (error) {
-        throw boost::system::system_error(error);
+    if(data->isStop()){
+        if(data->getFlag() != 4){
+            pthread_mutex_lock(data->getMutex());
+            data->setFlag(2);//stoped
+            pthread_mutex_unlock(data->getMutex());
+        }
+
+    }else{
+        pthread_mutex_lock(data->getMutex());
+        data->setFlag(3);//finished
+        pthread_mutex_unlock(data->getMutex());
     }
 
     // Receive the FTP server's response.

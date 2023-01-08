@@ -79,10 +79,10 @@ void Data::setStartPoint(int startPoint) {
 
 Data::Data(const std::string &aProtocol, const std::string &web, const std::string &path, const std::string &name,
            long long int index, int priority, const std::string &time, bool stop, int startPoint,
-           pthread_mutex_t *mutex, pthread_cond_t *condSpravcaPriority, pthread_cond_t *condVlakno,int allreadyDownloaded,int totalSize,int flag,bool* totalStop)
+           pthread_mutex_t *mutex, pthread_cond_t *condSpravcaPriority, pthread_cond_t *condVlakno,int allreadyDownloaded,int totalSize,int flag,bool* totalStop,int *numberOfActiveDownlaods)
            : protocol(aProtocol), web(web), path(path), name(name), index(index), priority(priority), time(time), stop(stop),
             startPoint(startPoint),mutex(mutex),cond_spravcaPriority(condSpravcaPriority),cond_vlakno(condVlakno),
-            allreadyDownloaded(allreadyDownloaded),totalSize(totalSize),flag(flag),totalStop(totalStop) {
+            allreadyDownloaded(allreadyDownloaded),totalSize(totalSize),flag(flag),totalStop(totalStop),numberOfActiveDownlaods(numberOfActiveDownlaods) {
 
 
 }
@@ -99,7 +99,7 @@ pthread_cond_t *Data::getCondVlakno()  {
     return cond_vlakno;
 }
 
-double Data::getAllreadyDownloaded()  {
+double Data::getAllreadyDownloaded(){
     return allreadyDownloaded;
 }
 
@@ -145,6 +145,27 @@ const std::string &Data::getFtpPass() const {
 
 void Data::setFtpPass(const std::string &ftpPass) {
     ftpPASS = ftpPass;
+}
+
+void Data::setTotalStop(bool totalStop) {
+    Data::totalStop = totalStop;
+}
+
+int* Data::getNumberOfActiveDownlaods() {
+    return numberOfActiveDownlaods;
+}
+
+void Data::setNumberOfActiveDownlaods(int *numberOfActiveDownlaods) {
+    Data::numberOfActiveDownlaods = numberOfActiveDownlaods;
+}
+
+void Data::addNumberOfActiveDownlaods(int plusSize) {
+    numberOfActiveDownlaods += plusSize;
+}
+
+void Data::subNumberOfActiveDownlaods(int minusSize) {
+    numberOfActiveDownlaods -= minusSize;
+
 }
 
 
