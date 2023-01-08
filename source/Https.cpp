@@ -23,15 +23,13 @@ typedef ssl::stream<tcp::socket> ssl_socket;
 
 int https(Data *data) {
 
-    try
-    {
-
-// Create a context that uses the default paths for
-// finding CA certificates.
+    try {
+    // Create a context that uses the default paths for
+    // finding CA certificates.
         ssl::context ctx(ssl::context::sslv23);//podmienka tiez na tls
         ctx.set_default_verify_paths();
 
-// Open a socket and connect it to the remote host.
+    // Open a socket and connect it to the remote host.
         boost::asio::io_context io_context;
         ssl_socket sock(io_context, ctx);
         tcp::resolver resolver(io_context);
@@ -39,21 +37,18 @@ int https(Data *data) {
         boost::asio::connect(sock.lowest_layer(), resolver.resolve(query));
         sock.lowest_layer().set_option(tcp::no_delay(true));
 
-// Perform SSL handshake and verify the remote host's
-// certificate.
+    // Perform SSL handshake and verify the remote host's
+    // certificate.
         sock.set_verify_mode(ssl::verify_peer);
         sock.set_verify_callback(ssl::rfc2818_verification(data->getWeb()));
 
-        //doplny hostname pri hanshake SSL_set_tlsext_host_name(sock.native_handle(),host.c_str())
+        //doplni hostname pri hanshake SSL_set_tlsext_host_name(sock.native_handle(),host.c_str())
         if(!SSL_set_tlsext_host_name(sock.native_handle(),data->getWeb().c_str())){
-            std::cout << "random \n";
             throw boost::system::system_error(::ERR_get_error(),boost::asio::error::get_ssl_category());
         }
         sock.handshake(ssl_socket::client);
 
-        int responselength = 0;
         // Get a list of endpoints corresponding to the server name.
-
         tcp::resolver::results_type endpoints = resolver.resolve(data->getWeb(), "https");
 
         // Try each endpoint until we successfully establish a connection.
@@ -65,7 +60,7 @@ int https(Data *data) {
         std::ostream request_stream(&request);
         request_stream << "GET " << data->getPath() << " HTTP/1.0\r\n";
         request_stream << "Host: " << data->getWeb() << "\r\n";
-        request_stream << "Range:  bytes=" + boost::lexical_cast<std::string>(data->getStartPoint())+ "-"<< "\r\n";;
+        request_stream << "Range:  bytes=" + boost::lexical_cast<std::string>(data->getStartPoint()) + "-" << "\r\n";
         request_stream << "Accept: */*\r\n";
         request_stream << "Connection: close\r\n\r\n";
 
@@ -91,12 +86,11 @@ int https(Data *data) {
             std::cout << "Invalid response\n";
             return 1;
         }
-        //TODO odkomentovat
-        //if (status_code != 200 && status_code != 206 && status_code != 301 )
-        //{
+        if (status_code != 200 && status_code != 206 && status_code != 301 )
+        {
             std::cout << "Response returned with status code " << status_code << "\n";
-            //return 1;
-        //}
+            return 1;
+        }
 
         // Read the response headers, which are terminated by a blank line.
         boost::asio::read_until(sock, response, "\r\n\r\n");
@@ -106,28 +100,29 @@ int https(Data *data) {
         data->setFlag(1);//started
         while (std::getline(response_stream, header) && header != "\r"){
             if(header.compare(0,16,"Content-Length: ")== 0){
-                data->setTotalSize(std::stoi(header.substr(16,header.length())));
+                if(data->getTotalSize() == 0){
+                    pthread_mutex_lock(data->getMutex());
+                    data->setTotalSize(std::stoi(header.substr(16,header.length())));
+                    pthread_mutex_unlock(data->getMutex());
+                }
             }
             //std::cout << header << "\n";
-            //
         }
-        std::cout << "zacal som stahovat" << "\n";
+        std::cout << "Download started" << "\n";
         //std::cout << "\n";
 
         // Write whatever content we already have to output.
         std::ofstream outdata;
-        outdata.open((data->getName() + ".dat"), std::ios::out);
+        outdata.open((data->getName() + ".dat"), std::ios_base::app);
         if(!outdata){
             std::cerr << "Error : file could not be opened" << std::endl;
             return 1;
         }
         if (response.size() > 0) {
             //std::cout << &response;
-            //tu bude premenna kolko mi prislo +=
             pthread_mutex_lock(data->getMutex());
             data->addAllreadyDownloaded(response.size());
             pthread_mutex_unlock(data->getMutex());
-            //*allreadyDownloaded += response.size();
             outdata << &response;
         }
 
@@ -137,7 +132,6 @@ int https(Data *data) {
             pthread_mutex_lock(data->getMutex());
             data->addAllreadyDownloaded(response.size());
             pthread_mutex_unlock(data->getMutex());
-            //*allreadyDownloaded += response.size();
             outdata << &response;
         }
         outdata.close();
@@ -147,8 +141,7 @@ int https(Data *data) {
                 data->setFlag(2);//stoped
                 pthread_mutex_unlock(data->getMutex());
             }
-
-        }else{
+        } else {
             pthread_mutex_lock(data->getMutex());
             data->setFlag(3);//finished
             pthread_mutex_unlock(data->getMutex());
@@ -163,7 +156,5 @@ int https(Data *data) {
         std::cerr << "Exception: " << e.what() << "\n";
     }
 
-
     return 0;
-
 }

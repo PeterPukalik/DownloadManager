@@ -33,7 +33,6 @@ int http(Data* data)
 //            return 1;
 //        }
         boost::asio::io_context io_context;
-        int responselength = 0;
         // Get a list of endpoints corresponding to the server name.
         tcp::resolver resolver(io_context);
         tcp::resolver::results_type endpoints = resolver.resolve(data->getWeb(), "http");
@@ -89,26 +88,29 @@ int http(Data* data)
         data->setFlag(1);//started
         while (std::getline(response_stream, header) && header != "\r"){
             if(header.compare(0,16,"Content-Length: ")== 0){
-                 data->setTotalSize(std::stoi(header.substr(16,header.length())));
+                if(data->getTotalSize() == 0){
+                    pthread_mutex_lock(data->getMutex());
+                    data->setTotalSize(std::stoi(header.substr(16,header.length())));
+                    pthread_mutex_unlock(data->getMutex());
+                }
+
             }
-            std::cout << header << "\n";
+            //std::cout << header << "\n";
         }
-        //std::cout << "\n";
+        std::cout << "Download started" << "\n";
 
         // Write whatever content we already have to output.
         std::ofstream outdata;
-        outdata.open((data->getName() + ".dat"), std::ios::out);
+        outdata.open((data->getName() + ".dat"), std::ios_base::app);
         if(!outdata){
             std::cerr << "Error : file could not be opened" << std::endl;
             return 1;
         }
         if (response.size() > 0) {
             //std::cout << &response;
-            //tu bude premenna kolko mi prislo +=
             pthread_mutex_lock(data->getMutex());
             data->addAllreadyDownloaded(response.size());
             pthread_mutex_unlock(data->getMutex());
-            //*allreadyDownloaded += response.size();
             outdata << &response;
         }
 
@@ -118,7 +120,6 @@ int http(Data* data)
             pthread_mutex_lock(data->getMutex());
             data->addAllreadyDownloaded(response.size());
             pthread_mutex_unlock(data->getMutex());
-            //*allreadyDownloaded += response.size();
             outdata << &response;
         }
         outdata.close();
@@ -128,8 +129,7 @@ int http(Data* data)
                 data->setFlag(2);//stoped
                 pthread_mutex_unlock(data->getMutex());
             }
-
-        }else{
+        } else {
             pthread_mutex_lock(data->getMutex());
             data->setFlag(3);//finished
             pthread_mutex_unlock(data->getMutex());

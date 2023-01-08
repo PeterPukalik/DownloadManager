@@ -27,7 +27,14 @@
 
 
 
+std::string getLastLine(std::ifstream& in)
+{
+    std::string line;
+    while (in >> std::ws && std::getline(in, line)) // skip empty lines
+        ;
 
+    return line;
+}
 
 //TODO: priority not working properly
 //void *managerPriority(void * sdata) {
@@ -104,9 +111,6 @@ void *downloand(void * sdata) {
 
     if (seconds >= 0) {
         std::cout << "zacinam download \n";
-        pthread_mutex_lock(data->getMutex());
-        data->addNumberOfActiveDownlaods(1);
-        pthread_mutex_unlock(data->getMutex());
         if (data->getAProtocol() == "http") {
             http(data);
         } else if (data->getAProtocol() == "https") {
@@ -117,9 +121,6 @@ void *downloand(void * sdata) {
         } else if (data->getAProtocol() == "ftps") {
             ftps(data);
         }
-        pthread_mutex_lock(data->getMutex());
-        data->subNumberOfActiveDownlaods(1);
-        pthread_mutex_unlock(data->getMutex());
     }
 //    pthread_mutex_lock(data->getMutex());
 //    pthread_cond_wait(data->getCondVlakno(),data->getMutex());
@@ -200,7 +201,7 @@ void *managerResumePriority(void * sdata) {
 
             //if stahuje sa viac ako 2
         //std::cout << "idem spat       managerResumePriority\n";
-            sleep(5);
+            sleep(3);
 
 
     }
@@ -211,19 +212,30 @@ void *managerResumePriority(void * sdata) {
 int main(int argc, char* argv[]) {
 
     bool running = true;
-    std::ofstream outdata;
-    if (!std::filesystem::exists("history.txt")) {
-        // file does not exist or could not be opened
-        outdata.open("history.txt", std::ios::out);
-        outdata.close();
+    long long index=0;
+
+    if (std::filesystem::exists("history.txt")) {
+        std::ifstream file("history.txt");
+        std::string line = getLastLine(file);
+        int i = 4;
+        std::string number;
+        while (line.at(i) != ' ' ){
+            number = number + line.at(i);
+            i++;
+        }
+        index= std::stoi(number) +1;
+        file.close();
+    } else {
+        // File does not exist
+        std::ifstream file("history.txt");
+        file.close();
     }
 
 
 
-    long long index=0;
+
     bool managerExists = false;
     pthread_mutex_t mutex;
-    pthread_cond_t  cond_vlakno,cond_spravcaPriority;
 
     pthread_t managerR;
     pthread_t managerResumeAftefPriorityStop;
@@ -232,8 +244,7 @@ int main(int argc, char* argv[]) {
     int numberOfActiveDownloads = 0;
 
     pthread_mutex_init(&mutex, nullptr);
-    pthread_cond_init(&cond_spravcaPriority, nullptr);
-    pthread_cond_init(&cond_vlakno, nullptr);
+
 
     std::vector<Data*> data;
     std::vector<std::string> parameters{};
@@ -243,9 +254,10 @@ int main(int argc, char* argv[]) {
 
 
     while(running){                                                                                                      //http pukalik.sk /pos/dog.jpeg dog 1
-        std::cout << std::endl << "choose you command \nfor exit type \"exit\"\n(download,help,exit,stop,resume,status,manager)" << std::endl;//http pukalik.sk /pos/pos_big.zip testStop 1 // 2023 1 3 19:44:00
+        std::cout << std::endl << "choose you command \nfor exit type \"exit\"\n(download,help,exit,stop,resume,status,manager,history)" << std::endl;//http pukalik.sk /pos/pos_big.zip testStop 1 // 2023 1 3 19:44:00
         // http pukalik.sk /pos/big_file.zip testThread1 1 // 2023 1 4 13:00:01
         // https frcatel.fri.uniza.sk /users/beerb/ma1/ma-1.pdf ma-1 1
+        // https frcatel.fri.uniza.sk /users/beerb/ma1/prednasky/integraly.pdf integraly 1
         //https://frcatel.fri.uniza.sk/users/beerb/ma1/
         // https github.com /pytorch/pytorch.git test 1
         ///https jetbrains.com /pycharm/download/download-thanks.html?platform=linux pycharm1 1
@@ -267,8 +279,11 @@ int main(int argc, char* argv[]) {
 
         // ftps test.rebex.net /pub/example/readme.txt testftps 1 //demo/password
         // ftp test.rebex.net /pub/example/readme.txt testftp 1 //hocico
+        // https frcatel.fri.uniza.sk /users/beerb/ma1/prednasky/integraly.pdf integraly 1
 
         //http pukalik.sk /pos/CoffeeHouse.rtf dokumentacia10 10
+        //http pukalik.sk /pos/CoffeeHouse.rtf dokumentacia10 10
+        //http pukalik.sk /pos/video.mp4 video10 10
         std::string command;
         std::cin >> command;
 
@@ -294,7 +309,7 @@ int main(int argc, char* argv[]) {
             pthread_mutex_lock(&mutex);
             data.push_back(new Data(parameters.at(0),parameters.at(1),parameters.at(2),parameters.at(3),
                                     index,std::stoi(parameters.at(4)),parameters.at(5),false,0,
-                                    &mutex,&cond_spravcaPriority,&cond_vlakno,0,0,0,&running,&numberOfActiveDownloads));
+                                    &mutex,0,0,0,&running));
             index++;
             pthread_mutex_unlock(&mutex);
 
@@ -314,20 +329,20 @@ int main(int argc, char* argv[]) {
             }
             parameters.clear();
             pthread_create(&vlakna, nullptr,&downloand,data.at(data.size()-1));
-            //pthread_create(&managerP, nullptr,&managerPriority,&data);
 
             pthread_detach(vlakna);
-            //pthread_detach(managerP);
+
 
         }
 
         else if(command == "stop"){
-            std::cout << "som v stop"<< std::endl;
+            //std::cout << "som v stop"<< std::endl;
 
-            std::cout << "som v mutexe"<< std::endl;
+            std::string input;
+            std::cout << "INPUT ID TO STOP: \n";
+            std::cin >> input;
             for (int i = 0; i < data.size(); i++) {
-
-                if(data.at(i)->getFlag() == 1){
+                if(data.at(i)->getIndex() == std::stoi(input)){
                     pthread_mutex_lock(&mutex);
                     data.at(i)->setStop(true);
                     pthread_mutex_unlock(&mutex);
@@ -336,15 +351,23 @@ int main(int argc, char* argv[]) {
 
         }
         else if(command == "resume"){
-            pthread_mutex_lock(&mutex);
-            for (int i = 0; i < data.size(); i++) {
-                data.at(i)->setStop(false);
-            }
-            pthread_mutex_unlock(&mutex);
+
+
+
+
             if(data.empty()){
                 std::cout << "nothing to resume\n";
             }else{
-
+                std::string input;
+                std::cout << "INPUT ID TO STOP: \n";
+                std::cin >> input;
+                for (int i = 0; i < data.size(); i++) {
+                    if(data.at(i)->getIndex() == std::stoi(input)) {
+                        pthread_mutex_lock(&mutex);
+                        data.at(i)->setStop(false);
+                        pthread_mutex_unlock(&mutex);
+                    }
+                }
                 pthread_create(&managerR, nullptr,&managerResume,&data);
                 pthread_detach(managerR);
 
@@ -352,7 +375,7 @@ int main(int argc, char* argv[]) {
         }
         else if(command == "status"){
             for (int i = 0; i < data.size(); ++i) {
-                std::cout << data.at(i)->getName() << " file has total size of: " << data.at(i)->getTotalSize() << " B and downloaded is "<< (double)(data.at(i)->getAllreadyDownloaded()/ data.at(i)->getTotalSize())*100<< " % FLAG: "<< data.at(i)->getFlag() <<"\n";
+                std::cout << "ID:" << data.at(i)->getIndex()  << " with name:" << data.at(i)->getName() << " file has total size of: " << data.at(i)->getTotalSize() << " B and downloaded is "<< (double)(data.at(i)->getAllreadyDownloaded()/ data.at(i)->getTotalSize())*100<< " % FLAG: "<< data.at(i)->getFlag()<< " \n";
 
             }
         }
@@ -369,7 +392,14 @@ int main(int argc, char* argv[]) {
 
         }
         else if(command =="history"){
+            std::ifstream input_file("history.txt");
+            std::string line;
+            while (std::getline(input_file, line)) {
+                std::cout << line << std::endl;
+            }
+            input_file.close();
 
+            // Seek to the end of the file
         }
         else if(command == "exit"){
             std::cout << "this will terminate all your current downlaods: type Y or N :  ";
@@ -382,13 +412,14 @@ int main(int argc, char* argv[]) {
                         pthread_mutex_unlock(&mutex);
                     }
                 }
-                outdata.open("history.txt", std::ios::out);
+                std::ofstream outdata;
+                outdata.open("history.txt", std::ios_base::app);
                 if(!outdata){
                     std::cerr << "Error : file could not be opened" << std::endl;
                     return 1;
                 }
                 for (int i = 0; i < data.size(); i++) {
-                    outdata <<"ID: "<<data.at(i)->getIndex() <<" "<< data.at(i)->getName() << " stiahnute: " << (double)(data.at(i)->getAllreadyDownloaded()/ data.at(i)->getTotalSize())*100 << " %" << std::endl;;
+                    outdata <<"ID: "<<data.at(i)->getIndex() <<" "<< data.at(i)->getName() << " stiahnute: " << (double)(data.at(i)->getAllreadyDownloaded()/ data.at(i)->getTotalSize())*100 << " %" << std::endl ;
                 }
                 outdata.close();
                 running = false;
@@ -404,7 +435,7 @@ int main(int argc, char* argv[]) {
 
     }
     //TODO join
-    //if(data.size() > 1)
+    if(data.size() > 1)
         pthread_join(managerResumeAftefPriorityStop,nullptr);
 
 
