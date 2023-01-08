@@ -36,9 +36,10 @@ private:
     int priority;
     std::string time;
     bool stop;
-    bool totalStop;
+    bool* totalStop;
 public:
     bool* isTotalStop() ;
+    int* numberOfActiveDownlaods;
 
 
 private:
@@ -49,10 +50,22 @@ private:
     double allreadyDownloaded;
     int totalSize;
     int flag; //0 initialized,1 started downloanding, 2 stoped,3 finished; 4 stopped worstpriorty
+    std::string ftpUSER;
+public:
+    const std::string &getFtpUser() const;
+
+    void setFtpUser(const std::string &ftpUser);
+
+    const std::string &getFtpPass() const;
+
+    void setFtpPass(const std::string &ftpPass);
+
+private:
+    std::string ftpPASS;
 public:
     Data(const std::string &aProtocol, const std::string &web, const std::string &path, const std::string &name,
          long long int index, int priority, const std::string &time, bool stop, int startPoint,
-         pthread_mutex_t *mutex, pthread_cond_t *condSpravcaPriority, pthread_cond_t *condVlakno,int allreadyDownloaded,int totalSize,int flag,bool *totalStop);
+         pthread_mutex_t *mutex, pthread_cond_t *condSpravcaPriority, pthread_cond_t *condVlakno,int allreadyDownloaded,int totalSize,int flag,bool *totalStop,int *numberOfActiveDownlaods);
 
 
 public:
@@ -66,13 +79,19 @@ public:
 
     const std::string &getPath() const;
 
+    int * getNumberOfActiveDownlaods() ;
+
+    void setNumberOfActiveDownlaods(int *numberOfActiveDownlaods);
+    void addNumberOfActiveDownlaods(int plusSize);
+    void subNumberOfActiveDownlaods(int minusSize);
+
     void setPath(const std::string &path);
 
     const std::string &getName() const;
 
     void setName(const std::string &name);
 
-    double getAllreadyDownloaded();
+    double getAllreadyDownloaded() ;
 
 
     void setAllreadyDownloaded(int allreadyDownloaded);
@@ -95,6 +114,8 @@ public:
     void setStop(bool stop);
 
     int getBufferPriority() const;
+
+    void setTotalStop(bool totalStop);
 
     void setBufferPriority(int bufferPriority);
 

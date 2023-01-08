@@ -123,9 +123,12 @@ int http(Data* data)
         }
         outdata.close();
         if(data->isStop()){
-            pthread_mutex_lock(data->getMutex());
-            data->setFlag(2);//stoped
-            pthread_mutex_unlock(data->getMutex());
+            if(data->getFlag() != 4){
+                pthread_mutex_lock(data->getMutex());
+                data->setFlag(2);//stoped
+                pthread_mutex_unlock(data->getMutex());
+            }
+
         }else{
             pthread_mutex_lock(data->getMutex());
             data->setFlag(3);//finished
